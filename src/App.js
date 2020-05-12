@@ -1,15 +1,10 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-
+import Router from './routes/index';
 class App extends React.Component {
 
   render() {
     return (
-      <Button
-        variant="contained"
-        color="primary">
-        你好，世界
-      </Button>
+      <Router/>
     )
       ;
   }
