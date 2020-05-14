@@ -1,16 +1,16 @@
 import React from 'react';
-import ButtonAppBar from "../components/common/Header";
+import Top from "../components/common/Header";
 import Footer from "../components/common/Footer";
 import MyContainer from "../components/common/Container";
-// import RouterView from '../routes/index'
-
+import Banner from "../components/common/Banner";
 
 export default class Layout extends React.Component {
 
   render() {
     return (
       <div>
-        <ButtonAppBar/>
+        <Top/>
+        <Banner/>
         <MyContainer/>
         <Footer/>
       </div>

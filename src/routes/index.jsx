@@ -10,19 +10,22 @@ import Detail from '../views/detail'
 const routes = [
   {
     path: "/",
-    component: Home
+    component: Home,
+    exact:true
   },
   {
     path: "/detail",
-    component: Detail
+    component: Detail 
   }
 ];
+
 function RouteWithSubRoutes(route) {
   return (
     <Route
+      exact={route.exact}
       path={route.path}
       render={props => (
-        <route.component {...props} routes={route.routes} />
+        <route.component {...props} routes={route.routes}/>
       )}
     />
   );
