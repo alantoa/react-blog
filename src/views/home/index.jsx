@@ -1,5 +1,4 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
 import HomeList from "./components/HomeList";
 
 
@@ -14,8 +13,8 @@ export default class Home extends React.Component {
   render() {
     return (
       <div style={style.root}>
-          {[1, 2, 3].map((text, index) => (
-            <HomeList/>
+          {[1, 2, 3].map((item, index) => (
+            <HomeList key={item}/>
           ))}
       </div>
     )

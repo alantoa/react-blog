@@ -6,7 +6,7 @@ import {makeStyles} from '@material-ui/core/styles';
 const style = makeStyles((theme) => ({
   root: {
     width: '100%',
-    height: 300
+    maxHeight:556
   }
 }))
 export default function MyBanner() {

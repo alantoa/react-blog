@@ -13,8 +13,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-
-
+import { Route, MemoryRouter } from 'react-router';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -23,15 +22,15 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1,
+    flexGrow: 1
   },
 }));
 
 
-export default function Top() {
+export default function Top(props) {
+
   const classes = useStyles();
   const divRef = React.createRef();
-
   const [state, setState] = React.useState({
     left: false
   });
@@ -42,7 +41,6 @@ export default function Top() {
 
     setState({...state, [anchor]: open});
   };
-
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -52,8 +50,6 @@ export default function Top() {
             <MenuIcon/>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            News
-
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
