@@ -10,7 +10,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import OnScrollHide from './HideOnScoll'
 import MenuDrawer from "../drawer";
-// import { withRouter  } from 'react-router-dom';
 
 
 const useStyles = (theme => ({
@@ -72,12 +71,11 @@ class Top extends React.Component {
   constructor(props) {
     super(props);
     this.state = {open: false}
-
-
   }
+
   showDrawer(event) {
     this.setState(state => ({
-       open:true
+      open: true
     }));
   }
 
