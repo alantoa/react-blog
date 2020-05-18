@@ -6,12 +6,12 @@ const style = {
     margin:"20px 0"
   }
 }
-export default class Detail extends React.Component {
+export default class Article extends React.Component {
 
   render() {
     return (
       <div style={style.root}>
-         Detail
+         Article
       </div>
     )
   }
