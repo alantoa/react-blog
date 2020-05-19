@@ -15,7 +15,7 @@ export default function Footer() {
   const classes = style();
   return (
     <div className={classes.root}>
-      Copyright © 2020 Alan Toa
+      Copyright © 2020
     </div>
   );
 }

@@ -1,14 +1,21 @@
-a{
-  &:link{
-    text-decoration: none;color: blue;
+a {
+  &:link {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.87);
   }
-  &:active{
-    text-decoration: none;color: blue;
+
+  &:active {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.87);
   }
-  &:hover{
-    text-decoration: none;color: blue;
+
+  &:hover {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.87);
   }
-  &:visited{
-    text-decoration: none;color: blue;
+
+  &:visited {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.87);
   }
 }

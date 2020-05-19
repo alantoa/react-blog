@@ -1,8 +1,7 @@
 import Home from '../views/home'
 import About from '../views/about'
 import Article from '../views/article'
-import Detail from '../views/detail'
-
+import NoMarch from '../views/NoMarch'
 const routes = [
   {
     path: "/",
@@ -21,9 +20,10 @@ const routes = [
     component: Article
   },
   {
-    path: "/detail/:id",
-    name:'Detail',
-    component: Detail
+    path: "*",
+    component: NoMarch
   }
 ];
+
+
 export default routes

@@ -6,13 +6,12 @@ const style = {
     margin:"20px 0"
   }
 }
-export default class Article extends React.Component {
+export default class NoMarch extends React.Component {
 
   render() {
-
     return (
       <div style={style.root}>
-         Article
+         NoMarch
       </div>
     )
   }
