@@ -1,6 +1,6 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
-import bannerBg from '../../../image/banner/banner.jpg'
+import bannerBg from '../../../assets/image/banner/banner.jpg'
 import {makeStyles} from '@material-ui/core/styles';
 
 const style = makeStyles((theme) => ({
