@@ -7,8 +7,9 @@ const views = require('koa-views')
 const json = require('koa-json')
 const logger = require('koa-logger')
 const cors = require('koa2-cors');
-
+const Send = require('./send')
 const onerror = require('koa-onerror')
+const Func = require('./method')
 module.exports = app => {
 
   //缓存拦截器
@@ -25,7 +26,7 @@ module.exports = app => {
   })
 
 
-  // middlewares
+
   app.use(bodyParser({
     enableTypes: ['json', 'form', 'text']
   }))
@@ -33,6 +34,11 @@ module.exports = app => {
   //静态文件中间件
   app.use(staticFiles(path.resolve(__dirname, '../../../public')));
 
+  // 数据返回的封装
+  app.use(Send())
+  // 后台方法封装
+  app.use(Func())
+  
   app.use(cors())
 
   app.use(json())
@@ -55,8 +61,7 @@ module.exports = app => {
   // 规则中间件
   Rule({
     app,
-    rules: [
-      {
+    rules: [{
         path: path.join(__dirname, '../controller/admin'),
         name: 'admin'
       },

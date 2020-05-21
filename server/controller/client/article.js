@@ -1,17 +1,27 @@
 const articleModel = require('../../mongo/models/article')
-const path = require('path')
+
 module.exports = {
   async list(ctx, next) {
     console.log('----------------获取博客列表 client_demo_api/blog/list-----------------------');
-    let {type = null, pageindex = 1, pagesize = 5} = ctx.request.query;
-    console.log('type:' + type + ',' + 'pageindex:' + pageindex + ',' + 'pagesize:' + pagesize)
+    let {
+      type = null, pageindex = 1, pagesize = 5
+    } = ctx.request.query;
+    console.log(`type:  ${type}  ,  pageindex:  ${pageindex}  ,  pagesize:  ${pagesize}`)
     try {
 
-      let data = await ctx.find(articleModel, {type, isVisible: true, source: 1}, null, {
+      let data = await ctx.find(articleModel, {
+        type,
+        isVisible: true,
+        source: 1
+      }, null, {
         limit: pagesize * 1,
         skip: (pageindex - 1) * pagesize,
-        sort: {level: -1, createTime: -1}
+        sort: {
+          level: -1,
+          createTime: -1
+        }
       });
+
       return ctx.send(data)
     } catch (e) {
       console.log(e)
