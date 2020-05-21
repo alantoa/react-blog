@@ -1,5 +1,5 @@
-const articleModel = require('../../models/article')
-
+const articleModel = require('../../mongo/models/article')
+const path = require('path')
 module.exports = {
   async list(ctx, next) {
     console.log('----------------获取博客列表 client_demo_api/blog/list-----------------------');
@@ -29,7 +29,7 @@ module.exports = {
     //     return ctx.sendError(e)
     // }
     ctx.body = {
-      title: '123'
+      title: ctx
     }
   }
 }

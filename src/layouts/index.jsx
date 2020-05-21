@@ -6,7 +6,7 @@ import Banner from "../components/banner";
 
 export default class Layout extends React.Component {
   componentDidMount() {
-    fetch(process.env.REACT_APP_BASE_URL + 'info').then(res=>{
+    fetch(process.env.REACT_APP_BASE_URL + `client_api/info`).then(res=>{
       console.log(res)
     })
   }
