@@ -13,7 +13,7 @@ module.exports = {
         ctx.sendError('数据已经存在, 请重新添加!')
       } else {
         // paramsData.intro = marked(paramsData.intro);
-        data = await ctx.add(aboutModel, paramsData);
+        await ctx.add(aboutModel, paramsData);
         ctx.send(paramsData)
       }
     } catch (e) {
