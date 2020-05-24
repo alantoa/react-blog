@@ -14,7 +14,7 @@ const log = {
 }
 const port = process.env.NODE_ENV === 'production' ? '80' : '3001'
 
-
+//db.createUser({user:"toa",pwd:"123456",roles:[{role:"readWrite",db:'blog'}]})
 module.exports = {
   env: process.env.NODE_ENV,
   port,
