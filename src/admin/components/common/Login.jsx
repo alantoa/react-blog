@@ -1,42 +1,59 @@
 import React from 'react'
 import './login.scss'
 
-export default function Login(props){
+export default function Login(props) {
   const [state, setState] = React.useState({
-    rippleShow:false,
-    animating:false,
-    rippleX:0,
-    rippleY:0
+    rippleShow: true,
+    animating: false,
+    success: false,
+    inactive: false,
+    showLogin: true,
+    top:'0px',
+    left:'0px'
+
   });
   let submitPhase1 = 1100,
-      submitPhase2 = 400,
-      logoutPhase1 = 800;
-  const login = React.createRef();
+    submitPhase2 = 400;
   function ripple(elem, e) {
-    setState({rippleShow: false});
     let elTop = elem.offsetTop,
-        elLeft = elem.offsetLeft;
-    setState({rippleX: e.pageX - elLeft,rippleY: e.pageY - elTop});
-    console.log( e.pageX - elLeft)
-    console.log( e.pageY - elTop)
-    setState({rippleShow: true});
+       elLeft = elem.offsetLeft;
+    setState({ 
+      rippleShow: false ,
+      top: e.pageX - elLeft,
+      left: e.pageY - elTop
+    });
+    console.log(state)
+    setState({ rippleShow: true });
   };
-  function loginSubmit (e){
-    if(state.animating) return;
+  function loginSubmit(e) {
+    if (state.animating) return;
     e.persist()
     console.log(e)
-    console.log(state)
-    setState({animating: true});
+    
+    setState({ animating: true });
     // console.log(animating)
     ripple(e.target, e);
+    setTimeout(function () {
+      setState({ success: true });
+      setTimeout(function () {
+
+      }, submitPhase2 - 70);
+      
+      setTimeout(function () {
+        setState({ inactive: true });
+        setState({ animating: false });
+        setState({ success: false });
+        setState({ processing: false });
+      }, submitPhase2);
+    }, submitPhase1);
+
     console.log(ripple)
   }
   return (
     <div className="cont">
-      {JSON.stringify(state.animating)}
       <div className="demo">
         <div className="login">
-          <div className="login__check" ref={login}/>
+          <div className="login__check" />
           <div className="login__form">
             <div className="login__row">
               <svg className="login__icon name svg-icon" viewBox="0 0 20 20">
@@ -50,9 +67,12 @@ export default function Login(props){
               </svg>
               <input type="password" className="login__input pass" placeholder="Password" />
             </div>
-            <button type="button" className="login__submit" onClick = {loginSubmit.bind(this)}>Sign in</button>
-            
-            { state.rippleShow ? <div className='ripple' style={{'top':state.rippleX,'left':state.rippleY}}></div>:''}
+            <button type="button" onClick={loginSubmit.bind(this)} className={`login__submit ${state.animating ? 'processing' : ''} ${state.success ? 'success' : ''} ${state.inactive ? 'inactive' : ''}`}>
+              Sign in
+              {state.rippleShow ? <div className='ripple' style={{top:state.top,left:state.left}}></div> : ''}
+            </button>
+
+
             <p className="login__signup">Don't have an account? &nbsp;<a href='javascript()'>Sign up</a></p>
           </div>
         </div>
@@ -67,7 +87,7 @@ export default function Login(props){
 //       logoutPhase1 = 800,
 //       $login = $(".login"),
 //       $app = $(".app");
-  
+
 //   function ripple(elem, e) {
 //     $(".ripple").remove();
 //     var elTop = elem.offset().top,
@@ -78,7 +98,7 @@ export default function Login(props){
 //     $ripple.css({top: y, left: x});
 //     elem.append($ripple);
 //   };
-  
+
 //   $(document).on("click", ".login__submit", function(e) {
 //     if (animating) return;
 //     animating = true;
@@ -100,4 +120,3 @@ export default function Login(props){
 //       }, submitPhase2);
 //     }, submitPhase1);
 //   });
-  
