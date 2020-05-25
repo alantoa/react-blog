@@ -6,11 +6,12 @@ import {
 // import './style/main.scss'
 import * as serviceWorker from './serviceWorker';
 import Layout from "./layouts/index";
-
+import Login from './components/common/Login'
+const isLogin = true;
 ReactDOM.render(
   // <React.StrictMode>
   <Router>
-    <Layout/>
+    { isLogin ? <Login/> : <Layout/> }
   </Router>,
   // </React.StrictMode>,
   document.getElementById('root')
