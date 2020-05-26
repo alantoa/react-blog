@@ -9,9 +9,7 @@ html, body {
   font-size: 62.5%;
   height: 100%;
   overflow: hidden;
-  #root{
-    height: 100%;
-  }
+  
   @media (max-width: 768px) {
     font-size: 50%;
   }
@@ -190,6 +188,265 @@ input, button {
     a {
       color: #fff;
       cursor: pointer;
+    }
+  }
+  
+}
+
+.app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  display: none;
+  transition: opacity 0.1s, transform 0.3s cubic-bezier(0.68, -0.45, 0.465, 1.25);
+  transform: scale(1.2);
+  
+  &.active {
+    opacity: 1;
+    transform: scale(1);
+    
+    .app__user-photo {
+      transform: scale(1);
+    }
+    
+    .app__meeting {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .app__logout {
+      transform: scale(1);
+    }
+  }
+
+  &__top {
+    position: relative;
+    height: 28rem;
+    background: rgba(0,0,0,0.5);
+    padding: 6rem 1.5rem 2rem;
+    text-align: center;
+  }
+
+  &__bot {
+    position: relative;
+    height: 25rem;
+    background: #fff;
+  }
+  
+  &__menu-btn {
+    position: absolute;
+    top: 2rem;
+    left: 1.5rem;
+    width: 1.8rem;
+    height: 1.7rem;
+    cursor: pointer;
+    
+    span,
+    &:before,
+    &:after {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.6);
+    }
+    
+    span {
+      top: 0.8rem;
+    }
+    &:before {
+      content: "";
+      top: 0;
+    }
+    &:after {
+      content: "";
+      bottom: 0;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 2rem;
+
+    &.search {
+      right: 1.5rem;
+      stroke-dasharray: 61.847137451171875;
+      stroke-dashoffset: 61.847137451171875;
+      animation: animatePath 0.5s 0.5s forwards;
+    }
+  }
+  
+  &__hello {
+    font-size: 2.2rem;
+    color: #fff;
+    font-weight: normal;
+    margin-bottom: 3rem;
+  }
+  
+  &__user {
+    position: relative;
+    display: inline-block;
+    width: 9rem;
+    height: 9rem;
+    margin-bottom: 3rem;
+  }
+  &__user-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transition: transform 0.3s 0.2s cubic-bezier(.62,.35,.56,1.55);
+    transform: scale(0);
+  }
+  &__user-notif {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    line-height: 3rem;
+    text-align: center;
+    background: #50D2C2;
+    color: #fff;
+    font-size: 1.5rem;
+  }
+  
+  &__month:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  &__month-name {
+    display: inline-block;
+    color: rgba(255,255,255,0.6);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+  }
+  
+  &__month-btn {
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 1px solid rgba(255,255,255,0.6);
+    border-left: none;
+    border-bottom: none;
+    cursor: pointer;
+    
+    &.left {
+      float: left;
+      transform: rotate(-135deg);
+    }
+    
+    &.right {
+      float: right;
+      transform: rotate(45deg);
+    }
+  }
+  
+  &__days {
+    height: 7rem;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  &__day {
+    width: 14%;
+    text-align: center;
+    font-size: 1.2rem;
+    
+    &.weekday {
+      color: #919197;
+      text-transform: uppercase;
+    }
+    &.date {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #3C3C43;
+    }
+  }
+  
+  &__meeting {
+    position: relative;
+    height: 6rem;
+    border-top: 1px solid #EEEEEF;
+    padding: 1rem 2rem 1rem 7.5rem;
+    transition: transform 0.3s, opacity 0.3s;
+    transform: translateY(-50%);
+    opacity: 0;
+    
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        transition-delay: 0.1s + 0.1s * $i;
+      }
+    }
+    
+    &-photo {
+      position: absolute;
+      left: 2rem;
+      top: 1rem;
+      width: 4rem;
+      height: 4rem;
+    }
+    &-name {
+      color: #000;
+      font-size: 1.3rem;
+    }
+    &-info {
+      color: #949498;
+      font-size: 1.1rem;
+    }
+  }
+  
+  &__logout {
+    position: absolute;
+    bottom: 3.3rem;
+    right: 3.3rem;
+    width: 4.6rem;
+    height: 4.6rem;
+    margin-right: -2.3rem;
+    margin-bottom: -2.3rem;
+    background: #FC3768;
+    color: #fff;
+    font-size: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: bottom 0.4s 0.1s, right 0.4s 0.1s, transform 0.4s 0.4s, opacity 0.1s 0.7s, background-color 0.1s 0.7s;
+    transform: scale(0);
+    
+    &.clicked {
+      bottom: 50%;
+      right: 50%;
+      transform: scale(30) !important;
+      opacity: 0.9;
+      //background-color: rgba(255,255,255,0.95);
+      
+      svg {
+        opacity: 0;
+      }
+    }
+    
+    &-icon {
+      position: absolute;
+      width: 3rem;
+      height: 3rem;
+      top: 50%;
+      left: 50%;
+      margin-left: -1.5rem;
+      margin-top: -1.5rem;
+      transition: opacity 0.1s;
+      
+      path {
+        stroke-width: 4px;
+        stroke-dasharray: 64.36235046386719;
+        stroke-dashoffset: 64.36235046386719;
+        animation: animatePath 0.5s 0.5s forwards;
+      }
     }
   }
   

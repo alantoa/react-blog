@@ -1,7 +1,10 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 
 export default function Layout(){
   return (
-    <h1>后台</h1>
+    <div>
+      <Button>test</Button>
+    </div>
   )
 }

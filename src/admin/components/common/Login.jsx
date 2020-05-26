@@ -12,42 +12,36 @@ export default function Login(props) {
     left:'0px'
 
   });
-  let submitPhase1 = 1100,
-    submitPhase2 = 400;
-  function ripple(elem, e) {
-    let elTop = elem.offsetTop,
-       elLeft = elem.offsetLeft;
-    setState({ 
-      rippleShow: false ,
-      top: e.pageX - elLeft,
-      left: e.pageY - elTop
-    });
-    console.log(state)
-    setState({ rippleShow: true });
-  };
+
   function loginSubmit(e) {
     if (state.animating) return;
     e.persist()
     console.log(e)
     
-    setState({ animating: true });
-    // console.log(animating)
-    ripple(e.target, e);
+    setState({ 
+      animating: true,
+      rippleShow: true ,
+      top: e.pageX - e.target.offsetLeft,
+      left: e.pageY - e.target.offsetTop
+    });
     setTimeout(function () {
-      setState({ success: true });
+      setState({ 
+        animating: true,
+        success: true });
       setTimeout(function () {
 
-      }, submitPhase2 - 70);
+      }, 400 - 70);
       
       setTimeout(function () {
-        setState({ inactive: true });
-        setState({ animating: false });
-        setState({ success: false });
-        setState({ processing: false });
-      }, submitPhase2);
-    }, submitPhase1);
+        setState({ 
+          inactive: true,
+          animating: false,
+          success: false,
+          processing: false
+         });
+      }, 400);
+    }, 1100);
 
-    console.log(ripple)
   }
   return (
     <div className="cont">
