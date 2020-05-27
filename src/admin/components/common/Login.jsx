@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './login.scss'
 
 export default function Login(props) {
+  const btnRef = useRef();
   const [state, setState] = React.useState({
-    rippleShow: true,
+    rippleShow: false,
     animating: false,
     success: false,
     inactive: false,
@@ -12,22 +13,23 @@ export default function Login(props) {
     left:'0px'
 
   });
-
   function loginSubmit(e) {
     if (state.animating) return;
     e.persist()
     console.log(e)
-    
     setState({ 
-      animating: true,
-      rippleShow: true ,
-      top: e.pageX - e.target.offsetLeft,
-      left: e.pageY - e.target.offsetTop
+      animating: true,  
+      top: e.pageY - btnRef.current.getBoundingClientRect().y,
+      left: e.pageX - btnRef.current.getBoundingClientRect().x,
+      rippleShow: true,
+      
     });
     setTimeout(function () {
       setState({ 
         animating: true,
-        success: true });
+        success: true ,
+        rippleShow: false ,  
+      });
       setTimeout(function () {
 
       }, 400 - 70);
@@ -61,7 +63,7 @@ export default function Login(props) {
               </svg>
               <input type="password" className="login__input pass" placeholder="Password" />
             </div>
-            <button type="button" onClick={loginSubmit.bind(this)} className={`login__submit ${state.animating ? 'processing' : ''} ${state.success ? 'success' : ''} ${state.inactive ? 'inactive' : ''}`}>
+            <button type="button" ref={btnRef} onClick={loginSubmit.bind(this)} className={`login__submit ${state.animating ? 'processing' : ''} ${state.success ? 'success' : ''} ${state.inactive ? 'inactive' : ''}`}>
               Sign in
               {state.rippleShow ? <div className='ripple' style={{top:state.top,left:state.left}}></div> : ''}
             </button>
