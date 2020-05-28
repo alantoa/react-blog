@@ -24,6 +24,6 @@ module.exports = {
     username: 'toa',
     pwd: 123456,
     address: 'localhost:27017',
-    db: 'test'
+    db: 'blog'
   }
 }

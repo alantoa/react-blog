@@ -5,6 +5,8 @@ module.exports = app => {
   /** 
    * Admin 后台接口 *********************************************
    */
+  // 登录接口
+  router.post('/admin_api/user/login', app.admin.user.login)
   // 文章 Article 接口
   router.post(`/admin_api/add`, app.admin.article.add)
   router.post(`/admin_api/list`, app.admin.article.add)
