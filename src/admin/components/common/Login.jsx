@@ -15,7 +15,6 @@ export default function Login(props) {
   function loginSubmit(e) {
     if (state.animating) return;
     e.persist();
-    console.log(e);
 
     setState({
       animating: true,
