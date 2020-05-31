@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import "./login.scss";
-
+import store from '../../stores/createStore'
+console.log(store.subscribe(() => console.log(store.getState())))
 export default function Login(props) {
   const btnRef = useRef();
   const [state, setState] = React.useState({
@@ -15,7 +16,7 @@ export default function Login(props) {
   function loginSubmit(e) {
     if (state.animating) return;
     e.persist();
-
+    store.dispatch({ type: 'INCREMENT' })
     setState({
       animating: true,
       top: e.pageY - btnRef.current.getBoundingClientRect().y,
