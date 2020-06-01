@@ -42,13 +42,8 @@ input, button {
   font-family: $openSans;
 }
 .demo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -15rem;
-  margin-top: -26.5rem;
-  width: 30rem;
-  height: 53rem;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 .login {
@@ -65,13 +60,14 @@ input, button {
   
   &__check {
     position: absolute;
-    top: 16rem;
-    left: 13.5rem;
     width: 14rem;
     height: 2.8rem;
     background: #fff;
     transform-origin: 0 100%;
     transform: rotate(-45deg);
+    top: 26%;
+    left: 50%;
+    transform: translate(-18%, -50%) rotate(-45deg);
     
     &:before {
       content: "";
@@ -88,11 +84,12 @@ input, button {
   &__form {
     position: absolute;
     top: 50%;
-    left: 0;
-    width: 100%;
-    height: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
     padding: 1.5rem 2.5rem;
     text-align: center;
+    transform: translate(-50%, -50%);     
   }
   
   &__row {
@@ -169,9 +166,9 @@ input, button {
     
     &.success {
       transition: transform 0.3s 0.1s ease-out, opacity 0.1s 0.3s, background-color 0.1s 0.3s;
-      transform: scale(30);
+      transform: scale(50);
       opacity: 0.9;
-      //background-color: rgba(255,255,255,0.95);
+      background-color: rgba(255,255,255,0.95);
       
       &:after {
         transition: opacity 0.1s 0s;

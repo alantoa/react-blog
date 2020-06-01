@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import "./login.scss";
 import store from '../../stores/createStore'
-console.log(store.subscribe(() => console.log(store.getState())))
+store.getState()
 export default function Login(props) {
   const btnRef = useRef();
   const [state, setState] = React.useState({
