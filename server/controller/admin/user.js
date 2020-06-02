@@ -5,16 +5,15 @@ const userModel = require('../../mongo/models/user')
 module.exports = {
     async login (ctx, next) {
         console.log('----------------登录接口 user/login-----------------------');
-        let {username, pwd} = ctx.request.body;
-        console.log(username)
         
+        let {username, password} = ctx.request.body;
         try {
             let data = await ctx.findOne(userModel, {username: username});
-            console.log(data)
+            
             if (!data) {
                 return ctx.sendError('用户名不存在！');
             }
-            if (pwd !== data.pwd) {
+            if (password !== data.pwd) {
                 return ctx.sendError('密码错误,请重新输入！');
             }
             await ctx.update(userModel, {_id: data._id}, {$set:{loginTime: new Date()}}) //更新登陆时间
