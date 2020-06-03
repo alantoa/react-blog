@@ -3,7 +3,6 @@
 const path = require('path');
 const fs = require('fs');
 const getPublicUrlOrPath = require('react-dev-utils/getPublicUrlOrPath');
-const isAdmin = process.env.NODE_ENV_TYPE === 'admin'
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebook/create-react-app/issues/637
 const appDirectory = fs.realpathSync(process.cwd());
@@ -66,16 +65,30 @@ const resolveModule = (resolveFn, filePath) => {
 //   appNodeModules: resolveApp('node_modules'),
 //   publicUrlOrPath,
 // };
-console.log(isAdmin)
 module.exports = {
+  // dotenv: resolveApp('.env.development'),
+  // appPath: resolveApp('.'),
+  // appBuild: resolveApp(isAdmin ? 'build/admin' : 'build/client'),
+  // appPublic: resolveApp(isAdmin ? 'public/admin' : 'public/client'),
+  // appHtml: resolveApp(isAdmin ? 'public/admin/index.html' : 'public/client/index.html'),
+  // appIndexJs: isAdmin ? resolveModule(resolveApp, 'src/admin/index') : resolveModule(resolveApp, 'src/client/index'),
+  // appPackageJson: resolveApp('package.json'),
+  // appSrc: resolveApp(isAdmin ? 'src/admin' : 'src/client'),
+  // appTsConfig: resolveApp('tsconfig.json'),
+  // appJsConfig: resolveApp('jsconfig.json'),
+  // yarnLockFile: resolveApp('yarn.lock'),
+  // testsSetup: resolveModule(resolveApp, 'src/setupTests'),
+  // proxySetup: resolveApp('src/setupProxy.js'),
+  // appNodeModules: resolveApp('node_modules'),
+  // publicUrlOrPath,
   dotenv: resolveApp('.env.development'),
   appPath: resolveApp('.'),
-  appBuild: resolveApp(isAdmin ? 'build/admin' : 'build/client'),
-  appPublic: resolveApp(isAdmin ? 'public/admin' : 'public/client'),
-  appHtml: resolveApp(isAdmin ? 'public/admin/index.html' : 'public/client/index.html'),
-  appIndexJs: isAdmin ? resolveModule(resolveApp, 'src/admin/index') : resolveModule(resolveApp, 'src/client/index'),
+  appBuild: resolveApp('build'),
+  appPublic: resolveApp('public'),
+  appHtml: resolveApp('public/index.html'),
+  appIndexJs: resolveModule(resolveApp, 'src/index'),
   appPackageJson: resolveApp('package.json'),
-  appSrc: resolveApp(isAdmin ? 'src/admin' : 'src/client'),
+  appSrc: resolveApp('src'),
   appTsConfig: resolveApp('tsconfig.json'),
   appJsConfig: resolveApp('jsconfig.json'),
   yarnLockFile: resolveApp('yarn.lock'),
@@ -83,6 +96,7 @@ module.exports = {
   proxySetup: resolveApp('src/setupProxy.js'),
   appNodeModules: resolveApp('node_modules'),
   publicUrlOrPath,
+
 };
 
 

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start:client": "set NODE_ENV_TYPE=client && node bundle/start.js",
+    "start": "node bundle/start.js",
     "start:admin": "cross-env NODE_ENV_TYPE=admin node bundle/start.js",
     "build:client": "set NODE_ENV_TYPE=client && node bundle/build.js",
     "build:admin": "cross-env NODE_ENV_TYPE=admin node bundle/build.js",

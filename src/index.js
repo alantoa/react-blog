@@ -1,19 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-  BrowserRouter as Router
-} from "react-router-dom";
 import './assets/style/main.scss'
 import * as serviceWorker from './serviceWorker';
-import Layout from "./layouts/index";
-import Login from './components/common/Login'
-
-const isLogin = true;
+import IndexApp from './containers'
+// import {Provider} from 'react-redux'
+// import configureStore from './configureStore'
+// const store = configureStore();
 ReactDOM.render(
   // <React.StrictMode>
-  <Router>
-    { isLogin ? <Login/> : <Layout/> }
-  </Router>,
+  <IndexApp />,
   // </React.StrictMode>,
   document.getElementById('root')
 );
