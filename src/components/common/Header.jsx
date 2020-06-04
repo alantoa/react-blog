@@ -10,7 +10,7 @@ import InputBase from '@material-ui/core/InputBase';
 import OnScrollHide from './HideOnScoll';
 import MenuDrawer from "../drawer";
 import {withRouter, Link} from 'react-router-dom';
-import routes from '../../routes/routerConfig';
+import routes from '../../routes/clientRouterConfig';
 import DrawerContent from '../drawer/components/Content';
 import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';

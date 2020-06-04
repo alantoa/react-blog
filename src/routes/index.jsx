@@ -4,7 +4,7 @@ import {
   Route,
   withRouter
 } from "react-router-dom";
-import routes from './routerConfig'
+import routes from './clientRouterConfig'
 
 function RouteWithSubRoutes(route) {
   return (

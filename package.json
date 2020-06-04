@@ -4,9 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node bundle/start.js",
-    "start:admin": "cross-env NODE_ENV_TYPE=admin node bundle/start.js",
-    "build:client": "set NODE_ENV_TYPE=client && node bundle/build.js",
-    "build:admin": "cross-env NODE_ENV_TYPE=admin node bundle/build.js",
+    "build": "node bundle/build.js",
     "test": "node bundle/test.js",
     "serve": "node server/bin/www",
     "serve:dev": "./node_modules/.bin/nodemon server/bin/www",
@@ -31,6 +29,7 @@
     "busboy": "^0.3.1",
     "camelcase": "^5.3.1",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
+    "clsx": "^1.1.1",
     "cross-env": "^7.0.2",
     "css-loader": "3.4.2",
     "debug": "^4.1.1",

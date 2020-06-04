@@ -1,5 +1,19 @@
-#root{
+html, body {
+  font-size: 62.5%;
   height: 100%;
+  @media (max-width: 768px) {
+    font-size: 50%;
+  }
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+input,
+button {
+  outline: none;
+  border: none;
 }
 a {
   &:link {
