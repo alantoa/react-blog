@@ -1,5 +1,35 @@
 
- 
+// 检查状态码
+function checkStatus(res) { 
+  console.log(res)
+  // 结束
+  if (res.status === 200 || res.status === 304) {
+      return res.json()
+  }
+  return {
+      code: 0,
+      msg: res.json().data.msg || res.json().statusText,
+      data: res.json().statusText
+  }
+}
+
+
+// 检查CODE值
+function checkCode(res) {
+  if (res.code === 0) {
+      // Message({
+      //   message: res.msg,
+      //   type: 'error',
+      //   duration: 2 * 1000
+      // })
+      console.log(res.msg)
+      // throw new Error(res.msg)
+  }
+  
+  return res
+}
+
+
 export function GET(url) {
   return new Promise((resolve, reject) => {
     fetch(url)
@@ -10,7 +40,6 @@ export function GET(url) {
 }
 // post方式
 export function POST(url, data) {
-  console.log(url)
   return new Promise((resolve, reject) => {
     fetch(url, {
       method: 'POST',
@@ -19,8 +48,7 @@ export function POST(url, data) {
       },
       body: JSON.stringify(data)
     })
-      .then(res => res.json())
-      .then(data => resolve(data))
+      .then(checkStatus).then(checkCode)
       .catch(err => reject(err))
 
   })

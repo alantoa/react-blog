@@ -15,6 +15,14 @@ const log = {
 const port = process.env.NODE_ENV === 'production' ? '80' : '3001'
 
 //db.createUser({user:"toa",pwd:"123456",roles:[{role:"readWrite",db:'blog'}]})
+// db.users.insert({
+//   "name" : "Toa",
+//   "pwd" : "e10adc3949ba59abbe56e057f20f883e",
+//   "username" : "admin",
+//   "roles" : [ 
+//       "admin"
+//   ]
+// })
 module.exports = {
   env: process.env.NODE_ENV,
   port,

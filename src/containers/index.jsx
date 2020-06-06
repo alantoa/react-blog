@@ -7,14 +7,8 @@ import {
 
 } from 'react-router-dom'
 import NotFound from "../components/notFound/NotFound";
-// import {Loading} from "./components/loading/Loading"
-// import {notification} from 'antd';
-// import {connect} from 'react-redux'
-// import {bindActionCreators} from 'redux'
-// import {actions} from '../reducers'
 import Admin from "./admin/admin";
 import Client from './client/client'
-// const {clear_msg, user_auth} = actions;
 
 export default class AppIndex extends Component {
 

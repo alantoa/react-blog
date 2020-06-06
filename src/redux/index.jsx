@@ -1,9 +1,8 @@
 import {createStore} from 'redux'
-import reducer from '../reducer' 
+import reducer from './reducer/user' 
 const initValue={
-    'First':0,
-    'Second':10,
-    'Third':20
+    user:{},
+    token:''
 }
 const store=createStore(reducer,initValue)
 export default store
