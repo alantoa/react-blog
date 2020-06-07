@@ -1,23 +1,19 @@
 import {login} from '../../api/login'
-
+import {LOGIN_IN} from '../actionTypes'
 import {getToken} from '../../../src/utils/auth'
-
-export default (state, action) => {
+const initValue={
+  user:{},
+  token:''
+}
+export const user = (state = initValue, action) => {
   let {form} =  action
-  console.log(action);
   switch (action.type) {
-    case 'LOGIN_IN':
-      return new Promise( (resolve, reject) => {
-        login(form).then(res=>{
+    case LOGIN_IN:
+     return  login(form).then(res=>{
+          console.log(state);
           state.token = getToken();
-          resolve(res)
         }).catch(err=>{
-          reject(err)
         })
-      })
-    case 'LOGIN_OUT':
-      console.log('logOut')
-      break
     default:
       return state
   }

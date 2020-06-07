@@ -1,34 +1,38 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import ArticleManage from '../../views/atricleManage'
-import NotFound from '../../components/notFound/NotFound'
-import Login from '../../components/login/Login'
+
+// 按路由拆分代码
+import Loadable from 'react-loadable';
+import LoadingComponent from '@/components/LoadingComponent'
+
+
+const atricleManage = Loadable({
+  loader: () => import('@/views/atricleManage'),
+  loading: LoadingComponent
+});
+
+
+
+/**
+ * (路由根目录组件，显示当前符合条件的组件)
+ * 
+ * @class Roots
+ * @extends {Component}
+ */
+
 
 export default class Admin extends Component {
 
   render() {
-    if (true) {
+    
       return (
         <>
-          {false ? (
-            <Switch>
-              <Route exact path={'/admin'} component={ArticleManage} />
-            </Switch>
-          ) : (
-            <>
-            <Login></Login>
-            </>
-          )}
+          <Switch>
+            <Route  path={'/admin'} component={atricleManage} />
+          </Switch>
         </>
       )
-    } else {
-      return (
-        <>
-          <NotFound />
-        </>
-      )
-    }
+    
   }
 
-  componentDidMount() {}
 }

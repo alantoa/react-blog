@@ -1,49 +1,62 @@
-import React, { Component } from 'react'
-// import PureRenderMixiin from 'react-addons-pure-render-mixin'
+import React, { Component } from "react";
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import NotFound from "../components/NotFound";
+import Client from "./client/client";
+import MySnackbar from "../components/Snackbar/index";
+import Loadable from "react-loadable";
+import { getToken } from "@/utils/auth";
+import LoadingComponent from "@/components/LoadingComponent";
 
-} from 'react-router-dom'
-import NotFound from "../components/notFound/NotFound";
-import Admin from "./admin/admin";
-import Client from './client/client'
+const Admin = Loadable({
+  loader: () => import("./admin/admin"),
+  loading: LoadingComponent,
+});
 
+const Login = Loadable({
+  loader: () => import("@/components/login/Login"),
+  loading: LoadingComponent,
+});
+// 登录验证
+function requireAuth(Layout, props) {
+  if (getToken()) {
+    return <Layout {...props} />;
+  } else {
+    return <Redirect to="/login" />;
+  }
+}
 export default class AppIndex extends Component {
-
-
-  // openNotification(type, message) {
-  //     let that = this;
-  //     notification[type]({
-  //         message: message,
-  //         onClose: () => {
-  //             that.props.clear_msg();
-  //         }
-  //     });
-  //     that.props.clear_msg();
-  // };
 
   render() {
     return (
-      <Router>
-        <>
-          <Switch>
-            <Route path='/404' component={NotFound} />
-            <Route path='/admin' component={Admin} />
-            <Route component={Client} />
-          </Switch>
-        </>
-      </Router>
-    )
+      <>
+        <Router>
+          <>
+            <Switch>
+              <Route path="/404" component={NotFound} />
+              <Route
+                path="/admin"
+                component={(props) => requireAuth(Admin, props)}
+              />
+              <Route path={"/login"} component={Login} />
+              <Route component={Client} />
+            </Switch>
+          </>
+        </Router>
+        <MySnackbar />
+      </>
+    );
   }
 
   componentDidMount() {
     // this.props.user_auth();
+    console.log(this)
   }
-
 }
-
 
 // function mapStateToProps(state) {
 //     return {
@@ -55,7 +68,6 @@ export default class AppIndex extends Component {
 
 //     }
 // }
-
 
 // export default connect(
 //     mapStateToProps,

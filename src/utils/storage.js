@@ -6,7 +6,7 @@ export const Cookie = {
         let arr = document.cookie.split('; ')
         for (let i = 0; i < arr.length; i++) {
             let arr2 = arr[i].trim().split('=');
-            if (arr2[0] == key) {
+            if (arr2[0] === key) {
                 return arr2[1]
             }
         }

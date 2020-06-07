@@ -1,7 +1,7 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
-import RouterView from '../../../routes'
+import RouterView from '@/routes'
 
 
 export default class MyContainer extends React.Component {

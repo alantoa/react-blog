@@ -1,12 +1,11 @@
 import React, { useRef, useState } from "react";
 import style from "./Login.module.scss";
-import { LOGIN_IN } from "../../redux/action/user";
+import { loginIn } from "../../redux/action/user";
 import { connect } from "react-redux";
 import clsx from "clsx";
 
 function Login(props) {
   const btnRef = useRef();
-  // console.log(props)
   const [state, setState] = useState({
     rippleShow: false,
     animating: false,
@@ -20,34 +19,38 @@ function Login(props) {
     username: "",
     password: "",
   });
+  
   function loginSubmit(e) {
     if (state.animating) return;
     e.persist();
-
     setState({
       animating: true,
       top: e.pageY - btnRef.current.getBoundingClientRect().y,
       left: e.pageX - btnRef.current.getBoundingClientRect().x,
       rippleShow: true,
     });
-    
+    console.log(props);
     setTimeout(function () {
       setState({
         animating: true,
         success: true,
         rippleShow: false,
       });
-      try {
-        props.LoginIn(form);
-        setState({
-          inactive: true,
-          animating: false,
-          success: false,
-          processing: false,
-        });
-      } catch (e) {
-        console.log(e);
-      }
+        try {
+          console.log(props);
+          props.dispatch(loginIn(form))
+          setState({
+            inactive: true,
+            animating: false,
+            success: false,
+            processing: false,
+          });
+          let { from } = props.location.state || { from: { pathname: "/admin" } };
+          props.history.replace(from);
+        } catch (e) {
+          console.log(e);
+        }
+      
     }, 800);
   }
   const printValues = (e) => {
@@ -122,15 +125,6 @@ function Login(props) {
     </div>
   );
 }
-function mapState(state, ownProps) {
-  return {};
-}
-function mapDispatch(dispatch, ownProps) {
-  return {
-    LoginIn: (form) => {
-      dispatch(LOGIN_IN(form));
-    },
-  };
-}
 
-export default connect(mapState, mapDispatch)(Login);
+
+export default connect()(Login);

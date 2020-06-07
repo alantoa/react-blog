@@ -1,8 +1,9 @@
-import {createStore} from 'redux'
-import reducer from './reducer/user' 
-const initValue={
-    user:{},
-    token:''
-}
-const store=createStore(reducer,initValue)
+import {createStore,combineReducers } from 'redux'
+import {user} from './reducer/user' 
+const rootReducer = combineReducers({
+    user
+})
+const initValue={}
+const store=createStore(rootReducer,initValue)
+
 export default store
