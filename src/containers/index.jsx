@@ -18,7 +18,7 @@ const Admin = Loadable({
 });
 
 const Login = Loadable({
-  loader: () => import("@/components/login/Login"),
+  loader: () => import("@/views/login/Login"),
   loading: LoadingComponent,
 });
 // 登录验证

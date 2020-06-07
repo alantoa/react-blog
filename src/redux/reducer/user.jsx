@@ -10,9 +10,9 @@ export const user = (state = initValue, action) => {
   switch (action.type) {
     case LOGIN_IN:
      return  login(form).then(res=>{
-          console.log(state);
           state.token = getToken();
         }).catch(err=>{
+          console.log(err)
         })
     default:
       return state
