@@ -118,6 +118,7 @@ function Login(props) {
               <CssTextField 
                 name="password"
                 color="secondary"
+                type="password"
                 value={form.password}
                 onChange={updateField}
                 id="custom-css-standard-input"
