@@ -9,15 +9,13 @@ function checkStatus(res) {
   }
   return {
     code: 0,
-    msg: res.json().data.msg || res.json().statusText,
-    data: res.json().statusText,
+    msg: res.data.msg || res.statusText,
+    data: res.statusText,
   };
 }
 
-// 检查CODE值
-function checkCode(res) {
-  if (res.code === 0) {
-    let id = Math.random();
+function setNotification(msg){
+  let id = Math.random();
     global.$addMySnackbar(
       {
         anchorOrigin: {
@@ -25,7 +23,7 @@ function checkCode(res) {
           horizontal: "center",
         },
         autoHideDuration: 3000,
-        message: res.msg,
+        message: msg,
         action: [
           h(
             IconButton,
@@ -42,10 +40,14 @@ function checkCode(res) {
       },
       id
     );
-    throw new Error(res.msg)
+}
+// 检查CODE值
+function checkCode(resData) {
+  if (resData.code === 0) {
+    setNotification(resData.msg)
   }
 
-  return res;
+  return resData;
 }
 
 export function GET(url) {
@@ -58,18 +60,18 @@ export function GET(url) {
 }
 // post方式
 export function POST(url, data) {
-  return new Promise((resolve, reject) => {
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then(checkStatus)
+    .then((resJson) => {
+      return checkCode(resJson)
     })
-      .then(checkStatus)
-      .then(checkCode)
-      .catch((err) => reject(err));
-  });
+    .catch((err) => setNotification(err));
 }
 
 //put 修改

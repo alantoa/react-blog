@@ -53,8 +53,6 @@ export default class AppIndex extends Component {
   }
 
   componentDidMount() {
-    // this.props.user_auth();
-    console.log(this)
   }
 }
 
