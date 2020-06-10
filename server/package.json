@@ -9,7 +9,7 @@
     "serve:dev": "./node_modules/.bin/nodemon server/bin/www",
     "prd": "pm2 start server/bin/www"
   },
-  "dependencies":{
+  "dependencies": {
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-convert": "^1.2.0",
