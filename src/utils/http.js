@@ -51,12 +51,12 @@ function checkCode(resData) {
 }
 
 export function GET(url) {
-  return new Promise((resolve, reject) => {
     fetch(url)
       .then(checkStatus)
-      .then(checkCode)
-      .catch((err) => reject(err));
-  });
+      .then((resJson) => {
+        return checkCode(resJson)
+      })
+      .catch((err) => setNotification(err));
 }
 // post方式
 export function POST(url, data) {
@@ -76,7 +76,6 @@ export function POST(url, data) {
 
 //put 修改
 export function PUT(url, data) {
-  return new Promise((resolve, reject) => {
     fetch(url, {
       method: "PUT",
       headers: {
@@ -85,14 +84,14 @@ export function PUT(url, data) {
       body: JSON.stringify(data),
     })
       .then(checkStatus)
-      .then(checkCode)
-      .catch((err) => reject(err));
-  });
+      .then((resJson) => {
+        return checkCode(resJson)
+      })
+      .catch((err) => setNotification(err));
 }
 
 //delete
 export function DEL(url, data) {
-  return new Promise((resolve, reject) => {
     fetch(url, {
       method: "DELETE",
       headers: {
@@ -101,7 +100,8 @@ export function DEL(url, data) {
       body: JSON.stringify(data),
     })
       .then(checkStatus)
-      .then(checkCode)
-      .catch((err) => reject(err));
-  });
+      .then((resJson) => {
+        return checkCode(resJson)
+      })
+      .catch((err) => setNotification(err));
 }
