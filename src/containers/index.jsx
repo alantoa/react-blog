@@ -5,7 +5,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import NotFound from "../components/NotFound";
+import NotFound from "@/components/NotFound";
 import Client from "./client/client";
 import MySnackbar from "../components/Snackbar/index";
 import Loadable from "react-loadable";
