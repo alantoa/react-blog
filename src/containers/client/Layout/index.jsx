@@ -3,7 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Header from "../Header";
 import Footer from "../Footer";
-import Banner from "@/components/Banner";
+import Banner from "../Banner";
 
 
 

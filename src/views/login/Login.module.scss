@@ -1,4 +1,5 @@
 $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
+
 .path {
   stroke: rgba(255, 255, 255, 0.9);
   fill: none;
@@ -7,10 +8,10 @@ $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
 .svg {
   cursor: pointer;
   display: inline-block;
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   overflow: visible;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .cont {
@@ -47,22 +48,22 @@ $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
 }
 .check {
   position: absolute;
-  width: 14rem;
-  height: 2.8rem;
+  width: 10rem;
+  height: 1.8rem;
   background: #fff;
   transform-origin: 0 100%;
   transform: rotate(-45deg);
   top: 26%;
   left: 50%;
-  transform: translate(-18%, -50%) rotate(-45deg);
+  transform: translate(-18%, -100%) rotate(-45deg);
 
   &:before {
     content: '';
     position: absolute;
     left: 0;
     bottom: 100%;
-    width: 2.8rem;
-    height: 5.2rem;
+    width: 1.8rem;
+    height: 3.6rem;
     background: #fff;
     box-shadow: inset -0.2rem -2rem 2rem rgba(0, 0, 0, 0.2);
   }
@@ -74,15 +75,15 @@ $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
   left: 50%;
   width: 300px;
   height: 300px;
-  padding: 1.5rem 2.5rem;
+  padding: 20px;
   text-align: center;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -35%);
 }
 
 .row {
-  height: 5rem;
+  height: 4rem;
   padding-top: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);  
   display: flex;
   align-items: center;
 }
@@ -93,7 +94,7 @@ $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
 .submit {
   position: relative;
   width: 100%;
-  height: 4rem;
+  height: 3rem;
   margin: 5rem 0 2.2rem;
   color: rgba(255, 255, 255, 0.8);
   background: #00d2ff; 
