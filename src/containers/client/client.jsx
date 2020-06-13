@@ -1,9 +1,6 @@
 import React from 'react';
-import Top from "@/components/common/Header";
-import Footer from "@/components/common/Footer";
-import MyContainer from "@/components/container/component/Container";
-import Banner from "@/components/banner";
-
+import Layout from './Layout'
+import RouterView from '@/routes'
 export default class Client extends React.Component {
   componentDidMount() {
     fetch(process.env.REACT_APP_BASE_URL + `client_api/info`).then(res => {
@@ -13,12 +10,11 @@ export default class Client extends React.Component {
 
   render() {
     return (
-      <div>
-        <Top />
-        <Banner />
-        <MyContainer />
-        <Footer />
-      </div>
+      <>
+      <Layout>
+        <RouterView/>
+      </Layout>
+      </>
     )
   }
 }

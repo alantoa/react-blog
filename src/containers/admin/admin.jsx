@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
-
+import Dashboard from './Layout'
 // 按路由拆分代码
 import Loadable from 'react-loadable';
 import LoadingComponent from '@/components/LoadingComponent'
@@ -27,9 +27,11 @@ export default class Admin extends Component {
     
       return (
         <>
-          <Switch>
-            <Route  path={'/admin'} component={atricleManage} />
-          </Switch>
+          <Dashboard>
+            <Switch>
+              <Route  path={'/admin'} component={atricleManage} />
+            </Switch>
+          </Dashboard>
         </>
       )
     
