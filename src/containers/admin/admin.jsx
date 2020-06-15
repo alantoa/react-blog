@@ -1,15 +1,8 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Dashboard from './Layout'
+import {adminRouterConfig} from '@/routes/adminRouterConfig'
 // 按路由拆分代码
-import Loadable from 'react-loadable';
-import LoadingComponent from '@/components/LoadingComponent'
-
-
-const atricleManage = Loadable({
-  loader: () => import('@/views/atricleManage'),
-  loading: LoadingComponent
-});
 
 
 
@@ -29,7 +22,19 @@ export default class Admin extends Component {
         <>
           <Dashboard>
             <Switch>
-              <Route  path={'/admin'} component={atricleManage} />
+              {adminRouterConfig.map(route=>{
+                return (
+                  <Route
+                    exact={route.exact}
+                    path={route.path}
+                    name={route.name}
+                    key={route.name}
+                    render={props => (
+                      <route.component {...props} routes={route.routes}/>
+                    )}
+                  />
+                )
+              })}
             </Switch>
           </Dashboard>
         </>

@@ -7,19 +7,16 @@ import Banner from "../Banner";
 
 
 
-export default class Layout extends React.Component {
-  render() {
-
+export default function Layout(props) {
     return (
       <>
         <Header />
         <Banner />
         <CssBaseline/>
         <Container>
-          {this.props.children}
+          {props.children}
         </Container>
         <Footer/>
       </>
     )
-  }
 }

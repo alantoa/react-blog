@@ -8,10 +8,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import OnScrollHide from './HideOnScoll';
-import MenuDrawer from "@/components/Drawer/Container";
+import MenuDrawer from "../Drawer/Container";
 import {withRouter, Link} from 'react-router-dom';
 import routes from '@/routes/clientRouterConfig';
-import DrawerContent from '@/components/Drawer';
+import DrawerContent from '../Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
 // css style
