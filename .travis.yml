@@ -4,6 +4,6 @@ node_js:
 install: yarn
 script:
   - yarn build
-  - docker build -t test .  
+  - docker build -t alantoa/my-blog:tagname .  
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - docker push test
+  - docker push alantoa/my-blog:tagname
