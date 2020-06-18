@@ -6,4 +6,4 @@ script:
   - yarn build
   - echo "$DOCKER_PASS" | docker login -u $DOCKER_USER --password-stdin
   - docker build -t blog .  
-  - docker push alantoa/my-blog:test
+  - docker push alantoa/my-blog:tagname
