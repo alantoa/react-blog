@@ -5,7 +5,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import NotFound from "@/components/NotFound";
+import NotFound from "../components/NotFound";
 import Client from "./client/client";
 import MySnackbar from "../components/Snackbar/index";
 import Loadable from "react-loadable";
@@ -21,6 +21,7 @@ const Login = Loadable({
   loader: () => import("@/views/login/Login"),
   loading: LoadingComponent,
 });
+
 // 登录验证
 function requireAuth(Layout, props) {
   if (getToken()) {
@@ -29,6 +30,7 @@ function requireAuth(Layout, props) {
     return <Redirect to="/login" />;
   }
 }
+
 export default class AppIndex extends Component {
 
   render() {
