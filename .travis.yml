@@ -4,6 +4,6 @@ node_js:
 install: yarn
 script:
   - yarn build
+  - echo "$DOCKER_PASS" | docker login -u $DOCKER_USER --password-stdin
   - docker build -t alantoa/my-blog:tagname .  
-  - docker login -u $DOCKER_USER -p $DOCKER_PASS
   - docker push alantoa/my-blog:tagname
