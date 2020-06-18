@@ -1,7 +1,7 @@
 const {createProxyMiddleware} = require("http-proxy-middleware");
 
 const isProd = process.env.NODE_ENV === 'production' ? true : false;
-console.log(isProd)
+console.log('************************',isProd)
 module.exports = function(app) {
     app.use(
         createProxyMiddleware("/admin_api/", {
