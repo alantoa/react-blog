@@ -5,5 +5,5 @@ install: yarn
 script:
   - yarn build
   - echo "$DOCKER_PASS" | docker login -u $DOCKER_USER --password-stdin
-  - docker build -t alantoa/my-blog:tagname .  
-  - docker push alantoa/my-blog:tagname
+  - docker build -t my-blog .  
+  - docker push my-blog
