@@ -5,7 +5,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import Notfound from "@/components/Notfound/index";
+// import Notfound from "@/components/Notfound/index";
 import Client from "./client/client";
 import MySnackbar from "@/components/Snackbar/index";
 import Loadable from "react-loadable";
@@ -39,7 +39,7 @@ export default class AppIndex extends Component {
         <Router>
           <>
             <Switch>
-              <Route path="/404" component={Notfound} />
+              {/* <Route path="/404" component={Notfound} /> */}
               <Route
                 path="/admin"
                 component={(props) => requireAuth(Admin, props)}
