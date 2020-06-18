@@ -1,8 +1,17 @@
 import React,{Component} from 'react'
 import NotFoundImg from './404.png'
-import pageStyle from './style.css'
 import style from '../../assets/style/animate.css'
-export default class NotFound extends Component{
+
+const style = {
+    background: '#ddd',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+}
+export default class Notfound extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -25,7 +34,7 @@ export default class NotFound extends Component{
 
     render(){
         return(
-            <div className={pageStyle.container}>
+            <div className={style}>
                 <img src={NotFoundImg} alt='404' className={`${style.animated} ${style[this.state.animationType]}`} onMouseEnter={this.enter}/>
             </div>
         )
