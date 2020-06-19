@@ -7,6 +7,11 @@ module.exports = app => {
    */
   // 登录接口
   router.post('/user/login', app.admin.user.login)
+  router.get('/user/info', app.admin.user.info)
+  router.get('/user/list', app.admin.user.list)
+  router.post('/user/add', app.admin.user.add)
+  router.update('/user/update', app.admin.user.update)
+  router.delete('/user/del', app.admin.user.del)
   // 文章 Article 接口
   router.post(`/add`, app.admin.article.add)
   router.post(`/list`, app.admin.article.add)

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import style from "./Login.module.scss";
-import { setToken } from "@/redux/action/token";
+import { setToken } from "@/redux/action/user";
 import { connect } from "react-redux";
 import clsx from "clsx";
 import TextField from "@material-ui/core/TextField";
@@ -65,48 +65,33 @@ function Login(props) {
       setState({
         rippleShow: false,
       });
-      if (getToken()) {
-        setState({
-          animating: false,
-        });
-        setTimeout(() => {
-          setState({
-            inactive: true,
-            animating: true,
-            success: true,
-          });
-        }, 300);
-        setTimeout(() => {
-          props.history.push("/admin");
-        }, 700);
-      } else {
-        login(form)
-          .then((res) => {
-            if (res.code === 1) {
-              setState({
-                animating: false,
-              });
-              setTimeout(() => {
-                setState({
-                  inactive: true,
-                  animating: true,
-                  success: true,
-                });
-              }, 300);
 
-              setTimeout(() => {
-                props.dispatch(setToken(getToken()));
-                props.history.push("/admin");
-              }, 700);
-            }
-          })
-          .catch((err) => {
+      login(form)
+        .then((res) => {
+          if (res.code === 1) {
             setState({
-              inactive: false,
+              animating: false,
             });
-            console.log(err);
+            setTimeout(() => {
+              setState({
+                inactive: true,
+                animating: true,
+                success: true,
+              });
+            }, 300);
+
+            setTimeout(() => {
+              props.dispatch(setToken(getToken()));
+              props.history.push("/admin");
+            }, 700);
+          }
+        })
+        .catch((err) => {
+          setState({
+            inactive: false,
           });
-      }
+          console.log(err);
+        });
     }, 800);
   }
   const printValues = (e) => {

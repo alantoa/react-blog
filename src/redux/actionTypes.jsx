@@ -1,2 +1,6 @@
 export const LOGIN_IN='LOGIN_IN'
 export const SET_TOKEN='SET_TOKEN'
+export const SET_USERINFO='SET_USERINFO'
+export const USERLIST='USERLIST'
+export const GET_INFOLIST='GET_INFOLIST'
+export const CLEARINFO='CLEARINFO'

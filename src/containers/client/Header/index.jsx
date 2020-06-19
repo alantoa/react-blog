@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
@@ -77,6 +78,9 @@ const useStyles = makeStyles(theme => ({
         width: '20ch',
       },
     },
+  },
+  login:{
+    color:'#fff'
   }
 }));
 
@@ -142,6 +146,16 @@ function Header(props) {
                 inputProps={{'aria-label': 'search'}}
               />
             </div>
+            <Link to="/login">
+            <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                className={classes.login}
+              >
+                <AccountCircle />
+              </IconButton>
+            </Link>
           </Toolbar>
         </AppBar>
       </OnScrollHide>

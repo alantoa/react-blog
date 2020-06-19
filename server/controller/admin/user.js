@@ -64,8 +64,10 @@ module.exports = {
     },
 
     async list (ctx, next) {
+        console.log(ctx)
         console.log('----------------获取用户信息列表接口 user/getUserList-----------------------');
         let { keyword, pageindex = 1, pagesize = 10} = ctx.request.query;
+        
         console.log('keyword:'+keyword+','+'pageindex:'+pageindex +','+ 'pagesize:'+pagesize)
 
         try {
