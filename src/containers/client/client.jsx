@@ -3,7 +3,7 @@ import Layout from './Layout'
 import RouterView from '@/routes'
 export default class Client extends React.Component {
   componentDidMount() {
-    fetch('/api/').then(res => {
+    fetch('/api/list').then(res => {
       console.log(res)
     })
   }

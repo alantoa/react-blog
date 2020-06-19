@@ -1,18 +1,15 @@
-const {createProxyMiddleware} = require("http-proxy-middleware");
+if (process.env.NODE_ENV === 'development') {
+  const { createProxyMiddleware } = require('http-proxy-middleware')
 
-const isProd = process.env.NODE_ENV === 'production' ? true : false;
-console.log('************************',isProd)
-module.exports = function(app) {
+  module.exports = function (app) {
     app.use(
-        createProxyMiddleware("/admin_api/", {
-            target: isProd?'https://api.toa.monster/':'http://localhost:3001/',
-            changeOrigin: false
-        })
-    );
-    app.use(
-        createProxyMiddleware("/client_api/", {
-            target: isProd?'https://api.toa.monster/':'http://localhost:3001/',
-            changeOrigin: false
-        })
-    );
-};
+      createProxyMiddleware('/api/', {
+        target: 'http://localhost:3001/',
+        pathRewrite: {
+          '^/api': '/', 
+        },
+        changeOrigin: true // 虚拟站点
+      })
+    )
+  }
+}
