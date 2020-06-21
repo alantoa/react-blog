@@ -5,6 +5,7 @@ import './assets/style/main.scss'
 import IndexApp from './containers'
 import { Provider } from 'react-redux'
 import store from './redux/index'
+
 ReactDOM.render(
   <Provider store={store}>
     <IndexApp />

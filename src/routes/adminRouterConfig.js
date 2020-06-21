@@ -1,10 +1,11 @@
 import React, { lazy, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import LoadingComponent from "@/components/LoadingComponent";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import PeopleIcon from "@material-ui/icons/People";
-import BarChartIcon from "@material-ui/icons/BarChart";
-import LayersIcon from "@material-ui/icons/Layers";
+import HomeIcon from '@material-ui/icons/Home';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import ListIcon from '@material-ui/icons/List';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+
 
 const AdminIndex = lazy(() => import("@/views/AdminIndex"));
 
@@ -20,25 +21,25 @@ export const adminRouterConfig = [
     component: AdminIndex,
     name: "Index",
     exact: true,
-    icon: DashboardIcon,
+    icon: HomeIcon,
   },
   {
     path: "/admin/manage",
     name: "Admin Manage",
     component: AdminManage,
-    icon: PeopleIcon,
+    icon: SupervisorAccountIcon,
   },
   {
     path: "/admin/article/list",
     name: "Article List",
     component: ArticleList,
-    icon: BarChartIcon,
+    icon: ListIcon,
   },
   {
     path: "/admin/article/manage",
     name: "Article Manage",
     component: ArticleManage,
-    icon: LayersIcon,
+    icon: PostAddIcon,
   },
 ];
 

@@ -85,12 +85,13 @@ class MySnackbars extends React.Component {
     }
 
     render() {
-        //嵌套两层div把所有snackbar固定在底部中间
+        //嵌套两层div把所有snackbar固定
         return h('div', {
             style: {
-                bottom: 8,
+                top: 120,
+                right:20,
                 position: 'fixed',
-                textAlign: 'center',
+                textAlign: 'right',
                 width: '100%'
             }
         }, [

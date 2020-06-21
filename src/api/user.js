@@ -21,9 +21,9 @@ export  function getUserInfo (params) {
  * Get User List
  * @param {keywod,pageindex,pagesize} params 
  */
-export  function getUserList () {
+export  function getUserList (params) {
 
-    return GET(api.getUserList);
+    return GET(api.getUserList,params);
 }
 
 /**

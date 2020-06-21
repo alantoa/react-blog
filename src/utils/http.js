@@ -1,6 +1,4 @@
-import h from "react-hyperscript";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
+import setNotification from "./setNotification";
 // 检查状态码
 function checkStatus(res) {
   // 结束
@@ -14,33 +12,6 @@ function checkStatus(res) {
   };
 }
 
-function setNotification(msg) {
-  let id = Math.random();
-  global.$addMySnackbar(
-    {
-      anchorOrigin: {
-        vertical: "bottom",
-        horizontal: "center",
-      },
-      autoHideDuration: 3000,
-      message: msg,
-      action: [
-        h(
-          IconButton,
-          {
-            key: "any",
-            color: "inherit",
-            onClick: () => {
-              global.$closeMySnackBar(id);
-            },
-          },
-          h(CloseIcon)
-        ),
-      ],
-    },
-    id
-  );
-}
 // 检查CODE值
 function checkCode(resData) {
   if (resData.code === 0) {
@@ -50,13 +21,22 @@ function checkCode(resData) {
   return resData;
 }
 
-export function GET(url, data) {
+export function GET(url, params) {
+  if (!url) return;
+  if (params) {
+    let paramsArray = [];
+    //拼接参数
+    Object.keys(params).forEach((key) =>
+      paramsArray.push(key + "=" + params[key])
+    );
+    if (url.search(/\?/) === -1) {
+      url += "?" + paramsArray.join("&");
+    } else {
+      url += "&" + paramsArray.join("&");
+    }
+  }
   return fetch(url, {
     method: "GET",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(data),
   })
     .then(checkStatus)
     .then((resJson) => {
@@ -65,14 +45,9 @@ export function GET(url, data) {
     .catch((err) => setNotification(err));
 }
 // post方式
-export function POST(url, data) {
-  return fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
+export function POST(url, params) {
+  if (!url) return;
+  return fetch(url, params)
     .then(checkStatus)
     .then((resJson) => {
       return checkCode(resJson);
@@ -82,6 +57,7 @@ export function POST(url, data) {
 
 //put 修改
 export function PUT(url, data) {
+  if (!url) return;
   return fetch(url, {
     method: "PUT",
     headers: {
@@ -98,6 +74,7 @@ export function PUT(url, data) {
 
 //delete
 export function DEL(url, data) {
+  if (!url) return;
   return fetch(url, {
     method: "DELETE",
     headers: {

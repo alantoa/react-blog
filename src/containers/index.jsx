@@ -15,6 +15,7 @@ import LoadingComponent from "@/components/LoadingComponent";
 const Admin = lazy(() => import("./admin/admin"));
 const Login = lazy(() => import("@/views/login/Login"));
 
+
 // 登录验证
 function requireAuth(Layout, props) {
   if (getToken()) {

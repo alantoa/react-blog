@@ -11,8 +11,9 @@ import Input from "@material-ui/core/Input";
 import MarkDown from "@/components/MarkDown";
 import { DateTimePicker } from "@material-ui/pickers";
 import Switch from "@material-ui/core/Switch";
+import setNotification from '@/utils/setNotification'
 // api
-import {addArticleList} from '@/api/article'
+import { addArticleList } from "@/api/article";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -52,13 +53,14 @@ const names = [
   "Docker",
   "Travis CI",
 ];
+
 export default function SimpleSelect() {
   const classes = useStyles();
   const [articleData, setArticleData] = useState({
     type: [],
     html: "",
     title: "",
-    markdown: "",
+    markdown: "123",
     github: "",
     desc: "",
     level: "",
@@ -69,26 +71,20 @@ export default function SimpleSelect() {
 
   const handleChange = (e) => {
     e.persist();
+
     setArticleData({
       ...articleData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value ? e.target.value : e.target.checked,
     });
   };
-  const changeTime = (e) => {
-    setArticleData({
-      ...articleData,
-      releaseTime: e,
-    });
-  };
-  
-  const publishArtocle = (e) => {
-    console.log(articleData);
+
+  const publishArtocle = () => {
     addArticleList(articleData).then(res=>{
-      console.log(res)
-    })
+      setNotification('添加成功!')
+    });
   };
   return (
-    <form className={classes.form} onSubmit={(e)=>e.preventDefault()}>
+    <form className={classes.form} onSubmit={(e) => e.preventDefault()}>
       <h3 className={classes.title}>添加文章</h3>
       <FormControl required className={classes.formControl}>
         <InputLabel shrink>文章类型</InputLabel>
@@ -205,7 +201,12 @@ export default function SimpleSelect() {
           label="发布时间"
           value={articleData.releaseTime}
           format="yyyy/MM/dd HH:mm"
-          onChange={changeTime}
+          onChange={(e) =>
+            setArticleData({
+              ...articleData,
+              releaseTime: e,
+            })
+          }
           InputLabelProps={{
             shrink: true,
           }}
@@ -213,7 +214,12 @@ export default function SimpleSelect() {
       </div>
       <div className={(classes.formControl, classes.visible)}>
         是否可见*
-        <Switch color="primary" checked={articleData.isVisible}/>
+        <Switch
+          color="primary"
+          checked={articleData.isVisible}
+          name="isVisible"
+          onChange={handleChange}
+        />
       </div>
       <div className={classes.publish}>
         <Button
@@ -221,7 +227,7 @@ export default function SimpleSelect() {
           color="primary"
           className={classes.button}
           endIcon={<SendIcon />}
-          onClick={publishArtocle.bind(this)}
+          onClick={publishArtocle}
         >
           立即发布
         </Button>

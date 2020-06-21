@@ -47,7 +47,7 @@ module.exports = {
         html: 0
       }, {
         limit: pagesize * 1,
-        skip: (pageindex - 1) * pagesize
+        skip: (pageindex) * pagesize
       });
       ctx.send(data)
     } catch (e) {
