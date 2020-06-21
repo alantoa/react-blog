@@ -9,10 +9,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import OnScrollHide from './HideOnScoll';
-import MenuDrawer from "../Drawer/Container";
+import MenuDrawer from "../Drawer";
 import {withRouter, Link} from 'react-router-dom';
 import routes from '@/routes/clientRouterConfig';
-import DrawerContent from '../Drawer';
+// import DrawerContent from '../Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
 // css style
@@ -85,22 +85,16 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Header(props) {
-  const [state, setState] = React.useState({
-    open: false
-  });
+  const [open, setState] = React.useState(false);
 
-
-  function showDrawer() {
-    setState(state => ({
-      open: true
-    }));
+  const showDrawer = ()=>{
+    setState(true);
   }
-
-  function closeDrawer() {
-    setState(state => ({
-      open: false
-    }));
+ 
+  const closeDrawer = ()=>{
+    setState(false);
   }
+  
 
   const classes = useStyles();
   return (
@@ -112,7 +106,7 @@ function Header(props) {
               <IconButton
                 edge="start"
                 className={classes.menuButton}
-                onClick={showDrawer.bind(this)}
+                onClick={showDrawer}
                 color="inherit"
                 aria-label="open drawer"
               >
@@ -159,9 +153,7 @@ function Header(props) {
           </Toolbar>
         </AppBar>
       </OnScrollHide>
-      <MenuDrawer {...state}>
-        <DrawerContent close={closeDrawer.bind(this)}/>
-      </MenuDrawer>
+      <MenuDrawer open={open} closeDrawer={closeDrawer} showDrawer={showDrawer}></MenuDrawer>
     </div>
   );
 }
