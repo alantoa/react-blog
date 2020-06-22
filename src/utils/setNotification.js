@@ -3,6 +3,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 
 export default function setNotification(msg) {
+    if(!msg) return
     let id = Math.random();
     if(!global.$addMySnackbar) return
     global.$addMySnackbar(

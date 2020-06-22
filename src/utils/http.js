@@ -42,18 +42,26 @@ export function GET(url, params) {
     .then((resJson) => {
       return checkCode(resJson);
     })
-    .catch((err) => setNotification(err));
+    .catch((err) => console.log(err));
 }
 // post方式
-export function POST(url, params) {
+//put 修改
+export function POST(url, data) {
   if (!url) return;
-  return fetch(url, params)
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
     .then(checkStatus)
     .then((resJson) => {
       return checkCode(resJson);
     })
-    .catch((err) => setNotification(err));
+    .catch((err) => console.log(err));
 }
+
 
 //put 修改
 export function PUT(url, data) {
@@ -69,7 +77,7 @@ export function PUT(url, data) {
     .then((resJson) => {
       return checkCode(resJson);
     })
-    .catch((err) => setNotification(err));
+    .catch((err) => console.log(err));
 }
 
 //delete
@@ -86,5 +94,5 @@ export function DEL(url, data) {
     .then((resJson) => {
       return checkCode(resJson);
     })
-    .catch((err) => setNotification(err));
+    .catch((err) => console.log(err));
 }

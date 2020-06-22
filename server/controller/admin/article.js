@@ -60,6 +60,7 @@ module.exports = {
     console.log('----------------添加博客 blog/add-----------------------');
     let paramsData = ctx.request.body;
     // console.log(ctx.sendError)
+    console.log(ctx.request.body)
     try {
       let data = await ctx.findOne(articleModel, {
         title: paramsData.title
@@ -78,6 +79,7 @@ module.exports = {
   async update(ctx, next) {
     console.log('----------------更新博客 blog/update-----------------------');
     let paramsData = ctx.request.body;
+    console.log(ctx.request.body)
     try {
       paramsData.html = marked(paramsData.html);
       await ctx.update(articleModel, {

@@ -13,7 +13,7 @@ import { DateTimePicker } from "@material-ui/pickers";
 import Switch from "@material-ui/core/Switch";
 import setNotification from '@/utils/setNotification'
 // api
-import { addArticleList } from "@/api/article";
+import { addArticleList, updateArticleList } from "@/api/article";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -54,13 +54,15 @@ const names = [
   "Travis CI",
 ];
 
-export default function SimpleSelect() {
+export default function ArticleManage(props) {
+  console.log(props.currentData);
   const classes = useStyles();
-  const [articleData, setArticleData] = useState({
+  const [articleData, setArticleData] = useState(
+    props.currentData?{...props.currentData}:{
     type: [],
     html: "",
     title: "",
-    markdown: "123",
+    markdown: "",
     github: "",
     desc: "",
     level: "",
@@ -79,9 +81,22 @@ export default function SimpleSelect() {
   };
 
   const publishArtocle = () => {
-    addArticleList(articleData).then(res=>{
-      setNotification('添加成功!')
-    });
+    if(props.currentData){
+      updateArticleList(articleData).then(res=>{
+        if(res && res.code === 1){
+          setNotification('修改成功!')
+        }
+        
+      })
+    }else{
+      addArticleList(articleData).then(res=>{
+        if(res && res.code === 1){
+          setNotification('添加成功!')
+        }
+        
+      });
+    }
+    
   };
   return (
     <form className={classes.form} onSubmit={(e) => e.preventDefault()}>
