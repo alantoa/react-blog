@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "node bin/www",
-    "serve:dev": "./node_modules/.bin/nodemon server/bin/www",
-    "prd": "pm2 start server/bin/www"
+    "serve:dev": "./node_modules/.bin/nodemon bin/www",
+    "prd": "pm2 start bin/www"
   },
   "dependencies": {
     "koa": "^2.7.0",
@@ -25,6 +25,9 @@
     "mongoose": "^5.9.15",
     "debug": "^4.1.1",
     "busboy": "^0.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
   },
   "author": "Toa",
   "license": "ISC"

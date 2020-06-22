@@ -42,7 +42,7 @@ export function GET(url, params) {
     .then((resJson) => {
       return checkCode(resJson);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.error(err));
 }
 // post方式
 //put 修改
@@ -59,7 +59,7 @@ export function POST(url, data) {
     .then((resJson) => {
       return checkCode(resJson);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.error(err));
 }
 
 
@@ -77,7 +77,7 @@ export function PUT(url, data) {
     .then((resJson) => {
       return checkCode(resJson);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.error(err));
 }
 
 //delete
@@ -94,5 +94,5 @@ export function DEL(url, data) {
     .then((resJson) => {
       return checkCode(resJson);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.error(err));
 }

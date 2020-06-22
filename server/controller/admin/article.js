@@ -68,7 +68,6 @@ module.exports = {
       if (data) {
         ctx.sendError('数据已经存在, 请重新添加!')
       } else {
-        paramsData.html = marked(paramsData.html);
         data = await ctx.add(articleModel, paramsData);
         ctx.send(paramsData)
       }
@@ -79,9 +78,7 @@ module.exports = {
   async update(ctx, next) {
     console.log('----------------更新博客 blog/update-----------------------');
     let paramsData = ctx.request.body;
-    console.log(ctx.request.body)
     try {
-      paramsData.html = marked(paramsData.html);
       await ctx.update(articleModel, {
         _id: paramsData._id
       }, paramsData)

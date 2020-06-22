@@ -92,7 +92,8 @@ class MySnackbars extends React.Component {
                 right:20,
                 position: 'fixed',
                 textAlign: 'right',
-                width: '100%'
+                width: '100%',
+                zIndex:99999
             }
         }, [
             h('div', {

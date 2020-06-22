@@ -55,7 +55,6 @@ const names = [
 ];
 
 export default function ArticleManage(props) {
-  console.log(props.currentData);
   const classes = useStyles();
   const [articleData, setArticleData] = useState(
     props.currentData?{...props.currentData}:{
@@ -86,7 +85,6 @@ export default function ArticleManage(props) {
         if(res && res.code === 1){
           setNotification('修改成功!')
         }
-        
       })
     }else{
       addArticleList(articleData).then(res=>{
