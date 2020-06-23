@@ -20,7 +20,7 @@ export default function EditArticleDrawer(props) {
       onOpen={props.showDrawer}
     >
         <div className={classes.page}>
-            <ArticleManage currentData={props.currentItem}/>
+            <ArticleManage currentData={props.currentItem} closeDrawer={props.closeDrawer}/>
         </div>
     </SwipeableDrawer>
   );

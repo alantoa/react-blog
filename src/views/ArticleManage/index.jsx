@@ -84,6 +84,7 @@ export default function ArticleManage(props) {
       updateArticleList(articleData).then(res=>{
         if(res && res.code === 1){
           setNotification('修改成功!')
+          props.closeDrawer()
         }
       })
     }else{
