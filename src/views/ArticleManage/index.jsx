@@ -8,12 +8,12 @@ import SendIcon from "@material-ui/icons/Send";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Input from "@material-ui/core/Input";
-import MarkDown from "@/components/MarkDown";
+import MarkDown from "components/MarkDown";
 import { DateTimePicker } from "@material-ui/pickers";
 import Switch from "@material-ui/core/Switch";
-import setNotification from '@/utils/setNotification'
+import setNotification from 'utils/setNotification'
 // api
-import { addArticleList, updateArticleList } from "@/api/article";
+import { addArticleList, updateArticleList } from "api/article";
 
 const useStyles = makeStyles((theme) => ({
   title: {

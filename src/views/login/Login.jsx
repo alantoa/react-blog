@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import style from "./Login.module.scss";
-import { setToken } from "@/redux/action/user";
+import { setToken } from "redux/action/user";
 import { connect } from "react-redux";
 import clsx from "clsx";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
-import { login } from "@/api/login";
-import { getToken } from "@/utils/auth";
+import { login } from "api/login";
+import { getToken } from "utils/auth";
 
 const CssTextField = withStyles({
   root: {

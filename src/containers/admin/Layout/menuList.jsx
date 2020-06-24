@@ -4,7 +4,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import {Link} from 'react-router-dom'
 
-import {adminRouterConfig} from '@/routes/adminRouterConfig'
+import {adminRouterConfig} from 'routes/adminRouterConfig'
 
 
 export const mainListItems = (

@@ -15,8 +15,8 @@ import EditIcon from "@material-ui/icons/Edit";
 
 import EditArticleDrawer from "./EditArticleDrawer";
 // api import
-import { getArticleList } from "@/api/article";
-import TablePaginationActions from "@/components/TablePaginationActions";
+import { getArticleList } from "api/article";
+import TablePaginationActions from "components/TablePaginationActions";
 
 const useStyles = makeStyles({
   table: {

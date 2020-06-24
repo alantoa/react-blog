@@ -5,15 +5,15 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-// import Notfound from "@/components/Notfound/index";
+// import Notfound from "components/Notfound/index";
 import Client from "./client/client";
-import MySnackbar from "@/components/Snackbar/index";
+import MySnackbar from "components/Snackbar/index";
 
-import { getToken } from "@/utils/auth";
-import LoadingComponent from "@/components/LoadingComponent";
+import { getToken } from "utils/auth";
+import LoadingComponent from "components/LoadingComponent";
 
 const Admin = lazy(() => import("./admin/admin"));
-const Login = lazy(() => import("@/views/login/Login"));
+const Login = lazy(() => import("views/login/Login"));
 
 
 // 登录验证

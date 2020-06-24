@@ -1,19 +1,19 @@
 import React, { lazy, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
-import LoadingComponent from "@/components/LoadingComponent";
+import LoadingComponent from "components/LoadingComponent";
 import HomeIcon from '@material-ui/icons/Home';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import ListIcon from '@material-ui/icons/List';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 
 
-const AdminIndex = lazy(() => import("@/views/AdminIndex"));
+const AdminIndex = lazy(() => import("views/AdminIndex"));
 
-const AdminManage = lazy(() => import("@/views/AdminManage"));
+const AdminManage = lazy(() => import("views/AdminManage"));
 
-const ArticleList = lazy(() => import("@/views/ArticleList"));
+const ArticleList = lazy(() => import("views/ArticleList"));
 
-const ArticleManage = lazy(() => import("@/views/ArticleManage"));
+const ArticleManage = lazy(() => import("views/ArticleManage"));
 
 export const adminRouterConfig = [
   {

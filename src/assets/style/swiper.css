@@ -82,18 +82,7 @@
     color: var(--swiper-navigation-color,var(--swiper-theme-color));
 }
 
-.swiper-button-next:after, .swiper-button-prev:after {
-    font-family: swiper-icons;
-    font-size: var(--swiper-navigation-size);
-    text-transform: none!important;
-    letter-spacing: 0;
-    text-transform: none;
-    font-variant: initial;
-    line-height: 1;
-}
-.swiper-button-next:after, .swiper-container-rtl .swiper-button-prev:after {
-    content: 'next';
-}
+
 .swiper-button-next, .swiper-container-rtl .swiper-button-prev {
     right: 10px;
     left: auto;
