@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import 'assets/style/animate.css'
 import 'assets/style/main.scss'
 // import * as serviceWorker from './serviceWorker'
 import IndexApp from './containers'

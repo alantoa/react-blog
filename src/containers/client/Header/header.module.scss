@@ -1,0 +1,39 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  color: #fff;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  color: #fff;
+}
+.lgLogo {
+  font-size: 2.4rem;
+}
+.smLogo {
+  font-size: 6.4rem;
+  height: 100%;
+  overflow: hidden;
+}
+.blogName {
+  font-size: 1.5rem;
+  margin-left: 20px;
+}
+.github {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  border: 0;
+  svg {
+    color: darkgray;
+    fill: rgba($color: #000000, $alpha: 0.2);
+    height: 64px;
+    width: 64px;
+  }
+}

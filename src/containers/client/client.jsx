@@ -12,7 +12,7 @@ export default class Client extends React.Component {
   render() {
     return (
       <>
-      <Layout>
+      <Layout >
         <RouterView/>
       </Layout>
       </>
