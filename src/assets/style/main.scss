@@ -1,7 +1,10 @@
-html, body {
+html,
+body {
   height: 100%;
 }
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -32,20 +35,49 @@ a {
     color: rgba(0, 0, 0, 0.87);
   }
 }
-.github{
+.github {
   visibility: hidden;
   opacity: 0;
-  transition: .225s;
+  transition: 0.225s;
 }
-.fixbar{
+.fixbar {
   -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
-    background-color: rgba(255,255,255,0.72);
-    .github{
-      visibility: visible;
-      opacity: 1;
-    }
+  backdrop-filter: saturate(180%) blur(20px);
+  .github {
+    visibility: visible;
+    opacity: 1;
+  }
 }
-.github:hover .octo-arm{
+.github:hover .octo-arm {
   animation: swing 0.56s ease-in-out infinite;
+}
+/* Adding CSS manually is only necessary in JSFiddle,
+   where CSS can't be inserted into the <head> */
+.typed-cursor {
+  opacity: 1;
+  animation: typedjsBlink 0.7s infinite;
+  -webkit-animation: typedjsBlink 0.7s infinite;
+  animation: typedjsBlink 0.7s infinite;
+}
+@keyframes typedjsBlink {
+  50% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes typedjsBlink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.typed-fade-out {
+  opacity: 0;
+  transition: opacity 0.25s;
+  -webkit-animation: 0;
+  animation: 0;
 }

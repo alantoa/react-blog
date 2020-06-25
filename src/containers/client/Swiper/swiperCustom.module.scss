@@ -1,3 +1,6 @@
+.swiperContainer {
+  height: 100%;
+}
 .cover {
   display: flex;
   align-items: center;
@@ -7,7 +10,6 @@
   overflow: hidden;
   background-position: center center;
   background-size: cover;
-  
 }
 button.swiperBtn {
   color: #fff;
@@ -31,23 +33,41 @@ button.swiperBtn {
   -webkit-animation: rainbow 60s infinite;
   animation: rainbow 60s infinite;
 }
-.container{
-    position: relative;
-    z-index: 11;
-    color: #fff;
+.container {
+  position: relative;
+  z-index: 11;
+  color: #fff;
 }
 .title {
   font-size: 2.6rem;
-  line-height: 1.85em;
+  line-height: 1.4em;
   margin-bottom: 20px;
   position: relative;
   text-align: center;
 }
 .desc {
   font-weight: 300;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   line-height: 1.4em;
   color: #eee;
+  display: inline-block;
+}
+.operate {
+  position: relative;
+  top: 10vh;
+  text-align: center;
+}
+button.moreBtn {
+  border: 1px solid rgba(255, 255, 255, 0.23);
+  color: #fff;
+  border-radius: 20px;
+  padding: 8px 20px;
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+  &:hover {
+    backdrop-filter: saturate(180%) blur(20px);
+  }
 }
 @-webkit-keyframes rainbow {
   0%,
