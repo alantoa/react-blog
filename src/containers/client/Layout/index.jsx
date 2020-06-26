@@ -6,13 +6,15 @@ import Footer from "../Footer";
 import Header from "../Header";
 import { withRouter } from "react-router";
 
+
+
 function Layout(props) {
   
   return (
     <>
       <Header />
       {props.location.pathname === "/" ? <Slide /> : <Banner />}
-      <Container>{props.children}</Container>
+      <Container className="container">{props.children}</Container>
       <Footer />
     </>
   );

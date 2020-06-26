@@ -38,7 +38,10 @@ a {
 .github:hover .octo-arm {
   animation: swing 0.56s ease-in-out infinite;
 }
-
+.container {
+  min-height: 700px;
+  margin: 20px 0;
+}
 /* Adding CSS manually is only necessary in JSFiddle,
    where CSS can't be inserted into the <head> */
 .typed-cursor {
