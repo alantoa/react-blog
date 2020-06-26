@@ -38,19 +38,32 @@ button.swiperBtn {
   z-index: 11;
   color: #fff;
 }
+
 .title {
-  font-size: 2.6rem;
+  font-size: 2rem;
   line-height: 1.4em;
   margin-bottom: 20px;
   position: relative;
   text-align: center;
 }
+
 .desc {
   font-weight: 300;
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.4em;
   color: #eee;
   display: inline-block;
+  min-height: 60px;
+}
+.indexTitle {
+  font-size: 2.6rem;
+}
+.indexDesc {
+  font-size: 1.2rem;
+}
+.startRead {
+  margin-right: 5px;
+  animation: shakeIconY 10s linear infinite;
 }
 .operate {
   position: relative;
@@ -62,11 +75,30 @@ button.moreBtn {
   color: #fff;
   border-radius: 20px;
   padding: 8px 20px;
+  > span > svg {
+    margin-right: 5px;
+  }
   &:not(:last-child) {
     margin-right: 20px;
   }
   &:hover {
     backdrop-filter: saturate(180%) blur(20px);
+  }
+}
+.link {
+  position: relative;
+  top: 22vh;
+  width: 100%;
+  text-align: center;
+  > a {
+    padding: 0 15px;
+    font-size: 1.35rem;
+    color: #fff;
+  }
+}
+@media screen and (max-width: 768px) {
+  h5.desc,h2.indexDesc {
+    padding: 0 30px;
   }
 }
 @-webkit-keyframes rainbow {
@@ -300,5 +332,54 @@ button.moreBtn {
       rgba(2233, 30, 99, 0.75) 0%,
       rgba(233, 30, 99, 0.65) 100%
     );
+  }
+}
+
+@-webkit-keyframes shakeIconY {
+  from,
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: translate3d(0, -2px, 0);
+    transform: translate3d(0, -2px, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: translate3d(0, 2px, 0);
+    transform: translate3d(0, 2px, 0);
+  }
+}
+@keyframes shakeIconY {
+  from,
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: translate3d(0, -2px, 0);
+    transform: translate3d(0, -2px, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: translate3d(0, 2px, 0);
+    transform: translate3d(0, 2px, 0);
   }
 }

@@ -1,18 +1,23 @@
 import React, { useRef, useEffect } from "react";
+import "assets/style/swiper.css";
+import style from "./swiperCustom.module.scss";
 import Swiper from "react-id-swiper";
 import clsx from "clsx";
 import IconButton from "@material-ui/core/IconButton";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import "assets/style/swiper.css";
-import style from "./swiperCustom.module.scss";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Typed from "typed.js";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
 import { setSwierHeight } from "redux/action/swiper";
 import { connect } from "react-redux";
+// icon
+import Icon from "components/SvgIcon";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import GitHubIcon from '@material-ui/icons/GitHub';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import InstagramIcon from '@material-ui/icons/Instagram';
 
 const itemData = [
   {
@@ -57,14 +62,11 @@ var typedOption = {
 };
 const swiperParams = {
   loop: true,
-  grabCursor: true,
   noSwipingSelector: "button",
-  touchStartForcePreventDefault: true,
-  touchMoveStopPropagation: true,
   pagination: {
     el: ".swiper-pagination",
     type: "bullets",
-    clickable: false,
+    clickable: true,
   },
   navigation: {
     nextEl: ".swiper-button-next",
@@ -114,9 +116,9 @@ const SwiperSlide = (props) => {
           }}
         >
           <Container className={style.container} maxWidth="md">
-            <h2 className={style.title}>Toa Blog</h2>
-            <h5 className={style.desc}>
-              <span style={{ whiteSpace: "pre" }} ref={typedText}></span>
+            <h2 className={clsx(style.title,style.indexTitle)}>Toa Blog</h2>
+            <h5 className={clsx(style.desc,style.indexDesc)}>
+              <span ref={typedText}></span>
             </h5>
             <div className={style.operate}>
               <Button
@@ -124,9 +126,15 @@ const SwiperSlide = (props) => {
                 onClick={startRead}
                 variant="outlined"
               >
-                <DoubleArrowIcon style={{ transform: "rotate(90deg)" }} />
+                <Icon use="angleDoubleBottom" className={style.startRead} />
                 开始阅读
               </Button>
+            </div>
+            <div className={style.link}>
+                <a target="_blank" rel="noopener noreferrer" title="Github" href="https://github.com/monsteranan"><GitHubIcon/></a>
+                <a target="_blank" rel="noopener noreferrer" title="Email" href="mailto:toacncom@gmail.com"><DraftsIcon/></a>
+                <a target="_blank" rel="noopener noreferrer" title="Twitter" href="https://twitter.com/Toa_anan"><TwitterIcon/></a>
+                <a target="_blank" rel="noopener noreferrer" title="Instagram" href="https://www.instagram.com/thealantoa/"><InstagramIcon/></a>
             </div>
           </Container>
         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from './Layout'
-import RouterView from 'routes'
+import RouterView from 'routes/clientRouterView'
 
 export default class Client extends React.Component {
   // componentDidMount() {

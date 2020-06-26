@@ -8,7 +8,7 @@ module.exports = {
     } = ctx.request.query;
     console.log(`type:  ${type}  ,  pageindex:  ${pageindex}  ,  pagesize:  ${pagesize}`)
     try {
-
+      console.log(type)
       let data = await ctx.find(articleModel, {
         type,
         isVisible: true,

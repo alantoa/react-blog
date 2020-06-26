@@ -1,6 +1,6 @@
 import React from "react";
 import Dashboard from "./Layout";
-import RouterView from "routes/adminRouterConfig.js";
+import RouterView from "routes/adminRouterConfig";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
 const containerStyle = {
