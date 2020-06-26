@@ -1,18 +1,20 @@
 import React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
+import Banner from "../Banner";
 import Slide from "../Swiper";
 import Footer from "../Footer";
 import Header from "../Header";
+import { withRouter } from "react-router";
 
-export default function Layout(props) {
+function Layout(props) {
+  
   return (
     <>
       <Header />
-      <Slide />
-      <CssBaseline />
+      {props.location.pathname === "/" ? <Slide /> : <Banner />}
       <Container>{props.children}</Container>
       <Footer />
     </>
   );
 }
+export default withRouter(Layout);

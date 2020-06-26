@@ -11,6 +11,9 @@ import Button from "@material-ui/core/Button";
 import Typed from "typed.js";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
+import { setSwierHeight } from "redux/action/swiper";
+import { connect } from "react-redux";
+
 const itemData = [
   {
     cover: require("assets/image/swiper/0.jpg"),
@@ -83,13 +86,14 @@ const swiperParams = {
   ),
   spaceBetween: 0,
 };
-const SwiperSlide = () => {
+const SwiperSlide = (props) => {
   const typedText = useRef();
   const swiperRef = useRef();
-
+  
   useEffect(() => {
     new Typed(typedText.current, typedOption);
-  }, []);
+    props.dispatch(setSwierHeight(swiperRef.current.offsetHeight));
+  }, [props]);
 
   const startRead = () => {
     swiperRef.current &&
@@ -151,4 +155,4 @@ const SwiperSlide = () => {
   );
 };
 
-export default SwiperSlide;
+export default connect()(SwiperSlide);

@@ -21,10 +21,14 @@ import style from "./header.module.scss";
 import { ReactComponent as Github } from "assets/image/github.svg";
 
 const useStyles = makeStyles((theme) => ({
-  menuButton: {
-    marginRight: theme.spacing(2),
-    height: "100%",
+  container:{
+    padding:0
   },
+  menuButton: {
+    height: 50,
+    width:50
+  },
+  
   title: {
     display: "none",
     height: "100%",
@@ -34,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   titleLink: {
     display: "inline-block",
-    color: "#fff",
+    color: 'inherit',
     height: "100%",
     padding: "0 20px",
     borderRadius:0,
@@ -42,23 +46,17 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: fade(theme.palette.common.black, 0.1),
     },
   },
-  smLogo: {},
-  lgLogo: {},
+  toolbar:{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: 60,
+    [theme.breakpoints.down("sm")]: {
+      padding: '0 4px',
+    },
+  },
   inputRoot: {
     color: "inherit",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
   },
   login: {
     color: "#fff",
@@ -79,12 +77,11 @@ function Header(props) {
   return (
     <>
       <ElevationScroll {...props}>
-        <AppBar className={classes.root} color="transparent">
-          <Container>
-            <Toolbar className={style.toolbar}>
+        <AppBar color="transparent">
+          <Container  className={classes.container} >
+            <Toolbar className={classes.toolbar}>
               <Hidden only={["xl", "lg", "md"]}>
                 <IconButton
-                  edge="start"
                   className={classes.menuButton}
                   onClick={showDrawer}
                   color="inherit"
@@ -125,7 +122,7 @@ function Header(props) {
                 </div>
               </Hidden>
               <Hidden only={["xl", "lg", "md"]}>
-                <IconButton aria-label="search" color="inherit">
+                <IconButton aria-label="search" className={classes.menuButton} color="inherit">
                   <SearchIcon />
                 </IconButton>
               </Hidden>

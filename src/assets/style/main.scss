@@ -35,22 +35,10 @@ a {
     color: rgba(0, 0, 0, 0.87);
   }
 }
-.github {
-  visibility: hidden;
-  opacity: 0;
-  transition: 0.225s;
-}
-.fixbar {
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
-  .github {
-    visibility: visible;
-    opacity: 1;
-  }
-}
 .github:hover .octo-arm {
   animation: swing 0.56s ease-in-out infinite;
 }
+
 /* Adding CSS manually is only necessary in JSFiddle,
    where CSS can't be inserted into the <head> */
 .typed-cursor {

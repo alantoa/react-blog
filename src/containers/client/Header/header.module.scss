@@ -1,16 +1,22 @@
+header.normal {
+  color: #fff;
+  transition-duration: 0.3s;
+  a {
+    transition-duration: 0.3s;
+    color: #fff;
+  }
+}
 .toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 60px;
-  color: #fff;
 }
 .logo {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  color: #fff;
 }
 .lgLogo {
   font-size: 2.4rem;
@@ -25,6 +31,11 @@
   margin-left: 20px;
 }
 .github {
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.225s;
+}
+.github {
   position: absolute;
   z-index: 10;
   top: 0;
@@ -35,5 +46,27 @@
     fill: rgba($color: #000000, $alpha: 0.2);
     height: 64px;
     width: 64px;
+    transition-duration: 0.3s;
+  }
+}
+header.fixbar {
+  // background-color: rgba($color: #fff, $alpha: 0.2);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  .github {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+header.dark {
+  background-color: rgba(255, 255, 255, 0.72);
+  color: #333;
+  a {
+    color: #333;
+  }
+  .github > svg {
+    color: #333;
+    fill: rgb(243, 243, 243);
   }
 }

@@ -7,7 +7,6 @@ import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import { login } from "api/login";
 import { getToken } from "utils/auth";
-
 const CssTextField = withStyles({
   root: {
     width: "22rem",
