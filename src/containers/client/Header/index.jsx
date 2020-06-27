@@ -145,7 +145,7 @@ function Header(props) {
         showDrawer={showDrawer}
       ></MenuDrawer>
       <ScrollTop {...props}>
-        <Fab color="secondary" size="small" aria-label="scroll back to top">
+        <Fab size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>

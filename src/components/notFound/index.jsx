@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import NotFoundImg from './404.png'
-import style from '../../assets/style/animate.css'
 
 const style = {
   background: '#ddd',
@@ -38,7 +37,7 @@ export default class Notfound extends Component {
         <img
           src={NotFoundImg}
           alt='404'
-          className={`${style.animated} ${style[this.state.animationType]}`}
+          className={`animated swing`}
           onMouseEnter={this.enter}
         />
       </div>
