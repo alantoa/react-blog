@@ -1,0 +1,42 @@
+.skills {
+  width: 90%;
+  margin: 20px auto 0 auto;
+
+  :global(.skillbar) {
+    width: calc(50% - 40px);
+    display: inline-block;
+    margin: 0 20px 10px 20px;
+    border-radius: 40px;
+    overflow: hidden;
+  }
+  :global(.skillbar-title) {
+    width: 100%;
+    z-index: 1;
+  }
+  :global(.skillbar-bar) {
+    width: 100%;
+    left: 0;
+  }
+}
+.title {
+  margin: 20px 0px 30px 0px;
+  font-size: 1.7rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #34495e;
+  svg {
+    margin-right: 5px;
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .skills {
+    :global(.skillbar) {
+      width: 100%;
+      margin: 0 0px 10px 0px;
+    }
+  }
+}

@@ -1,2 +1,0 @@
-(this["webpackJsonpreact-app"]=this["webpackJsonpreact-app"]||[]).push([[6],{225:function(t,e,n){"use strict";n.r(e),n.d(e,"default",(function(){return s}));var a=n(18),r=n(19),c=n(21),i=n(20),p=n(0),o=n.n(p),u={root:{padding:"0 15px",margin:"20px 0"}},s=function(t){Object(c.a)(n,t);var e=Object(i.a)(n);function n(){return Object(a.a)(this,n),e.apply(this,arguments)}return Object(r.a)(n,[{key:"render",value:function(){return o.a.createElement("div",{style:u.root},"AdminList")}}]),n}(o.a.Component)}}]);
-//# sourceMappingURL=6.d76ade3a.chunk.js.map

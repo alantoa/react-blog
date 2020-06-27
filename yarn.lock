@@ -7205,6 +7205,11 @@ lodash.templatesettings@^4.0.0:
   dependencies:
     lodash._reinterpolate "^3.0.0"
 
+lodash.throttle@4.1.1:
+  version "4.1.1"
+  resolved "https://registry.npm.taobao.org/lodash.throttle/download/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
+  integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
+
 lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.npm.taobao.org/lodash.uniq/download/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
@@ -9656,6 +9661,13 @@ react-router@5.2.0, react-router@^5.2.0:
     react-is "^16.6.0"
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
+
+react-skillbars@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.npm.taobao.org/react-skillbars/download/react-skillbars-1.6.1.tgz#9c08343a89b44aa6e3adfc572d33743bed20db61"
+  integrity sha1-nAg0Oom0SqbjrfxXLTN0O+0g22E=
+  dependencies:
+    lodash.throttle "4.1.1"
 
 react-transition-group@^4.0.0, react-transition-group@^4.4.0:
   version "4.4.1"
