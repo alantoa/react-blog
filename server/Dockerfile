@@ -1,4 +1,4 @@
-FROM hub.c.163.com/nce2/nodejs:0.12.2 
+FROM node:latest
 RUN mkdir -p /home/Service
 WORKDIR /home/Service   
 COPY . /home/Service
