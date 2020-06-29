@@ -13,16 +13,20 @@ const log = {
   ip: '0.0.0.0' // 默认情况下服务器 ip 地址
 }
 const port = process.env.NODE_ENV === 'production' ? '80' : '3001'
-
-//db.createUser({user:"toa",pwd:"123456",roles:[{role:"readWrite",db:'blog'}]})
-// db.users.insert({
-//   "name" : "Toa",
-//   "pwd" : "e10adc3949ba59abbe56e057f20f883e",
-//   "username" : "admin",
-//   "roles" : [ 
-//       "admin"
-//   ]
-// })
+//db.createUser({user:"toa",pwd:"496807117",roles:[{role:"root",db:'admin'}]}) db.auth("toa","496807117")
+//db.createUser({user:"toa",pwd:"123456",roles:[{role:"readWrite",db:'blog'}]}) db.auth("toa","123456")
+//db.createUser({user:"tuan",pwd:"123456",roles:[{role:"readWrite",db:'blog'}]})
+// use test
+// db.createUser({ user: 'test', pwd:'test', roles: [ {role:"readWrite",db:"testdb"}]});
+// db.auth("test","test")
+db.users.insert({
+  "name" : "Toa",
+  "pwd" : "e10adc3949ba59abbe56e057f20f883e",
+  "username" : "admin",
+  "roles" : [ 
+      "admin"
+  ]
+})
 
 module.exports = {
   env: process.env.NODE_ENV,

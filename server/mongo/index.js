@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const conf = require('./config')
 // Mongoose 做异步操作时，为了向后兼容，Mongoose 4 默认使用mpromise 作为返回值。mpromise已被废弃，推荐使用 ES6风格的 promises库或者ES6原生的Promise库
 // ES6原生的Promise库
-const DB_URL = `mongodb://${conf.mongodb.username}:${conf.mongodb.pwd}@${conf.mongodb.address}/${conf.mongodb.db}`; // 账号登陆
+// const DB_URL = `mongodb://${conf.mongodb.username}:${conf.mongodb.pwd}@${conf.mongodb.address}/${conf.mongodb.db}`; // 账号登陆
+const DB_URL = `mongodb://mongodb/${conf.mongodb.db}`;
 mongoose.Promise = global.Promise;
 mongoose.connect(DB_URL,{ useNewUrlParser: true,useUnifiedTopology: true }, err => {
   if (err) {
@@ -13,3 +14,5 @@ mongoose.connect(DB_URL,{ useNewUrlParser: true,useUnifiedTopology: true }, err 
 })
 
 module.exports = mongoose
+
+// docker run -d --name nodeapp  -p 3000:3000 node
