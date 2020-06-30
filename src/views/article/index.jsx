@@ -1,19 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
+import Card from "components/Card";
+import TimeLine from "./TimeLine";
+// api
 
-const style = {
-  root:{
-    padding:"0 15px",
-    margin:"20px 0"
-  }
-}
-export default class ArticleManage extends React.Component {
-
-  render() {
-
-    return (
-      <div style={style.root}>
-         ArticleManage
-      </div>
-    )
-  }
+export default function Home() {
+  useEffect(() => {}, []);
+  return (
+    <Card>
+      <TimeLine />
+    </Card>
+  );
 }

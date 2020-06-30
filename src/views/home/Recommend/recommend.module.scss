@@ -33,26 +33,33 @@ svg.icon {
     left: 0;
     top: 0;
     content: "";
-    background-color: rgba(0, 0, 0, .3);
+    background-color: rgba(0, 0, 0, .55);
     border-radius: 10px;
 }
 .postBody{
-    padding: 0 8px;
-    color: hsla(0, 0%, 100%, .8);
+    padding: 20px 8px;
+    color: hsla(0, 0%, 100%, .9);
     font-size: .75rem;
     font-weight: 500;
+    z-index: 1;
+    position: relative;
 }
 .catlog{
     margin: 10px auto;
 }
 
 .desc{
-    margin: 20px auto;
-    max-width: 500px;
-    height: 65px;
-    max-height: 65px;
-    font-size: 14px;
-    color: hsla(0, 0%, 100%, .78) ;
+  margin: 20px auto;
+  max-width: 500px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.78);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp:4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  min-height: 70px;
 }
 button.more{
     background: linear-gradient(to right, #FF5E3A 0%, #FF2A68 100%);

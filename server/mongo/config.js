@@ -19,14 +19,14 @@ const port = process.env.NODE_ENV === 'production' ? '80' : '3001'
 // use test
 // db.createUser({ user: 'test', pwd:'test', roles: [ {role:"readWrite",db:"testdb"}]});
 // db.auth("test","test")
-db.users.insert({
-  "name" : "Toa",
-  "pwd" : "e10adc3949ba59abbe56e057f20f883e",
-  "username" : "admin",
-  "roles" : [ 
-      "admin"
-  ]
-})
+// db.users.insert({
+//   "name" : "Toa",
+//   "pwd" : "e10adc3949ba59abbe56e057f20f883e",
+//   "username" : "admin",
+//   "roles" : [ 
+//       "admin"
+//   ]
+// })
 
 module.exports = {
   env: process.env.NODE_ENV,
