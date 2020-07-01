@@ -6,53 +6,53 @@ import TimelineConnector from "@material-ui/lab/TimelineConnector";
 import TimelineContent from "@material-ui/lab/TimelineContent";
 import Typography from "@material-ui/core/Typography";
 import CardList from "../CardList";
+import { makeStyles } from "@material-ui/core/styles";
+import Pagination from "@material-ui/lab/Pagination";
 
+const useStyles = makeStyles((theme) => ({
+  timeTitle: {
+    whiteSpace: "nowrap",
+  },
+  pagination: {
+    textAlign:'center',
+    "& > *": {
+      marginTop: theme.spacing(2),
+    },
+    '& > .MuiPagination-ul':{
+      justifyContent: 'center'
+    }
+  },
+}));
+
+const timeData = [1, 2, 3, 4];
 export default function CustomizedTimeline() {
+  const classes = useStyles();
   return (
-    <Timeline align="alternate">
-      <TimelineItem>
-        <TimelineSeparator>
-          <Typography variant="body2" color="textSecondary">
-            9-30
-          </Typography>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>
-          <CardList />
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <Typography variant="body2" color="textSecondary">
-            9-30
-          </Typography>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>
-          <CardList />
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <Typography variant="body2" color="textSecondary">
-            9-30
-          </Typography>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>
-          <CardList />
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <Typography variant="body2" color="textSecondary">
-            9-30
-          </Typography>
-        </TimelineSeparator>
-        <TimelineContent>
-          <CardList />
-        </TimelineContent>
-      </TimelineItem>
-    </Timeline>
+    <>
+      <Timeline align="alternate">
+        {timeData.map((item) => {
+          return (
+            <>
+              <TimelineItem key={item}>
+                <TimelineSeparator>
+                  <Typography
+                    variant="body2"
+                    className={classes.timeTitle}
+                    color="textSecondary"
+                  >
+                    9-30
+                  </Typography>
+                  <TimelineConnector />
+                </TimelineSeparator>
+                <TimelineContent>
+                  <CardList />
+                </TimelineContent>
+              </TimelineItem>
+            </>
+          );
+        })}
+      </Timeline>
+      <Pagination count={11} defaultPage={6} className={classes.pagination} />
+    </>
   );
 }
