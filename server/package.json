@@ -5,11 +5,15 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node bin/www",
-    "serve:dev": "./node_modules/.bin/nodemon bin/www",
-    "prd": "pm2 start bin/www"
+    "serve": "cross-env NODE_ENV=development node server/bin/www",
+    "serve:dev": "cross-env NODE_ENV=development  ./node_modules/.bin/nodemon server/bin/www",
+    "prd": "cross-env NODE_ENV=production pm2 start server/bin/www"
   },
   "dependencies": {
+    "busboy": "^0.3.1",
+    "cross-env": "^7.0.2",
+    "debug": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-convert": "^1.2.0",
@@ -21,10 +25,7 @@
     "koa-views": "^6.2.0",
     "koa2-cors": "^2.0.6",
     "marked": "^1.1.0",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.15",
-    "debug": "^4.1.1",
-    "busboy": "^0.3.1"
+    "mongoose": "^5.9.15"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
