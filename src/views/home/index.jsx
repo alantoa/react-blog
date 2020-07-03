@@ -22,7 +22,9 @@ export default function Home() {
       pagesize: 4,
     };
     getArticleList(pagination).then((res) => {
-      setRecommendData(res.data);
+      if (res) {
+        setRecommendData(res.data);
+      }
     });
   }, []);
   return (
