@@ -5,7 +5,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import ListIcon from '@material-ui/icons/List';
 import PostAddIcon from '@material-ui/icons/PostAdd';
-
+import SettingsIcon from '@material-ui/icons/Settings';
 
 const AdminIndex = lazy(() => import("views/AdminIndex"));
 
@@ -14,6 +14,8 @@ const AdminManage = lazy(() => import("views/AdminManage"));
 const ArticleList = lazy(() => import("views/ArticleList"));
 
 const ArticleManage = lazy(() => import("views/ArticleManage"));
+
+const OthersManage = lazy(() => import("views/OthersManage"));
 
 export const adminRouterConfig = [
   {
@@ -40,6 +42,12 @@ export const adminRouterConfig = [
     name: "Article Manage",
     component: ArticleManage,
     icon: PostAddIcon,
+  },
+  {
+    path: "/admin/other/manage",
+    name: "Others Manage",
+    component: OthersManage,
+    icon: SettingsIcon,
   },
 ];
 
