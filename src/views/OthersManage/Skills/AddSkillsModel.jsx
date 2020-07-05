@@ -6,13 +6,28 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { makeStyles } from "@material-ui/core/styles";
-// import { normal } from "utils/MaterailUiColors";
+import MaterialColorPicker from "react-material-color-picker";
+import setNotification from 'utils/setNotification'
+// api
+import {addskill} from 'api/skill'
+
 const useStyles = makeStyles((theme) => ({
   dialog: {
-    width: 400,
+    width: 500,
   },
   item: {
     marginBottom: 20,
+    position: "relative",
+  },
+  viewColor: {
+    float: "right",
+    display: "inline-block",
+    width: 20,
+    height: 20,
+    position: "absolute",
+    right: 0,
+    top: 20,
+    border: "1px solid #eee",
   },
 }));
 
@@ -27,21 +42,25 @@ export default function AddSkillsModel(props) {
   });
   const handleChange = (e) => {
     e.persist();
-    console.log(e);
     setSkillData({
       ...skillData,
-      [e.target.name]: e.target.value ? e.target.value : e.target.checked,
+      [e.target.name]:
+        e.target.name === "color"
+          ? e.target.value
+            ? e.target.value
+            : "#000"
+          : e.target.value,
     });
   };
-  // const changeColor = (e) => {
-    // console.log(e);
-    // setSkillData({
-    //   ...skillData,
-    //   [skillData.color]: e.css !== undefined ? e.css.backgroundColor : e,
-    // });
-  // };
+
   const submitData = () => {
     console.log(skillData);
+    addskill(skillData).then(res=>{
+      console.log(res)
+      if(res &&  res.code === 1){
+        setNotification('添加成功!')
+      }
+    })
   };
   return (
     <>
@@ -93,6 +112,25 @@ export default function AddSkillsModel(props) {
             />
           </div>
           <div className={classes.item}>
+            <TextField
+              autoFocus
+              name="color"
+              value={skillData.color}
+              label="Color"
+              onChange={handleChange}
+              fullWidth
+            />
+            <span
+              className={classes.viewColor}
+              style={{ backgroundColor: skillData.color }}
+            ></span>
+            <MaterialColorPicker
+              onSubmit={handleChange}
+              onSelect={handleChange}
+              submitLabel="Apply"
+              resetLabel="Undo"
+              name="color"
+            />
           </div>
         </DialogContent>
         <DialogActions>

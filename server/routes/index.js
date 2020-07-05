@@ -17,7 +17,11 @@ module.exports = (app) => {
   router.post('/admin/article', app.admin.article.add);
   router.put('/admin/article', app.admin.article.update);
   router.delete('/admin/article', app.admin.article.del);
-
+  // 技能接口
+  router.get('/admin/skill', app.admin.skill.list);
+  router.post('/admin/skill', app.admin.skill.add);
+  // router.put('/admin/skill', app.admin.skill.update);
+  // router.delete('/admin/skill', app.admin.skill.del);
   //关于 About 接口
 
   router.post('/addAbout', app.admin.about.addAbout);

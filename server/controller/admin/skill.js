@@ -1,8 +1,8 @@
-const skillModel = require('../../mongo/models/skills')
+const skillModel = require('../../mongo/models/skill')
 
 
 module.exports = {
-  async addSkill(ctx, next) {
+  async add(ctx, next) {
     console.log('----------------添加技能 addSkill-----------------------');
     let paramsData = ctx.request.body;
     try {
