@@ -5,8 +5,18 @@ import Slider from "@material-ui/core/Slider";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import AddSkillsModel from "./AddSkillsModel";
+import setNotification from "utils/setNotification";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import { color } from "utils/MaterailUiColors";
 // api
-import { getskillList } from "api/skill";
+import {
+  getskillList,
+  addskill,
+  updateskillList,
+  delskillList,
+} from "api/skill";
 const useStyles = makeStyles({
   root: {},
   btn: {
@@ -14,29 +24,131 @@ const useStyles = makeStyles({
       marginRight: 20,
     },
   },
+  item: {
+    display: "flex",
+    alignItems: "center",
+  },
+  slider: {
+    width: "calc(100% - 100px)",
+  },
 });
 
 export default function DiscreteSlider() {
   const classes = useStyles();
   const [rows, setRows] = useState([]);
-  const [open, setOpen] = useState(false);
-
+  const [dialog, setDialog] = useState({
+    open: false,
+    option: "update",
+  });
+  const [skillData, setSkillData] = useState({
+    type: "",
+    level: 0,
+    color: {
+      bar: "",
+    },
+    sort: 0,
+    status: 0,
+  });
   const handleClickOpen = () => {
-    setOpen(true);
+    setSkillData({
+      type: "",
+      level: 0,
+      background: "",
+      color: {
+        bar: "",
+      },
+      sort: 0,
+      status: 0,
+    });
+    setDialog({
+      option: "add",
+      open: true,
+    });
   };
 
+  const handleChange = (e) => {
+    e.persist();
+    console.log(e);
+    if (e.target.name === "color") {
+      setSkillData({
+        ...skillData,
+        background: e.target.value,
+      });
+    } else {
+      setSkillData({
+        ...skillData,
+        [e.target.name]: e.target.value,
+      });
+    }
+  };
+  const submitData = () => {
+    let fun, word;
+    switch (dialog.option) {
+      case "add":
+        fun = addskill;
+        word = "新增";
+        break;
+      case "update":
+        fun = updateskillList;
+        word = "更新";
+        break;
+      default:
+        return;
+    }
+    skillData.color.bar = skillData.background
+      ? skillData.background
+      : color[Math.round(Math.random() * 18)];
+    fun(skillData).then((res) => {
+      console.log(res);
+      if (res && res.code === 1) {
+        setNotification(`${word}成功!`);
+        setDialog({
+          ...dialog,
+          open: false,
+        });
+        getskillList().then((res) => {
+          if (res && res.code === 1) {
+            setRows(res.data);
+          }
+        });
+      }
+    });
+  };
   const handleClose = () => {
-    setOpen(false);
+    setDialog({
+      ...dialog,
+      open: false,
+    });
+  };
+  const delSkill = (id) => {
+    delskillList({ id }).then((res) => {
+      if (res && res.code === 1) {
+        setNotification("删除成功!");
+        getskillList().then((res) => {
+          if (res && res.code === 1) {
+            setRows(res.data);
+          }
+        });
+      }
+    });
+  };
+  const updataSkill = (item) => {
+    setDialog({
+      option: "update",
+      open: true,
+    });
+    setSkillData({
+      ...item,
+    });
   };
   useEffect(() => {
     getskillList().then((res) => {
-      if(res && res.code === 1){
+      if (res && res.code === 1) {
         setRows(res.data);
-        console.log(res.data)
       }
-      
     });
   }, []);
+
   return (
     <>
       <Button
@@ -61,22 +173,44 @@ export default function DiscreteSlider() {
           return (
             <Grid item lg={6} md={6} sm={12} xs={12} key={item._id}>
               <Typography id="discrete-slider" gutterBottom>
-                {item.type}
+                {item.type ? item.type : " "}
               </Typography>
-              <Slider
-                defaultValue={item.level}
-                aria-labelledby="discrete-slider"
-                valueLabelDisplay="auto"
-                step={5}
-                marks
-                min={10}
-                max={100}
-              />
+              <div className={classes.item}>
+                <Slider
+                  className={classes.slider}
+                  defaultValue={item.level}
+                  aria-labelledby="discrete-slider"
+                  valueLabelDisplay="auto"
+                  style={{ color: item.color.bar }}
+                  step={5}
+                  marks
+                  min={10}
+                  max={100}
+                />
+                <IconButton
+                  aria-label="delete"
+                  onClick={delSkill.bind(this, item._id)}
+                >
+                  <DeleteIcon fontSize="small" />
+                </IconButton>
+                <IconButton
+                  aria-label="delete"
+                  onClick={updataSkill.bind(this, item)}
+                >
+                  <EditIcon fontSize="small" />
+                </IconButton>
+              </div>
             </Grid>
           );
         })}
       </Grid>
-      <AddSkillsModel open={open} handleClose={handleClose} />
+      <AddSkillsModel
+        {...dialog}
+        skillData={skillData}
+        handleClose={handleClose}
+        handleChange={handleChange}
+        submitData={submitData}
+      />
     </>
   );
 }

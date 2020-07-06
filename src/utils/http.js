@@ -20,22 +20,26 @@ function checkCode(resData) {
 
   return resData;
 }
+function formatParam(url, params) {
+  if (!params) {
+    return url;
+  }
+  let paramsArray = [];
+  //拼接参数
+  Object.keys(params).forEach((key) =>
+    paramsArray.push(key + "=" + params[key])
+  );
 
+  if (url.search(/\?/) === -1) {
+    return (url += "?" + paramsArray.join("&"));
+  } else {
+    return (url += "&" + paramsArray.join("&"));
+  }
+}
 export function GET(url, params) {
   if (!url) return;
-  if (params) {
-    let paramsArray = [];
-    //拼接参数
-    Object.keys(params).forEach((key) =>
-      paramsArray.push(key + "=" + params[key])
-    );
-    if (url.search(/\?/) === -1) {
-      url += "?" + paramsArray.join("&");
-    } else {
-      url += "&" + paramsArray.join("&");
-    }
-  }
-  return fetch(url, {
+
+  return fetch(formatParam(url, params), {
     method: "GET",
   })
     .then(checkStatus)
@@ -62,7 +66,6 @@ export function POST(url, data) {
     .catch((err) => console.error(err));
 }
 
-
 //put 修改
 export function PUT(url, data) {
   if (!url) return;
@@ -81,14 +84,10 @@ export function PUT(url, data) {
 }
 
 //delete
-export function DEL(url, data) {
+export function DEL(url, params) {
   if (!url) return;
-  return fetch(url, {
+  return fetch(formatParam(url, params), {
     method: "DELETE",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(data),
   })
     .then(checkStatus)
     .then((resJson) => {

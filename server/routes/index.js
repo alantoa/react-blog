@@ -20,8 +20,8 @@ module.exports = (app) => {
   // 技能接口
   router.get('/admin/skill', app.admin.skill.list);
   router.post('/admin/skill', app.admin.skill.add);
-  // router.put('/admin/skill', app.admin.skill.update);
-  // router.delete('/admin/skill', app.admin.skill.del);
+  router.put('/admin/skill', app.admin.skill.update);
+  router.delete('/admin/skill', app.admin.skill.del);
   //关于 About 接口
 
   router.post('/addAbout', app.admin.about.addAbout);
@@ -29,7 +29,7 @@ module.exports = (app) => {
 
   //用户信息
   router.get("/user/info", app.admin.user.info);
-
+  router.get('/user/skill', app.client.user.skill);
   /**
    * Client 前台接口 *********************************************
    */

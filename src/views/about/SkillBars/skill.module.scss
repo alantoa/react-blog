@@ -12,6 +12,8 @@
   :global(.skillbar-title) {
     width: 100%;
     z-index: 1;
+    background-color: transparent;
+    color: #fff;
   }
   :global(.skillbar-bar) {
     width: 100%;

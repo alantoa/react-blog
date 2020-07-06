@@ -79,7 +79,7 @@ module.exports = {
     console.log('----------------更新博客 blog/update-----------------------');
     let paramsData = ctx.request.body;
     try {
-      await ctx.update(articleModel, {
+      await ctx.updateOne(articleModel, {
         _id: paramsData._id
       }, paramsData)
       ctx.send()

@@ -16,7 +16,7 @@ module.exports = {
             if (password !== data.pwd) {
                 return ctx.sendError('密码错误,请重新输入！');
             }
-            await ctx.update(userModel, {_id: data._id}, {$set:{loginTime: new Date()}}) //更新登陆时间
+            await ctx.updateOne(userModel, {_id: data._id}, {$set:{loginTime: new Date()}}) //更新登陆时间
 
             let payload = {
                 _id: data._id,
@@ -113,7 +113,7 @@ module.exports = {
                 return ctx.sendError('密码不匹配!')
             }
             delete paramsData.old_pwd
-            await ctx.update(userModel, {_id: paramsData._id}, paramsData)
+            await ctx.updateOne(userModel, {_id: paramsData._id}, paramsData)
             ctx.send()
         }catch(e) {
             if (e === '暂无数据') {

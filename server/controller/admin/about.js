@@ -25,7 +25,7 @@ module.exports = {
     let paramsData = ctx.request.body;
     try {
       // paramsData.html = marked(paramsData.html);
-      await ctx.update(aboutModel, {
+      await ctx.updateOne(aboutModel, {
         _id: paramsData._id
       }, paramsData)
       ctx.send()

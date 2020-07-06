@@ -26,9 +26,9 @@ const add = (model, conditions) => {
  * @param update 更新条件{set{id:xxx}}
  * @param options
  */
-const update = (model, conditions, update, options) => {
+const updateOne = (model, conditions, update, options) => {
   return new Promise((resolve, reject) => {
-    model.update(conditions, update, options, (err, res) => {
+    model.updateOne(conditions, update, options, (err, res) => {
       if (err) {
         console.error('Error: ' + JSON.stringify(err));
         reject(err);
@@ -43,7 +43,23 @@ const update = (model, conditions, update, options) => {
     })
   })
 }
-
+const updateMany = (model, conditions, update, options) => {
+  return new Promise((resolve, reject) => {
+    model.updateMany(conditions, update, options, (err, res) => {
+      if (err) {
+        console.error('Error: ' + JSON.stringify(err));
+        reject(err);
+        return false;
+      }
+      if (res.n != 0) {
+        console.log('update success!');
+      } else {
+        console.log('update fail:no this data!');
+      }
+      resolve(res);
+    })
+  })
+} 
 
 /**
  * 公共remove方法
@@ -51,20 +67,20 @@ const update = (model, conditions, update, options) => {
  * @param conditions
  */
 
-const remove = (model, conditions) => {
+const deleteOne = (model, conditions) => {
   return new Promise((resolve, reject) => {
-    model.remove(conditions, function (err, res) {
+    model.deleteOne(conditions, function (err, res) {
       if (err) {
         console.error('Error: ' + JSON.stringify(err));
         reject(err);
         return false;
       } else {
-        if (res.result.n != 0) {
+        if (res.n != 0) {
           console.log('remove success!');
         } else {
           console.log('remove fail:no this data!');
         }
-        reject(res);
+        resolve(res);
       }
     });
   })
@@ -185,8 +201,9 @@ const findPage = async (model, conditions, fields, options = {}) => {
 
 module.exports = {
   add,
-  update,
-  remove,
+  updateOne,
+  updateMany,
+  deleteOne,
   find,
   findOne,
   findPage,
