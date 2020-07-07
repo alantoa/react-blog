@@ -5,8 +5,8 @@ import routes from "routes/clientRouterConfig";
 import style from "./footer.module.scss";
 import { withRouter } from "react-router-dom";
 
- function Bottom(props) {
-    const [value, setValue] = React.useState(props.location.pathname);
+function Bottom(props) {
+  const [value, setValue] = React.useState(props.location.pathname);
   return (
     <BottomNavigation
       value={value}
@@ -31,4 +31,4 @@ import { withRouter } from "react-router-dom";
     </BottomNavigation>
   );
 }
-export default withRouter(Bottom)
+export default withRouter(Bottom);
