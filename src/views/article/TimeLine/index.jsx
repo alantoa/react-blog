@@ -14,13 +14,13 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: "nowrap",
   },
   pagination: {
-    textAlign:'center',
+    textAlign: "center",
     "& > *": {
       marginTop: theme.spacing(2),
     },
-    '& > .MuiPagination-ul':{
-      justifyContent: 'center'
-    }
+    "& > .MuiPagination-ul": {
+      justifyContent: "center",
+    },
   },
 }));
 
@@ -30,25 +30,23 @@ export default function CustomizedTimeline() {
   return (
     <>
       <Timeline align="alternate">
-        {timeData.map((item) => {
+        {timeData.map((item, index) => {
           return (
-            <>
-              <TimelineItem key={item}>
-                <TimelineSeparator>
-                  <Typography
-                    variant="body2"
-                    className={classes.timeTitle}
-                    color="textSecondary"
-                  >
-                    9-30
-                  </Typography>
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>
-                  <CardList />
-                </TimelineContent>
-              </TimelineItem>
-            </>
+            <TimelineItem key={index}>
+              <TimelineSeparator>
+                <Typography
+                  variant="body2"
+                  className={classes.timeTitle}
+                  color="textSecondary"
+                >
+                  9-30
+                </Typography>
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent>
+                <CardList />
+              </TimelineContent>
+            </TimelineItem>
           );
         })}
       </Timeline>

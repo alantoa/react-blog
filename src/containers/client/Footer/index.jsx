@@ -61,7 +61,7 @@ export default function Footer() {
           <span className={style.split}>|</span>
           <iframe
             src="https://ghbtns.com/github-btn.html?user=MonsterAnan&repo=react-blog&type=star&count=true"
-            frameborder="0"
+            frameBorder="0"
             scrolling="0"
             width="150"
             height="20"

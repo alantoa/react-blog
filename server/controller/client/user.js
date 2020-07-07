@@ -6,8 +6,9 @@ module.exports = {
     console.log(
       "----------------获取技能列表 skills/list-----------------------"
     );
+    let { status } = ctx.request.query;
     try {
-      let data = await ctx.find(skillModel);
+      let data = await ctx.find(skillModel,status?{status}:null);
       ctx.send(data);
     } catch (e) {
       console.log(e);
