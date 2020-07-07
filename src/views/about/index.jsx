@@ -19,7 +19,7 @@ export default function Home() {
     <Card>
       <BaseInfo />
       <SkillBar skillBars={skillBars} />
-      <SkillWalls skillBars={skillBars} />
+      <SkillWalls walls={skillBars} />
     </Card>
   );
 }

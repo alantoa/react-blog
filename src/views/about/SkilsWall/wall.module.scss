@@ -11,3 +11,19 @@
     font-size: 2rem;
   }
 }
+.content {
+  width: 60%;
+  margin: auto;
+}
+button.btn {
+  border-radius: 20px;
+  margin-bottom: 15px;
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+}
+@media (max-width: 960px) {
+  .content {
+    width: 80%;
+  }
+}
