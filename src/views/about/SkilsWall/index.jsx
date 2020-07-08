@@ -2,7 +2,6 @@ import React from "react";
 import style from "./wall.module.scss";
 import Icon from "components/SvgIcon";
 import Button from "@material-ui/core/Button";
-import { color } from "utils/MaterailUiColors";
 
 export default function SkillWalls(props) {
   return (
