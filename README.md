@@ -1,81 +1,55 @@
 
-## 项目目录结构
-```
-\react-blog
+## Twitter Share & Like & Comment Button Components for React
 
-├─.env.development
-├─.env.production
-├─package-lock.json
-├─package.json
-├─README.md
-├─yarn.lock
-├─src
-|  ├─client
-|  |   ├─index.js
-|  |   ├─serviceWorker.js
-|  |   ├─views
-|  |   ├─test
-|  |   |  └setupTests.js
-|  |   ├─stores
-|  |   |   ├─createStore.js
-|  |   |   └reducers.js
-|  |   ├─routes
-|  |   |   ├─index.jsx
-|  |   |   └routerConfig.js
-|  |   ├─layouts
-|  |   |    └index.jsx
-|  |   ├─components
-|  |   ├─assets
-|  ├─admin
-|  |   ├─index.js
-|  |   ├─serviceWorker.js
-|  |   ├─views
-|  |   ├─test
-|  |   |  └setupTests.js
-|  |   ├─stores
-|  |   |   ├─createStore.js
-|  |   |   └reducers.js
-|  |   ├─routes
-|  |   |   ├─index.jsx
-|  |   |   └routerConfig.js
-|  |   ├─layouts
-|  |   |    └index.jsx
-|  |   ├─components
-|  |   ├─assets
-├─server
-|   ├─app.js
-|   ├─views
-|   ├─routes
-|   ├─mongo
-|   |   ├─config.js
-|   |   ├─index.js
-|   |   ├─models
-|   |   |   ├─about.js
-|   |   |   ├─article.js
-|   |   |   └user.js
-|   ├─middleware
-|   ├─controller
-|   |     ├─client
-|   |     ├─admin
-|   ├─bin
-|   |  └www
-├─public
-|   ├─client
-|   ├─admin
-├─config
-|   ├─env.js
-|   ├─getHttpsConfig.js
-|   ├─modules.js
-|   ├─paths.js
-|   ├─pnpTs.js
-|   ├─webpack.config.js
-|   ├─webpackDevServer.config.js
-|   ├─jest
-|   |  ├─cssTransform.js
-|   |  └fileTransform.js
-├─bundle
-|   ├─build.js
-|   ├─start.js
-|   └test.js
+![](https://img.shields.io/badge/license-MIT-brightgreen)![](https://img.shields.io/badge/virsion-0.0.1-orange)
+
+
+### 项目目录结构
+```
+react-blog
+├── bundle
+│   ├── build.js
+│   ├── start.js
+│   └── test.js
+├── conf
+├── config
+├── public
+├── server
+│   ├── bin
+│   ├── controller
+│   │   ├── admin
+│   │   └── client
+│   ├── middleware
+│   ├── mongo
+│   ├── routes
+│   ├── views
+│   ├── app.js
+│   ├── package.json
+│   └── yarn.lock
+├── src
+│   ├── api
+│   ├── assets
+│   ├── components
+│   ├── containers
+│   │   ├── admin
+│   │   ├── client
+│   │   └── index.jsx
+│   ├── redux
+│   ├── routes
+│   ├── utils
+│   ├── views
+│   │   ├── about
+│   │   ├── AdminIndex
+│   │   ├── AdminManage
+│   │   ├── article
+│   │   ├── ArticleList
+│   │   ├── ArticleManage
+│   │   ├── detail
+│   │   ├── home
+│   ├── index.js
+│   ├── serviceWorker.js
+│   └── setupProxy.js
+├── .travis.yml
+├── Dockerfile
 ```
 
