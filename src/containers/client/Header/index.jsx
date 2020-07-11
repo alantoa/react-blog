@@ -9,7 +9,7 @@ import ElevationScroll from "./ElevationScroll";
 import ScrollTop from "./ScrollTop";
 import MenuDrawer from "./Drawer";
 import { withRouter, Link } from "react-router-dom";
-import routes from "routes/clientRouterConfig";
+import {menu} from "config/system.config";
 import Hidden from "@material-ui/core/Hidden";
 import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
@@ -108,7 +108,7 @@ function Header(props) {
               </Hidden>
               <Hidden only={["xs", "sm"]}>
                 <div className={classes.title} variant="h3">
-                  {routes.map((item) => {
+                  {menu.map((item) => {
                     return item.name ? (
                       <Link key={item.path} to={item.path}>
                         <Button className={classes.titleLink}>

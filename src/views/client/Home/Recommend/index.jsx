@@ -3,6 +3,8 @@ import EmojiObjectsOutlinedIcon from "@material-ui/icons/EmojiObjectsOutlined";
 import style from "./recommend.module.scss";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import {Link} from 'react-router-dom'
+
 export default function Recommend(props) {
   console.log(props);
   return (
@@ -21,7 +23,7 @@ export default function Recommend(props) {
                     <div className={style.catlog}>{item.type}</div>
                     <h4 className={style.title}>{item.title}</h4>
                     <p className={style.desc}>{item.desc}</p>
-                    <Button variant="outlined" className={style.more}>阅读更多</Button>
+                    <Link to={'/detail/'+ item._id}><Button variant="outlined" className={style.more}>阅读更多</Button></Link>
                   </div>
                 </div>
               </Grid>

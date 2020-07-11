@@ -1,7 +1,7 @@
 import React from "react";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import routes from "routes/clientRouterConfig";
+import {menu} from "config/system.config";
 import style from "./footer.module.scss";
 import { withRouter } from "react-router-dom";
 
@@ -17,7 +17,7 @@ function Bottom(props) {
       showLabels
       className={style.bottom}
     >
-      {routes.map((item, index) => {
+      {menu.map((item, index) => {
         return (
           <BottomNavigationAction
             className={style.btn}

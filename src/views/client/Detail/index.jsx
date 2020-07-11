@@ -1,18 +1,17 @@
 import React from "react";
+import style from './detail.module.scss'
+import Card from "components/Card";
 
-const style = {
-  root:{
-    padding:"0 15px",
-    margin:"20px 0"
-  }
-}
-export default class Detail extends React.Component {
-
-  render() {
+export default function Detail (props) {
+  console.log(props.match.params)
     return (
-      <div style={style.root}>
-         Detail
-      </div>
+      <>
+         <div className={style.content}>
+           <Card>123 </Card>
+         </div>
+         <div className={style.catalog}>
+           
+         </div>
+      </>
     )
-  }
 }

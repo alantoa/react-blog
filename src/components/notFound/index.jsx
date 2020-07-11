@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NotFoundImg from './404.png'
+import NotFoundImg from 'assets/image/404.png'
 
 const style = {
   background: '#ddd',

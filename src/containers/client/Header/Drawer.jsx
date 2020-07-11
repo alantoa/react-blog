@@ -7,7 +7,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-import routes from "routes/clientRouterConfig";
+import {menu} from "config/system.config";
 import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles({
@@ -38,7 +38,7 @@ function MenuDrawer(props) {
     >
       <div className={classes.list}>
         <List>
-          {routes.map((item, index) => (
+          {menu.map((item, index) => (
             <ListItem
               button
               key={item.name}
