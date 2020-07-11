@@ -6,6 +6,7 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import DraftsIcon from "@material-ui/icons/Drafts";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import InstagramIcon from "@material-ui/icons/Instagram";
+import {Link} from 'react-router-dom'
 export default function Footer() {
   return (
     <div className={style.footer}>
@@ -56,7 +57,7 @@ export default function Footer() {
 
         <div className={style.power}>
           <span className={style.author}>
-            Powered by <a href="https://toa.monster">Toa</a>
+            <a href="/admin" target="_blank" rel="noopener noreferrer">Powered</a> by <Link to='/'>Toa</Link>
           </span>
           <span className={style.split}>|</span>
           <iframe

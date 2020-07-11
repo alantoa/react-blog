@@ -91,9 +91,12 @@ button.moreBtn {
   width: 100%;
   text-align: center;
   > a {
-    padding: 0 15px;
+    padding: 0 6px;
     font-size: 1.35rem;
     color: #fff;
+  }
+  button{
+    color: inherit;
   }
 }
 @media screen and (max-width: 768px) {

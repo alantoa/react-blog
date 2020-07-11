@@ -7,15 +7,15 @@ import ListIcon from '@material-ui/icons/List';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import SettingsIcon from '@material-ui/icons/Settings';
 
-const AdminIndex = lazy(() => import("views/AdminIndex"));
+const AdminIndex = lazy(() => import("views/admin/AdminIndex"));
 
-const AdminManage = lazy(() => import("views/AdminManage"));
+const AdminManage = lazy(() => import("views/admin/AdminManage"));
 
-const ArticleList = lazy(() => import("views/ArticleList"));
+const ArticleList = lazy(() => import("views/admin/ArticleList"));
 
-const ArticleManage = lazy(() => import("views/ArticleManage"));
+const ArticleManage = lazy(() => import("views/admin/ArticleManage"));
 
-const OthersManage = lazy(() => import("views/OthersManage"));
+const OthersManage = lazy(() => import("views/admin/OthersManage"));
 
 export const adminRouterConfig = [
   {

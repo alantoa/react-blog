@@ -1,6 +1,6 @@
-import Home from '../views/home'
-import About from '../views/about'
-import Article from '../views/article'
+import Home from 'views/client/Home'
+import About from 'views/client/About'
+import Article from 'views/client/Article'
 import AppsIcon from '@material-ui/icons/Apps';
 import { ReactComponent as T } from "assets/image/T.svg";
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';

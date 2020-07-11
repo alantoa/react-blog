@@ -1,6 +1,6 @@
 ##   Material Design React MarkDown Blog
 
-![](https://img.shields.io/badge/license-MIT-brightgreen)![](https://img.shields.io/badge/virsion-0.0.1-orange)
+![](https://img.shields.io/badge/license-MIT-brightgreen)    ![](https://img.shields.io/badge/virsion-0.0.1-orange)
 
 ###  [📝](https://landing.ant.design/edit) 目录 /catalog
 

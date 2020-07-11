@@ -14,10 +14,10 @@ import Icon from "components/SvgIcon";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import GitHubIcon from '@material-ui/icons/GitHub';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import InstagramIcon from '@material-ui/icons/Instagram';
+import GitHubIcon from "@material-ui/icons/GitHub";
+import DraftsIcon from "@material-ui/icons/Drafts";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import InstagramIcon from "@material-ui/icons/Instagram";
 
 const itemData = [
   {
@@ -91,7 +91,7 @@ const swiperParams = {
 const SwiperSlide = (props) => {
   const typedText = useRef();
   const swiperRef = useRef();
-  
+
   useEffect(() => {
     new Typed(typedText.current, typedOption);
     props.dispatch(setSwierHeight(swiperRef.current.offsetHeight));
@@ -116,8 +116,8 @@ const SwiperSlide = (props) => {
           }}
         >
           <Container className={style.container} maxWidth="md">
-            <h2 className={clsx(style.title,style.indexTitle)}>Toa Blog</h2>
-            <h5 className={clsx(style.desc,style.indexDesc)}>
+            <h2 className={clsx(style.title, style.indexTitle)}>Toa Blog</h2>
+            <h5 className={clsx(style.desc, style.indexDesc)}>
               <span ref={typedText}></span>
             </h5>
             <div className={style.operate}>
@@ -131,10 +131,46 @@ const SwiperSlide = (props) => {
               </Button>
             </div>
             <div className={style.link}>
-                <a target="_blank" rel="noopener noreferrer" title="Github" href="https://github.com/monsteranan"><GitHubIcon/></a>
-                <a target="_blank" rel="noopener noreferrer" title="Email" href="mailto:toacncom@gmail.com"><DraftsIcon/></a>
-                <a target="_blank" rel="noopener noreferrer" title="Twitter" href="https://twitter.com/Toa_anan"><TwitterIcon/></a>
-                <a target="_blank" rel="noopener noreferrer" title="Instagram" href="https://www.instagram.com/thealantoa/"><InstagramIcon/></a>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Github"
+                href="https://github.com/monsteranan"
+              >
+                <IconButton>
+                  <GitHubIcon />
+                </IconButton>
+              </a>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Email"
+                href="mailto:toacncom@gmail.com"
+              >
+                <IconButton>
+                  <DraftsIcon />
+                </IconButton>
+              </a>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Twitter"
+                href="https://twitter.com/Toa_anan"
+              >
+                <IconButton>
+                  <TwitterIcon />
+                </IconButton>
+              </a>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Instagram"
+                href="https://www.instagram.com/thealantoa/"
+              >
+                <IconButton>
+                  <InstagramIcon />
+                </IconButton>
+              </a>
             </div>
           </Container>
         </div>
