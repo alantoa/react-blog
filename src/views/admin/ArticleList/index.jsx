@@ -12,10 +12,10 @@ import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-
+import setNotification from "utils/setNotification";
 import EditArticleDrawer from "./EditArticleDrawer";
 // api import
-import { getArticleList } from "api/article";
+import { getArticleList, delArticleList } from "api/article";
 import TablePaginationActions from "components/TablePaginationActions";
 
 const useStyles = makeStyles({
@@ -32,31 +32,31 @@ export default function ArticleList() {
     rowsPerPage: 5,
   });
   const [drawerData, setDrawerState] = React.useState({
-    open:false,
-    currentItem:{}
+    open: false,
+    currentItem: {},
   });
 
   const showDrawer = (item) => {
     setDrawerState({
       ...drawerData,
-      open:true,
-      currentItem:item
+      open: true,
+      currentItem: item,
     });
   };
 
   const closeDrawer = () => {
     setDrawerState({
       ...drawerData,
-      open:false,
-      currentItem:{}
+      open: false,
+      currentItem: {},
     });
   };
+
   useEffect(() => {
-    let pagination = {
+    getArticleList({
       pageindex: paginationParam.page,
       pagesize: paginationParam.rowsPerPage,
-    };
-    getArticleList(pagination).then((res) => {
+    }).then((res) => {
       setRows(res.data.list);
     });
   }, [paginationParam]);
@@ -74,6 +74,22 @@ export default function ArticleList() {
       page: newPage,
     });
   };
+
+  const deleteArticle = (row) => {
+    console.log(row);
+    delArticleList({ id: row._id }).then((res) => {
+      if (res && res.code === 1) {
+        setNotification("删除成功!");
+        getArticleList({
+          pageindex: paginationParam.page,
+          pagesize: paginationParam.rowsPerPage,
+        }).then((res) => {
+          setRows(res.data.list);
+        });
+      }
+    });
+  };
+
   const handleChangeRowsPerPage = (event) => {
     // setRowsPerPage(parseInt(event.target.value, 10));
     setPagination({
@@ -117,10 +133,18 @@ export default function ArticleList() {
                 <TableCell>{row.releaseTime}</TableCell>
                 <TableCell>{row.isVisible ? "是" : "否"}</TableCell>
                 <TableCell>
-                  <IconButton aria-label="delete" onClick={showDrawer.bind(this,row)}  className={classes.margin}>
+                  <IconButton
+                    aria-label="delete"
+                    onClick={showDrawer.bind(this, row)}
+                    className={classes.margin}
+                  >
                     <EditIcon />
                   </IconButton>
-                  <IconButton aria-label="delete" className={classes.margin}>
+                  <IconButton
+                    aria-label="delete"
+                    onClick={deleteArticle.bind(this, row)}
+                    className={classes.margin}
+                  >
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>
@@ -147,7 +171,11 @@ export default function ArticleList() {
           </TableRow>
         </TableFooter>
       </Table>
-      <EditArticleDrawer {...drawerData} closeDrawer={closeDrawer} showDrawer={showDrawer}></EditArticleDrawer>
+      <EditArticleDrawer
+        {...drawerData}
+        closeDrawer={closeDrawer}
+        showDrawer={showDrawer}
+      ></EditArticleDrawer>
     </TableContainer>
   );
 }

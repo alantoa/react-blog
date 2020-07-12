@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import {Link} from 'react-router-dom'
 import "assets/style/swiper.css";
 import style from "./swiperCustom.module.scss";
 import Swiper from "react-id-swiper";
@@ -18,37 +19,9 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import DraftsIcon from "@material-ui/icons/Drafts";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import InstagramIcon from "@material-ui/icons/Instagram";
+// api
+import { getSwiper } from "api/client/article";
 
-const itemData = [
-  {
-    cover: require("assets/image/swiper/0.jpg"),
-    title: "Fenix — 比 MyBatis 更加强大的 Spring Data JPA 扩展库",
-    desc:
-      "Fenix（菲尼克斯）是一个比 MyBatis 更加强大，为解决复杂、动态 SQL (JPQL) 而生的 Spring Data JPA 扩展库，目的是辅助开发者更方便、快捷的书写复杂、动态且易于维护的 SQL，支持 XML 和 Java",
-    id: 1,
-  },
-  {
-    cover: require("assets/image/swiper/1.jpg"),
-    title: "Fenix — 比 MyBatis 更加强大的 Spring Data JPA 扩展库",
-    desc:
-      "Fenix（菲尼克斯）是一个比 MyBatis 更加强大，为解决复杂、动态 SQL (JPQL) 而生的 Spring Data JPA 扩展库，目的是辅助开发者更方便、快捷的书写复杂、动态且易于维护的 SQL，支持 XML 和 Java",
-    id: 2,
-  },
-  {
-    cover: require("assets/image/swiper/2.jpg"),
-    title: "Fenix — 比 MyBatis 更加强大的 Spring Data JPA 扩展库",
-    desc:
-      "Fenix（菲尼克斯）是一个比 MyBatis 更加强大，为解决复杂、动态 SQL (JPQL) 而生的 Spring Data JPA 扩展库，目的是辅助开发者更方便、快捷的书写复杂、动态且易于维护的 SQL，支持 XML 和 Java",
-    id: 3,
-  },
-  {
-    cover: require("assets/image/swiper/3.jpg"),
-    title: "Fenix — 比 MyBatis 更加强大的 Spring Data JPA 扩展库",
-    desc:
-      "Fenix（菲尼克斯）是一个比 MyBatis 更加强大，为解决复杂、动态 SQL (JPQL) 而生的 Spring Data JPA 扩展库，目的是辅助开发者更方便、快捷的书写复杂、动态且易于维护的 SQL，支持 XML 和 Java",
-    id: 4,
-  },
-];
 var typedOption = {
   strings: [
     "How long will you lie there, O sluggard?When will you arise from your sleep?",
@@ -91,12 +64,17 @@ const swiperParams = {
 const SwiperSlide = (props) => {
   const typedText = useRef();
   const swiperRef = useRef();
+  const [swiperData, setSwiperData] = useState([]);
 
   useEffect(() => {
-    new Typed(typedText.current, typedOption);
-    props.dispatch(setSwierHeight(swiperRef.current.offsetHeight));
+    getSwiper().then((res) => {
+      if (res && res.code === 1) {
+        setSwiperData(res.data);
+        new Typed(typedText.current, typedOption);
+        props.dispatch(setSwierHeight(swiperRef.current.offsetHeight));
+      }
+    });
   }, [props]);
-
   const startRead = () => {
     swiperRef.current &&
       window.scrollTo({
@@ -107,94 +85,98 @@ const SwiperSlide = (props) => {
 
   return (
     <div ref={swiperRef} className={style.swiperContainer}>
-      <Swiper {...swiperParams}>
-        <div
-          className={clsx(style.cover, style.bgCover)}
-          key={0}
-          style={{
-            backgroundImage: `url(${require("assets/image/swiper/0.jpg")})`,
-          }}
-        >
-          <Container className={style.container} maxWidth="md">
-            <h2 className={clsx(style.title, style.indexTitle)}>Toa Blog</h2>
-            <h5 className={clsx(style.desc, style.indexDesc)}>
-              <span ref={typedText}></span>
-            </h5>
-            <div className={style.operate}>
-              <Button
-                className={style.moreBtn}
-                onClick={startRead}
-                variant="outlined"
+      {swiperData.length > 0 && (
+        <Swiper {...swiperParams}>
+          <div
+            className={clsx(style.cover, style.bgCover)}
+            key={0}
+            style={{
+              backgroundImage: `url(${require("assets/image/swiper/0.jpg")})`,
+            }}
+          >
+            <Container className={style.container} maxWidth="md">
+              <h2 className={clsx(style.title, style.indexTitle)}>Toa Blog</h2>
+              <h5 className={clsx(style.desc, style.indexDesc)}>
+                <span ref={typedText}></span>
+              </h5>
+              <div className={style.operate}>
+                <Button
+                  className={style.moreBtn}
+                  onClick={startRead}
+                  variant="outlined"
+                >
+                  <Icon use="angleDoubleBottom" className={style.startRead} />
+                  开始阅读
+                </Button>
+              </div>
+              <div className={style.link}>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Github"
+                  href="https://github.com/monsteranan"
+                >
+                  <IconButton>
+                    <GitHubIcon />
+                  </IconButton>
+                </a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Email"
+                  href="mailto:toacncom@gmail.com"
+                >
+                  <IconButton>
+                    <DraftsIcon />
+                  </IconButton>
+                </a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Twitter"
+                  href="https://twitter.com/Toa_anan"
+                >
+                  <IconButton>
+                    <TwitterIcon />
+                  </IconButton>
+                </a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Instagram"
+                  href="https://www.instagram.com/thealantoa/"
+                >
+                  <IconButton>
+                    <InstagramIcon />
+                  </IconButton>
+                </a>
+              </div>
+            </Container>
+          </div>
+          {swiperData.map((item) => {
+            return (
+              <div
+                className={clsx(style.cover, style.bgCover)}
+                key={item._id}
+                style={{ backgroundImage: `url(${item.cover})` }}
               >
-                <Icon use="angleDoubleBottom" className={style.startRead} />
-                开始阅读
-              </Button>
-            </div>
-            <div className={style.link}>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Github"
-                href="https://github.com/monsteranan"
-              >
-                <IconButton>
-                  <GitHubIcon />
-                </IconButton>
-              </a>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Email"
-                href="mailto:toacncom@gmail.com"
-              >
-                <IconButton>
-                  <DraftsIcon />
-                </IconButton>
-              </a>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Twitter"
-                href="https://twitter.com/Toa_anan"
-              >
-                <IconButton>
-                  <TwitterIcon />
-                </IconButton>
-              </a>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Instagram"
-                href="https://www.instagram.com/thealantoa/"
-              >
-                <IconButton>
-                  <InstagramIcon />
-                </IconButton>
-              </a>
-            </div>
-          </Container>
-        </div>
-        {itemData.map((item) => {
-          return (
-            <div
-              className={clsx(style.cover, style.bgCover)}
-              key={item.id}
-              style={{ backgroundImage: `url(${item.cover})` }}
-            >
-              <Container className={style.container} maxWidth="md">
-                <h2 className={style.title}>{item.title}</h2>
-                <h5 className={style.desc}>{item.desc}</h5>
-                <div className={style.operate}>
-                  <Button className={style.moreBtn} variant="outlined">
-                    <VisibilityIcon />
-                    阅读更多
-                  </Button>
-                </div>
-              </Container>
-            </div>
-          );
-        })}
-      </Swiper>
+                <Container className={style.container} maxWidth="md">
+                  <h2 className={style.title}>{item.title}</h2>
+                  <h5 className={style.desc}>{item.desc}</h5>
+                  <div className={style.operate}>
+                    <Link to={"/detail/" + item._id}>
+                      <Button className={style.moreBtn} variant="outlined">
+                        <VisibilityIcon />
+                        阅读更多
+                      </Button>
+                    </Link>
+                  </div>
+                </Container>
+              </div>
+            );
+          })}
+        </Swiper>
+      )}
     </div>
   );
 };

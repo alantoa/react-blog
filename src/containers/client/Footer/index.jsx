@@ -60,14 +60,14 @@ export default function Footer() {
             <a href="/admin" target="_blank" rel="noopener noreferrer">Powered</a> by <Link to='/'>Toa</Link>
           </span>
           <span className={style.split}>|</span>
-          <iframe
+          {/* <iframe
             src="https://ghbtns.com/github-btn.html?user=MonsterAnan&repo=react-blog&type=star&count=true"
             frameBorder="0"
             scrolling="0"
             width="150"
             height="20"
             title="GitHub"
-          ></iframe>
+          ></iframe> */}
         </div>
         <div className={style.tip}>♥ God resisteth the proud, but giveth grace to the humble.</div>
       </Container>

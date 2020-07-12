@@ -75,6 +75,7 @@
     "react-app-polyfill": "^1.0.6",
     "react-dev-utils": "^10.2.1",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^6.0.4",
     "react-hyperscript": "^3.2.0",
     "react-id-swiper": "^3.0.0",
     "react-material-color-picker": "^1.1.2",

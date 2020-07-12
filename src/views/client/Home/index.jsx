@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-// import style from "./home.module.scss";
 import Grid from "@material-ui/core/Grid";
 import Card from "components/Card";
 import Dream from "./Dream";
 import Recommend from "./Recommend";
 // api
-import { getArticleList } from "api/articleList";
+import { getRecommend } from "api/client/article";
 
 const dreamData = {
   title: "我的梦想",
@@ -21,7 +20,7 @@ export default function Home() {
       pageindex: 1,
       pagesize: 4,
     };
-    getArticleList(pagination).then((res) => {
+    getRecommend(pagination).then((res) => {
       if (res) {
         setRecommendData(res.data);
       }

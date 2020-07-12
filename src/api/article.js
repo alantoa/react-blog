@@ -1,7 +1,8 @@
 import { GET, POST,PUT,DEL } from "../utils/http"
 
 const api = {
-    article: '/api/admin/article'
+    article: '/api/admin/article',
+    update:(id)=> `/api/admin/article/${id}`
 }
 
 
@@ -27,9 +28,9 @@ export  function addArticleList (params) {
  * Edit Article for ArticleList
  * @param {paramsData} params 
  */
-export  function updateArticleList (params) {
+export  function updateArticleOne (id,params) {
     
-    return PUT(api.article, params);
+    return PUT(api.update(id), params);
 }
 
 /**

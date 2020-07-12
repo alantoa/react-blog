@@ -5,9 +5,10 @@ import Container from "@material-ui/core/Container";
 import { setSwierHeight } from "redux/action/swiper";
 import { connect } from "react-redux";
 
+
 const Banner = (props) => {
   const banner = useRef();
-
+  
   useEffect(() => {
     props.dispatch(setSwierHeight(banner.current.offsetHeight));
   }, [props]);

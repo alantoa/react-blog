@@ -6,7 +6,6 @@ import Button from "@material-ui/core/Button";
 import {Link} from 'react-router-dom'
 
 export default function Recommend(props) {
-  console.log(props);
   return (
     <div className={style.dream}>
       <div className={style.title}>
@@ -18,7 +17,7 @@ export default function Recommend(props) {
           {props.list.map((item) => {
             return (
               <Grid item xs={12} sm={12} md={6} lg={6} key={item._id}>
-                <div className={style.postCard}>
+                <div className={style.postCard} style={{backgroundImage:`url('${item.cover}')`}}>
                   <div className={style.postBody}>
                     <div className={style.catlog}>{item.type}</div>
                     <h4 className={style.title}>{item.title}</h4>

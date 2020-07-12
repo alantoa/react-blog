@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
+import {
+  Select,
+  MenuItem,
+  Switch,
+  TextField,
+  FormControlLabel,
+} from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Input from "@material-ui/core/Input";
-import MarkDown from "components/MarkDown";
+// import MarkDown from "components/MarkDown";
 import { DateTimePicker } from "@material-ui/pickers";
-import Switch from "@material-ui/core/Switch";
-import setNotification from 'utils/setNotification'
+import setNotification from "utils/setNotification";
+import { useForm, Controller } from "react-hook-form";
 // api
-import { addArticleList, updateArticleList } from "api/article";
+import { addArticleList, updateArticleOne } from "api/article";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -44,208 +46,258 @@ const useStyles = makeStyles((theme) => ({
 const names = [
   "HTML",
   "CSS",
-  "javascript",
-  "Vue.js",
-  "React.js",
+  "JavaScript",
+  "React Native",
+  "Material-UI",
+  "Ant Design",
+  "Vue",
+  "React",
   "Webpack",
   "Babel",
   "Nginx",
   "Docker",
   "Travis CI",
+  "Angular",
+  "计算机网络",
 ];
 
 export default function ArticleManage(props) {
   const classes = useStyles();
-  const [articleData, setArticleData] = useState(
-    props.currentData?{...props.currentData}:{
-    type: [],
-    html: "",
-    title: "",
-    markdown: "",
-    github: "",
-    desc: "",
-    level: "",
-    isVisible: true,
-    releaseTime: new Date(),
-    source: "",
+  const { control, handleSubmit, errors } = useForm({
+    defaultValues: props.currentData
+      ? { ...props.currentData }
+      : {
+          type: "",
+          html: "",
+          title: "",
+          cover: "",
+          markdown: "",
+          github: "",
+          desc: "",
+          level: "",
+          isVisible: true,
+          releaseTime: new Date(),
+          source: "",
+          tag: [],
+        },
   });
-
-  const handleChange = (e) => {
-    e.persist();
-
-    setArticleData({
-      ...articleData,
-      [e.target.name]: e.target.value ? e.target.value : e.target.checked,
-    });
+  const onSubmit = (data) => {
+    console.log(data);
+    publishArtocle(data);
   };
 
-  const publishArtocle = () => {
-    if(props.currentData){
-      updateArticleList(articleData).then(res=>{
-        if(res && res.code === 1){
-          setNotification('修改成功!')
-          props.closeDrawer()
+  const publishArtocle = (data) => {
+    
+    if (props.currentData) {
+      updateArticleOne(props.currentData._id,data).then((res) => {
+        if (res && res.code === 1) {
+          setNotification("修改成功!");
+          props.closeDrawer();
         }
-      })
-    }else{
-      addArticleList(articleData).then(res=>{
-        if(res && res.code === 1){
-          setNotification('添加成功!')
+      });
+    } else {
+      addArticleList(data).then((res) => {
+        if (res && res.code === 1) {
+          setNotification("添加成功!");
         }
-        
       });
     }
-    
   };
   return (
-    <form className={classes.form} onSubmit={(e) => e.preventDefault()}>
+    <form className={classes.form} onSubmit={handleSubmit(onSubmit.bind(this))}>
       <h3 className={classes.title}>添加文章</h3>
-      <FormControl required className={classes.formControl}>
-        <InputLabel shrink>文章类型</InputLabel>
-        <Select
-          displayEmpty
-          multiple
-          name="type"
-          value={articleData.type}
-          onChange={handleChange}
-          input={<Input />}
-          renderValue={(selected) => {
-            if (selected.length === 0) {
-              return <em>选择文章类型</em>;
-            }
-
-            return selected.join(", ");
-          }}
-          className={classes.selectEmpty}
-          inputProps={{ "aria-label": "Without label" }}
-        >
-          <MenuItem disabled value="">
-            <em>选择文章类型</em>
-          </MenuItem>
-          {names.map((name) => (
-            <MenuItem key={name} value={name}>
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      <div className={classes.formControl}>
-        <TextField
+      <section className={classes.formControl}>
+        <InputLabel shrink>文章类型*</InputLabel>
+        <Controller
+          as={
+            <Select displayEmpty>
+              <MenuItem value="" disabled>
+                选择文章类型
+              </MenuItem>
+              {names.map((name) => (
+                <MenuItem key={name} value={name}>
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+          }
           required
+          rules={{ required: true }}
+          fullWidth
+          name="type"
+          control={control}
+        />
+        {errors.type && <span>This field is required</span>}
+      </section>
+      <section className={classes.formControl}>
+        <Controller
+          as={TextField}
+          name="title"
+          required
+          autoFocus
+          InputLabelProps={{
+            shrink: true,
+          }}
           label="标题"
           placeholder="请输入标题"
           fullWidth
-          name="title"
-          value={articleData.title}
-          margin="normal"
-          onChange={handleChange}
+          control={control}
+        />
+      </section>
+      <section className={classes.formControl}>
+        <Controller
+          as={TextField}
+          name="cover"
+          autoFocus
           InputLabelProps={{
             shrink: true,
           }}
+          label="封面"
+          placeholder="请输入封面地址"
+          fullWidth
+          control={control}
         />
-      </div>
-      <div className={classes.formControl}>
-        <TextField
+      </section>
+      <section className={classes.formControl}>
+        <Controller
+          as={TextField}
           multiline
+          rows={4}
+          name="desc"
+          required
+          autoFocus
+          InputLabelProps={{
+            shrink: true,
+          }}
           label="描述"
           placeholder="请输入描述"
           fullWidth
-          name="desc"
-          rows={2}
-          value={articleData.desc}
-          onChange={handleChange}
-          margin="normal"
+          control={control}
+        />
+      </section>
+
+      <section className={classes.formControl}>
+        <div component="ul" className={classes.chipRoot}>
+          <Controller
+            as={TextField}
+            autoFocus
+            InputLabelProps={{
+              shrink: true,
+            }}
+            fullWidth
+            label="标签"
+            placeholder="请输入标签(使用逗号分隔)"
+            name="tag"
+            required
+            control={control}
+          />
+        </div>
+      </section>
+      <section className={classes.formControl}>
+        <Controller
+          as={TextField}
+          required
+          multiline
+          label="文章内容"
+          placeholder="输入文章内容"
+          fullWidth
+          rows={22}
+          name="markdown"
+          control={control}
           InputLabelProps={{
             shrink: true,
           }}
         />
-      </div>
-      <div className={classes.formControl}>
-        <MarkDown onChange={handleChange} markdown={articleData.markdown} />
-      </div>
-      <div className={classes.formControl}>
-        <TextField
+      </section>
+      <section className={classes.formControl}>
+        <Controller
+          as={TextField}
           required
           label="级别"
           placeholder="请输入级别"
           fullWidth
           name="level"
-          value={articleData.level}
-          onChange={handleChange}
-          margin="normal"
+          control={control}
           InputLabelProps={{
             shrink: true,
           }}
         />
-      </div>
-      <div className={classes.formControl}>
-        <TextField
+      </section>
+      <section className={classes.formControl}>
+        <Controller
+          as={TextField}
           required
           label="来源"
           placeholder="请输入来源"
           fullWidth
           name="source"
-          value={articleData.source}
-          onChange={handleChange}
-          margin="normal"
           InputLabelProps={{
             shrink: true,
           }}
+          control={control}
         />
-      </div>
-      <div className={classes.formControl}>
-        <TextField
-          required
+      </section>
+      <section className={classes.formControl}>
+        <Controller
+          as={TextField}
           label="Github"
           placeholder="请输入Github"
           fullWidth
           name="github"
-          value={articleData.github}
-          onChange={handleChange}
-          margin="normal"
           InputLabelProps={{
             shrink: true,
           }}
+          control={control}
         />
-      </div>
-      <div className={classes.formControl}>
-        <DateTimePicker
+      </section>
+      <section className={classes.formControl}>
+        <Controller
+          render={(props) => (
+            <DateTimePicker
+              onChange={(e) => {
+                props.onChange((props.value = e.format()));
+              }}
+              value={props.value}
+              variant="inline"
+              label="发布时间"
+            />
+          )}
           required
-          variant="inline"
-          label="发布时间"
-          value={articleData.releaseTime}
-          format="yyyy/MM/dd HH:mm"
-          onChange={(e) =>
-            setArticleData({
-              ...articleData,
-              releaseTime: e,
-            })
-          }
+          name="releaseTime"
           InputLabelProps={{
             shrink: true,
           }}
+          control={control}
         />
-      </div>
-      <div className={(classes.formControl, classes.visible)}>
-        是否可见*
-        <Switch
-          color="primary"
-          checked={articleData.isVisible}
-          name="isVisible"
-          onChange={handleChange}
+      </section>
+      <section className={(classes.formControl, classes.visible)}>
+        <FormControlLabel
+          control={
+            <Controller
+              render={(props) => (
+                <Switch
+                  onChange={(e) => props.onChange(e.target.checked)}
+                  checked={props.value}
+                />
+              )}
+              name="isVisible"
+              control={control}
+            />
+          }
+          label="是否可见"
         />
-      </div>
-      <div className={classes.publish}>
+      </section>
+      <section className={classes.publish}>
         <Button
           variant="contained"
           color="primary"
           className={classes.button}
           endIcon={<SendIcon />}
-          onClick={publishArtocle}
+          type="submit"
         >
           立即发布
         </Button>
-      </div>
+      </section>
     </form>
   );
 }
