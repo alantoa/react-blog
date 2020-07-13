@@ -4,6 +4,8 @@ import style from "./banner.module.scss";
 import Container from "@material-ui/core/Container";
 import { setSwierHeight } from "redux/action/swiper";
 import { connect } from "react-redux";
+import Button from "@material-ui/core/Button";
+import moment from 'moment'
 
 const Banner = (props) => {
   const banner = useRef();
@@ -21,10 +23,28 @@ const Banner = (props) => {
           })`,
         }}
       >
-        <Container className={style.container} maxWidth="md">
+        <Container className={style.container}>
+        <div className={style.tags}>
+              {props.tag &&
+                props.tag.map((item, index) => {
+                  return (
+                    <Button
+                      key={index}
+                      className={style.tag}
+                      variant="outlined"
+                    >
+                      {item}
+                    </Button>
+                  );
+                })}
+            </div>
           <h2 className={style.title}>
             {props.title ? props.title : "Toa Blog"}
           </h2>
+          <h4 className={style.subTitle}>
+            {props.engTitle ? props.engTitle : "Toa Blog Acticle English Title"}
+          </h4>
+              <p className={style.time}>Posted by Toa on {moment(props.releaseTime).format('dd MM, YYYY')}</p>
         </Container>
       </div>
     </>

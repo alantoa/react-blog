@@ -1,4 +1,3 @@
-
 .cover {
   display: flex;
   align-items: center;
@@ -38,11 +37,30 @@ button.swiperBtn {
   color: #fff;
 }
 .title {
-  font-size: 2.6rem;
+  font-size: 2.4rem;
   line-height: 1.4em;
   margin-bottom: 20px;
   position: relative;
-  text-align: center;
+  // text-align: center;
+}
+.subTitle {
+  font-size: 1.4rem;
+  line-height: 1.4em;
+}
+button.tag {
+  padding: 0px 10px;
+  border-radius: 20px;
+  color: #fff;
+  border-color: #fff;
+  font-size: 12px;
+}
+.time {
+  font-size: 1rem;
+  font-family: Lora, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 300;
+  margin-top: 20px;
+  letter-spacing: 1px;
 }
 
 @-webkit-keyframes rainbow {
