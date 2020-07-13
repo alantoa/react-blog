@@ -5,10 +5,8 @@ import Container from "@material-ui/core/Container";
 import { setSwierHeight } from "redux/action/swiper";
 import { connect } from "react-redux";
 
-
 const Banner = (props) => {
   const banner = useRef();
-  
   useEffect(() => {
     props.dispatch(setSwierHeight(banner.current.offsetHeight));
   }, [props]);
@@ -18,11 +16,15 @@ const Banner = (props) => {
         className={clsx(style.cover, style.bgCover)}
         ref={banner}
         style={{
-          backgroundImage: `url(${require("assets/image/swiper/0.jpg")})`,
+          backgroundImage: `url(${
+            props.cover ? props.cover : require("assets/image/swiper/0.jpg")
+          })`,
         }}
       >
         <Container className={style.container} maxWidth="md">
-          <h2 className={style.title}>Toa Blog</h2>
+          <h2 className={style.title}>
+            {props.title ? props.title : "Toa Blog"}
+          </h2>
         </Container>
       </div>
     </>

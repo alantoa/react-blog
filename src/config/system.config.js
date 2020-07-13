@@ -15,8 +15,8 @@ export const menu = [
     icon: T,
   },
   {
-    path: "/article",
-    name: "Article",
+    path: "/archive",
+    name: "Archive",
     icon: FormatListBulletedIcon,
   },
 ];

@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import Card from "components/Card";
 import BaseInfo from "./BaseInfo";
 import SkillBar from "./SkillBars";
-import SkillWalls from './SkilsWall'
+import SkillWalls from "./SkilsWall";
+import Container from "@material-ui/core/Container";
+import FirstBanner from "views/client/FirstBanner";
 // api
 import { getSkillList } from "api/client/user";
 export default function Home() {
@@ -16,10 +18,15 @@ export default function Home() {
     });
   }, []);
   return (
-    <Card>
-      <BaseInfo />
-      <SkillBar skillBars={skillBars} />
-      <SkillWalls walls={skillBars} />
-    </Card>
+    <>
+      <FirstBanner />
+      <Container className="container">
+        <Card>
+          <BaseInfo />
+          <SkillBar skillBars={skillBars} />
+          <SkillWalls walls={skillBars} />
+        </Card>
+      </Container>
+    </>
   );
 }

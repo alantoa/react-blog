@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 // import Notfound from "components/Notfound/index";
 import Client from "./client/client";
-import MySnackbar from "components/Snackbar/index";
 
 import { getToken } from "utils/auth";
 import LoadingComponent from "components/LoadingComponent";
@@ -44,7 +43,6 @@ export default function AppIndex() {
           </>
         </Router>
       </Suspense>
-      <MySnackbar />
     </>
   );
 }

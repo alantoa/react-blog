@@ -3,6 +3,8 @@ import Grid from "@material-ui/core/Grid";
 import Card from "components/Card";
 import Dream from "./Dream";
 import Recommend from "./Recommend";
+import Container from "@material-ui/core/Container";
+import Swiper from "./Swiper";
 // api
 import { getRecommend } from "api/client/article";
 
@@ -27,15 +29,32 @@ export default function Home() {
     });
   }, []);
   return (
-    <Card>
-      <Grid container direction="column" justify="flex-end" alignItems="center">
-        <Grid item xs={12} sm={10} md={8} lg={6}>
-          <Dream {...dreamData} />
-        </Grid>
-        <Grid item xs={11} sm={11} md={11} lg={11} style={{ width: "100%" }}>
-          <Recommend list={recommendList} />
-        </Grid>
-      </Grid>
-    </Card>
+    <>
+      <Swiper />
+      <Container className="container">
+        <Card>
+          <Grid
+            container
+            direction="column"
+            justify="flex-end"
+            alignItems="center"
+          >
+            <Grid item xs={12} sm={10} md={8} lg={6}>
+              <Dream {...dreamData} />
+            </Grid>
+            <Grid
+              item
+              xs={11}
+              sm={11}
+              md={11}
+              lg={11}
+              style={{ width: "100%" }}
+            >
+              <Recommend list={recommendList} />
+            </Grid>
+          </Grid>
+        </Card>
+      </Container>
+    </>
   );
 }

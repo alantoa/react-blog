@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
 import Home from "views/client/Home";
 import About from "views/client/About";
-import Article from "views/client/Article";
+import Archive from "views/client/Archive";
 import Detail from "views/client/Detail";
 import AppsIcon from "@material-ui/icons/Apps";
 import { ReactComponent as T } from "assets/image/T.svg";
@@ -24,10 +24,10 @@ export const routes = [
     component: About,
   },
   {
-    path: "/article",
-    name: "Article",
+    path: "/archive",
+    name: "Archive",
     icon: FormatListBulletedIcon,
-    component: Article,
+    component: Archive,
   },
   {
     path: "/detail/:id",

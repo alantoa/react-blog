@@ -1,3 +1,29 @@
-.content{
-    width: calc(100% - 200px);
+.container {
+  margin-top: -100px;
+}
+.content {
+  //   display: flex;
+  // float: left;
+}
+.card {
+  margin-top: -60px;
+  position: relative;
+  z-index: 20;
+  background-color: #fff;
+  width: calc(100% - 220px);
+  float: left;
+}
+.catalog {
+  width: 200px;
+  margin-left: 20px;
+  position: sticky;
+  top: 80px;
+  float: right;
+  h3 {
+    font-size: 18px;
+  }
+}
+button.tag {
+    padding: 0px 10px;
+    border-radius: 20px;
 }

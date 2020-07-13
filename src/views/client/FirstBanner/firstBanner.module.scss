@@ -1,0 +1,63 @@
+.swiperContainer {
+  height: 100%;
+}
+.cover {
+  display: flex;
+  align-items: center;
+  min-height: 40vh;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background-position: center center;
+  background-size: cover;
+}
+button.swiperBtn {
+  color: #fff;
+  padding: 6px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+.bgCover:before,
+.bgCover:after {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+  left: 0;
+  top: 0;
+  // content: "";
+}
+.bgCover:after {
+  -webkit-animation: rainbow 60s infinite;
+  animation: rainbow 60s infinite;
+}
+.container {
+  position: relative;
+  z-index: 11;
+  color: #fff;
+}
+
+.title {
+  font-size: 2rem;
+  line-height: 1.4em;
+  margin-bottom: 20px;
+  position: relative;
+  text-align: center;
+}
+
+.desc {
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.4em;
+  color: #eee;
+  display: inline-block;
+  min-height: 60px;
+}
+
+@media screen and (max-width: 768px) {
+  h5.desc,h2.indexDesc {
+    padding: 0 30px;
+  }
+}
