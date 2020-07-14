@@ -27,6 +27,7 @@ const useStyles = makeStyles({
 export default function ArticleList() {
   const classes = useStyles();
   const [rows, setRows] = useState([]);
+  const [total, setTotal] = useState(0);
   const [paginationParam, setPagination] = useState({
     page: 0,
     rowsPerPage: 5,
@@ -58,15 +59,9 @@ export default function ArticleList() {
       pagesize: paginationParam.rowsPerPage,
     }).then((res) => {
       setRows(res.data.list);
+      setTotal(res.data.total);
     });
   }, [paginationParam]);
-
-  const emptyRows =
-    paginationParam.rowsPerPage -
-    Math.min(
-      paginationParam.rowsPerPage,
-      rows && rows.length - paginationParam.page * paginationParam.rowsPerPage
-    );
 
   const handleChangePage = (e, newPage) => {
     setPagination({
@@ -85,13 +80,13 @@ export default function ArticleList() {
           pagesize: paginationParam.rowsPerPage,
         }).then((res) => {
           setRows(res.data.list);
+          setTotal(res.data.total);
         });
       }
     });
   };
 
   const handleChangeRowsPerPage = (event) => {
-    // setRowsPerPage(parseInt(event.target.value, 10));
     setPagination({
       ...paginationParam,
       rowsPerPage: parseInt(event.target.value, 10),
@@ -150,18 +145,12 @@ export default function ArticleList() {
                 </TableCell>
               </TableRow>
             ))}
-
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
-            </TableRow>
-          )}
         </TableBody>
         <TableFooter>
           <TableRow>
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
-              count={rows && rows.length}
+              count={total}
               rowsPerPage={paginationParam.rowsPerPage}
               page={paginationParam.page}
               onChangePage={handleChangePage}

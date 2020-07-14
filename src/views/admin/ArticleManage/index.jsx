@@ -13,8 +13,11 @@ import SendIcon from "@material-ui/icons/Send";
 import { DateTimePicker } from "@material-ui/pickers";
 import setNotification from "utils/setNotification";
 import { useForm, Controller } from "react-hook-form";
-import MarkDown from 'components/MarkDown'
-
+import MarkdownIt from "markdown-it";
+import MdEditor from "react-markdown-editor-lite";
+import "react-markdown-editor-lite/lib/index.css";
+import "./MarkDown/hignlightJs.css";
+import "./MarkDown/markdown.css";
 // api
 import { addArticleList, updateArticleOne } from "api/article";
 
@@ -31,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(2, 0),
     width: "100%",
-    position: 'relative'
+    position: "relative",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -43,11 +46,11 @@ const useStyles = makeStyles((theme) => ({
   visible: {
     color: "rgba(0, 0, 0, 0.54)",
   },
-  formLabel:{
-    color:"rgba(0, 0, 0, 0.54)",
-    marginBottom:10,
-    fontSize:'.785rem',
-  }
+  formLabel: {
+    color: "rgba(0, 0, 0, 0.54)",
+    marginBottom: 10,
+    fontSize: ".785rem",
+  },
 }));
 
 const names = [
@@ -67,6 +70,9 @@ const names = [
   "Angular",
   "计算机网络",
 ];
+
+const mdParser = new MarkdownIt(/* Markdown-it options */);
+
 
 export default function ArticleManage(props) {
   const classes = useStyles();
@@ -110,11 +116,10 @@ export default function ArticleManage(props) {
     }
   };
 
-
   return (
     <form className={classes.form} onSubmit={handleSubmit(onSubmit.bind(this))}>
       <h3 className={classes.title}>添加文章</h3>
-      
+
       <section className={classes.formControl}>
         <InputLabel shrink>文章类型*</InputLabel>
         <Controller
@@ -205,14 +210,19 @@ export default function ArticleManage(props) {
       <section className={classes.formControl}>
         <div className={classes.formLabel}>文章内容*</div>
         <Controller
-          as={<MarkDown />}
+          render={(props) => (
+            <MdEditor
+              value={props.value}
+              style={{ height: "500px" }}
+              renderHTML={(text) => mdParser.render(text)}
+              onChange={(e)=>{
+                props.onChange((props.value = e.text));
+              }}
+            />
+          )}
           name="markdown"
           control={control}
-          InputLabelProps={{
-            shrink: true,
-          }}
         />
-        
       </section>
       <section className={classes.formControl}>
         <Controller
