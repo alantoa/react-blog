@@ -23,7 +23,7 @@ const Banner = (props) => {
           })`,
         }}
       >
-        <Container className={style.container}>
+        <Container className={style.container} maxWidth="md">
         <div className={style.tags}>
               {props.tag &&
                 props.tag.map((item, index) => {

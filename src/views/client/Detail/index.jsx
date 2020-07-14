@@ -5,6 +5,7 @@ import Banner from "views/client/Banner";
 import { Grid, Hidden } from "@material-ui/core";
 import store from "redux/index";
 import clsx from "clsx";
+import _ from "lodash";
 
 // api
 import { articleDetail } from "api/client/article";
@@ -13,23 +14,23 @@ export default function Detail(props) {
   const [detailData, setDetailData] = useState({});
   const [fixed, setFixed] = useState(false);
 
+  const handleScroll = (e) => {
+    const scrollTop =
+      (e.srcElement ? e.srcElement.documentElement.scrollTop : false) ||
+      window.pageYOffset ||
+      (e.srcElement ? e.srcElement.body.scrollTop : 0);
+
+    if (scrollTop > store.getState().swiper - 80 ) {
+      setFixed(true);
+    } else {
+      setFixed(false);
+    }
+  };
   useEffect(() => {
     articleDetail(props.match.params.id).then((res) => {
       if (res && res.code === 1) {
         setDetailData(res.data);
-        window.addEventListener("scroll", (event) => {
-          const scrollTop =
-            (event.srcElement
-              ? event.srcElement.documentElement.scrollTop
-              : false) ||
-            window.pageYOffset ||
-            (event.srcElement ? event.srcElement.body.scrollTop : 0);
-          if (scrollTop > store.getState().swiper) {
-            setFixed(true);
-          } else {
-            setFixed(false);
-          }
-        });
+        window.addEventListener("scroll", _.throttle(handleScroll, 50));
       } else {
         props.history.push("/404");
       }
@@ -39,7 +40,7 @@ export default function Detail(props) {
     <>
       <Banner {...detailData} />
       {detailData && (
-        <Container className={style.container}>
+        <Container className={style.container} maxWidth="md">
           <Grid container spacing={2}>
             <Grid item lg={9} md={9} sm={12} xs={12}>
               <div
@@ -50,7 +51,7 @@ export default function Detail(props) {
             <Hidden smDown>
               <Grid item lg={3} md={3}>
                 <div className={clsx(style.catalog, fixed && style.fixed)}>
-                  <h3>-Catalog</h3>
+                  <h3>目录</h3>
                 </div>
               </Grid>
             </Hidden>
