@@ -7,13 +7,14 @@ import {
   Switch,
   TextField,
   FormControlLabel,
+  Button,
 } from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
-import Button from "@material-ui/core/Button";
-// import MarkDown from "components/MarkDown";
 import { DateTimePicker } from "@material-ui/pickers";
 import setNotification from "utils/setNotification";
 import { useForm, Controller } from "react-hook-form";
+import MarkDown from 'components/MarkDown'
+
 // api
 import { addArticleList, updateArticleOne } from "api/article";
 
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(2, 0),
     width: "100%",
+    position: 'relative'
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -41,6 +43,11 @@ const useStyles = makeStyles((theme) => ({
   visible: {
     color: "rgba(0, 0, 0, 0.54)",
   },
+  formLabel:{
+    color:"rgba(0, 0, 0, 0.54)",
+    marginBottom:10,
+    fontSize:'.785rem',
+  }
 }));
 
 const names = [
@@ -87,9 +94,8 @@ export default function ArticleManage(props) {
   };
 
   const publishArtocle = (data) => {
-    
     if (props.currentData) {
-      updateArticleOne(props.currentData._id,data).then((res) => {
+      updateArticleOne(props.currentData._id, data).then((res) => {
         if (res && res.code === 1) {
           setNotification("修改成功!");
           props.closeDrawer();
@@ -103,9 +109,12 @@ export default function ArticleManage(props) {
       });
     }
   };
+
+
   return (
     <form className={classes.form} onSubmit={handleSubmit(onSubmit.bind(this))}>
       <h3 className={classes.title}>添加文章</h3>
+      
       <section className={classes.formControl}>
         <InputLabel shrink>文章类型*</InputLabel>
         <Controller
@@ -194,20 +203,16 @@ export default function ArticleManage(props) {
         </div>
       </section>
       <section className={classes.formControl}>
+        <div className={classes.formLabel}>文章内容*</div>
         <Controller
-          as={TextField}
-          required
-          multiline
-          label="文章内容"
-          placeholder="输入文章内容"
-          fullWidth
-          rows={22}
+          as={<MarkDown />}
           name="markdown"
           control={control}
           InputLabelProps={{
             shrink: true,
           }}
         />
+        
       </section>
       <section className={classes.formControl}>
         <Controller
