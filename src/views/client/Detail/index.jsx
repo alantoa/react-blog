@@ -6,7 +6,7 @@ import { Grid, Hidden } from "@material-ui/core";
 import store from "redux/index";
 import clsx from "clsx";
 import "highlight.js/styles/atom-one-light.css";
-
+import 'assets/style/markdown.scss'
 // api
 import { articleDetail } from "api/client/article";
 
@@ -45,7 +45,7 @@ export default function Detail(props) {
             <Grid item lg={9} md={9} sm={12} xs={12}>
               <div
                 dangerouslySetInnerHTML={{ __html: detailData.html }}
-                className={style.card}
+                className={`${style.card} markdown-body`}
               ></div>
             </Grid>
             <Hidden smDown>
