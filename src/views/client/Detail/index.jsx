@@ -5,7 +5,7 @@ import Banner from "views/client/Banner";
 import { Grid, Hidden } from "@material-ui/core";
 import store from "redux/index";
 import clsx from "clsx";
-import _ from "lodash";
+import "highlight.js/styles/atom-one-light.css";
 
 // api
 import { articleDetail } from "api/client/article";
@@ -30,7 +30,7 @@ export default function Detail(props) {
     articleDetail(props.match.params.id).then((res) => {
       if (res && res.code === 1) {
         setDetailData(res.data);
-        window.addEventListener("scroll", _.throttle(handleScroll, 50));
+        window.addEventListener("scroll", handleScroll);
       } else {
         props.history.push("/404");
       }
