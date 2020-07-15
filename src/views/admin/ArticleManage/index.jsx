@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
 import {
+  InputLabel,
   Select,
   MenuItem,
   Switch,
@@ -13,14 +13,24 @@ import SendIcon from "@material-ui/icons/Send";
 import { DateTimePicker } from "@material-ui/pickers";
 import setNotification from "utils/setNotification";
 import { useForm, Controller } from "react-hook-form";
-import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
+import MarkdownIt from "markdown-it";
+import emoji from "markdown-it-emoji";
+import subscript from "markdown-it-sub";
+import superscript from "markdown-it-sup";
+import footnote from "markdown-it-footnote";
+import deflist from "markdown-it-deflist";
+import abbreviation from "markdown-it-abbr";
+import insert from "markdown-it-ins";
+import mark from "markdown-it-mark";
+import tasklists from "markdown-it-task-lists";
+import hljs from "highlight.js";
+import "highlight.js/styles/atom-one-light.css";
 import "react-markdown-editor-lite/lib/index.css";
-import "./MarkDown/hignlightJs.css";
-import "./MarkDown/markdown.css";
 // api
 import { addArticleList, updateArticleOne } from "api/article";
 
+// style
 const useStyles = makeStyles((theme) => ({
   title: {
     textAlign: "center",
@@ -70,12 +80,9 @@ const names = [
   "Angular",
   "计算机网络",
 ];
-
-const mdParser = new MarkdownIt(/* Markdown-it options */);
-
-
 export default function ArticleManage(props) {
   const classes = useStyles();
+
   const { control, handleSubmit, errors } = useForm({
     defaultValues: props.currentData
       ? { ...props.currentData }
@@ -94,8 +101,9 @@ export default function ArticleManage(props) {
           tag: [],
         },
   });
+
   const onSubmit = (data) => {
-    console.log(data);
+    data.html = mdParser.render(data.markdown);
     publishArtocle(data);
   };
 
@@ -115,7 +123,36 @@ export default function ArticleManage(props) {
       });
     }
   };
+  // marddown
 
+  const mdParser = new MarkdownIt({
+    html: true,
+    linkify: true,
+    typographer: true,
+    highlight: function (str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return hljs.highlight(lang, str).value;
+        } catch (__) {}
+      }
+      return ""; // use external default escaping
+    },
+  })
+    .use(emoji)
+    .use(subscript)
+    .use(superscript)
+    .use(footnote)
+    .use(deflist)
+    .use(abbreviation)
+    .use(insert)
+    .use(mark)
+    .use(tasklists);
+  const renderHTML = (text) => {
+    // 模拟异步渲染Markdown
+    return new Promise((resolve) => {
+      resolve(mdParser.render(text));
+    });
+  };
   return (
     <form className={classes.form} onSubmit={handleSubmit(onSubmit.bind(this))}>
       <h3 className={classes.title}>添加文章</h3>
@@ -213,11 +250,20 @@ export default function ArticleManage(props) {
           render={(props) => (
             <MdEditor
               value={props.value}
-              style={{ height: "500px" }}
-              renderHTML={(text) => mdParser.render(text)}
-              onChange={(e)=>{
+              style={{ height: "600px" }}
+              renderHTML={renderHTML}
+              onChange={(e) => {
                 props.onChange((props.value = e.text));
               }}
+              // config={{
+              //   view: {
+              //     menu: true,
+              //     md: true,
+              //     html: true,
+              //   },
+              //   imageUrl: "https://octodex.github.com/images/minion.png",
+              // }}
+              // onImageUpload={handleImageUpload}
             />
           )}
           name="markdown"

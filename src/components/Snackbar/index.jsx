@@ -88,11 +88,11 @@ class MySnackbars extends React.Component {
         //嵌套两层div把所有snackbar固定
         return h('div', {
             style: {
-                top: 120,
-                right:20,
+                bottom:40,
+                left:20,
                 position: 'fixed',
                 textAlign: 'right',
-                width: '100%',
+                width: 300,
                 zIndex:99999
             }
         }, [

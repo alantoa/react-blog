@@ -73,3 +73,6 @@ a {
   -webkit-animation: 0;
   animation: 0;
 }
+.rc-md-editor.full {
+  z-index: 100000 !important;
+}

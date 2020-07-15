@@ -43,6 +43,7 @@ export default function AppIndex() {
           </>
         </Router>
       </Suspense>
+     
     </>
   );
 }

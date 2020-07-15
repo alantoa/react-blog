@@ -14,7 +14,7 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import Container from "@material-ui/core/Container";
-
+import MySnackbar from 'components/Snackbar'
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
@@ -180,6 +180,7 @@ export default function Admin() {
           </main>
         </div>
       </MuiPickersUtilsProvider>
+      <MySnackbar />
     </>
   );
 }
