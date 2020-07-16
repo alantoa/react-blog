@@ -24,6 +24,8 @@ import abbreviation from "markdown-it-abbr";
 import insert from "markdown-it-ins";
 import mark from "markdown-it-mark";
 import tasklists from "markdown-it-task-lists";
+import markdownItTocDoneRight from "markdown-it-toc-done-right";
+import markdownItAnchor from "markdown-it-anchor";
 import hljs from "highlight.js";
 import "highlight.js/styles/atom-one-light.css";
 import "react-markdown-editor-lite/lib/index.css";
@@ -82,8 +84,8 @@ const names = [
 ];
 export default function ArticleManage(props) {
   const classes = useStyles();
-
-  const { control, handleSubmit, errors } = useForm({
+  
+  const { control, handleSubmit, errors,setValue } = useForm({
     defaultValues: props.currentData
       ? { ...props.currentData }
       : {
@@ -91,6 +93,7 @@ export default function ArticleManage(props) {
           html: "",
           title: "",
           cover: "",
+          toc:"",
           markdown: "",
           github: "",
           desc: "",
@@ -103,7 +106,6 @@ export default function ArticleManage(props) {
   });
 
   const onSubmit = (data) => {
-    data.html = mdParser.render(data.markdown);
     publishArtocle(data);
   };
 
@@ -146,10 +148,25 @@ export default function ArticleManage(props) {
     .use(abbreviation)
     .use(insert)
     .use(mark)
-    .use(tasklists);
+    .use(tasklists)
+    .use(markdownItAnchor, {
+      permalink: false,
+      permalinkBefore: false,
+      permalinkSymbol: "#",
+    })
+    .use(markdownItTocDoneRight, {
+      containerClass: "toc",
+      containerId: "toc",
+      listType: "ul",
+      callback: function (html, ast) {
+        //把目录单独列出来
+        setValue('toc',html)
+      },
+    });
   const renderHTML = (text) => {
     // 模拟异步渲染Markdown
     return new Promise((resolve) => {
+      setValue('html', mdParser.render(text))
       resolve(mdParser.render(text));
     });
   };

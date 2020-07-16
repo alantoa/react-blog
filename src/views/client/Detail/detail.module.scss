@@ -1,19 +1,21 @@
 .container {
-    overflow: hidden;
-    min-height: 1000px;
+  overflow: hidden;
+  min-height: 1000px;
+  padding-top: 40px;
 }
 
 .card {
   position: relative;
   z-index: 20;
   background-color: #fff;
-  padding-top: 20px;
 }
 .catalog {
   width: 200px;
   margin-left: 20px;
   color: #a3a3a3;
-  &.fixed{
+  border-top: 1px solid #eee;
+  padding: 10px 0 0 20px;
+  &.fixed {
     position: fixed;
     top: 80px;
   }
@@ -22,3 +24,7 @@
   }
 }
 
+.catalog {
+  h3 {
+  }
+}

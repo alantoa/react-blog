@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import "assets/style/swiper.css";
 import style from "./swiperCustom.module.scss";
 import Swiper from "react-id-swiper";
@@ -67,13 +67,16 @@ const SwiperSlide = (props) => {
   const [swiperData, setSwiperData] = useState([]);
 
   useEffect(() => {
+    let isUnmount = false;
+
     getSwiper().then((res) => {
-      if (res && res.code === 1) {
+      if (res && !isUnmount && res.code === 1) {
         setSwiperData(res.data);
         new Typed(typedText.current, typedOption);
         props.dispatch(setSwierHeight(swiperRef.current.offsetHeight));
       }
     });
+    return () => (isUnmount = true);
   }, [props]);
   const startRead = () => {
     swiperRef.current &&

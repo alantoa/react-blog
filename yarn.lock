@@ -7376,6 +7376,11 @@ markdown-it-abbr@^1.0.4:
   resolved "https://registry.npm.taobao.org/markdown-it-abbr/download/markdown-it-abbr-1.0.4.tgz#d66b5364521cbb3dd8aa59dadfba2fb6865c8fd8"
   integrity sha1-1mtTZFIcuz3Yqlna37ovtoZcj9g=
 
+markdown-it-anchor@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.npm.taobao.org/markdown-it-anchor/download/markdown-it-anchor-5.3.0.tgz#d549acd64856a8ecd1bea58365ef385effbac744"
+  integrity sha1-1Ums1khWqOzRvqWDZe84Xv+6x0Q=
+
 markdown-it-deflist@^2.0.3:
   version "2.0.3"
   resolved "https://registry.npm.taobao.org/markdown-it-deflist/download/markdown-it-deflist-2.0.3.tgz#5727db04184d3cb2bc6ee4a9641e3a1091d5fd6f"
@@ -7415,6 +7420,11 @@ markdown-it-task-lists@^2.1.1:
   version "2.1.1"
   resolved "https://registry.npm.taobao.org/markdown-it-task-lists/download/markdown-it-task-lists-2.1.1.tgz#f68f4d2ac2bad5a2c373ba93081a1a6848417088"
   integrity sha1-9o9NKsK61aLDc7qTCBoaaEhBcIg=
+
+markdown-it-toc-done-right@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npm.taobao.org/markdown-it-toc-done-right/download/markdown-it-toc-done-right-4.1.0.tgz#0f73ed531dda427c43c27716a2fc2208daa90605"
+  integrity sha1-D3PtUx3aQnxDwncWovwiCNqpBgU=
 
 markdown-it@^11.0.0:
   version "11.0.0"

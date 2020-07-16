@@ -18,15 +18,17 @@ export default function Home() {
   const [recommendList, setRecommendData] = useState([]);
 
   useEffect(() => {
+    let isUnmount = false;
     let pagination = {
       pageindex: 1,
       pagesize: 4,
     };
     getRecommend(pagination).then((res) => {
-      if (res) {
+      if (res && !isUnmount) {
         setRecommendData(res.data);
       }
     });
+    return () => (isUnmount = true);
   }, []);
   return (
     <>

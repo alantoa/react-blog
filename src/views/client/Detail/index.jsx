@@ -6,7 +6,7 @@ import { Grid, Hidden } from "@material-ui/core";
 import store from "redux/index";
 import clsx from "clsx";
 import "highlight.js/styles/atom-one-light.css";
-import 'assets/style/markdown.scss'
+import "assets/style/markdown.scss";
 // api
 import { articleDetail } from "api/client/article";
 
@@ -20,7 +20,7 @@ export default function Detail(props) {
       window.pageYOffset ||
       (e.srcElement ? e.srcElement.body.scrollTop : 0);
 
-    if (scrollTop > store.getState().swiper - 80 ) {
+    if (scrollTop > store.getState().swiper - 40) {
       setFixed(true);
     } else {
       setFixed(false);
@@ -35,13 +35,16 @@ export default function Detail(props) {
         props.history.push("/404");
       }
     });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [props]);
   return (
     <>
       <Banner {...detailData} />
       {detailData && (
         <Container className={style.container} maxWidth="md">
-          <Grid container spacing={2}>
+          <Grid container>
             <Grid item lg={9} md={9} sm={12} xs={12}>
               <div
                 dangerouslySetInnerHTML={{ __html: detailData.html }}
@@ -51,7 +54,10 @@ export default function Detail(props) {
             <Hidden smDown>
               <Grid item lg={3} md={3}>
                 <div className={clsx(style.catalog, fixed && style.fixed)}>
-                  <h3>目录</h3>
+                  <h3>-CATALOG</h3>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: detailData.toc }}
+                  ></div>
                 </div>
               </Grid>
             </Hidden>
