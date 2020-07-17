@@ -7,7 +7,8 @@ import Detail from "views/client/Detail";
 import AppsIcon from "@material-ui/icons/Apps";
 import { ReactComponent as T } from "assets/image/T.svg";
 import FormatListBulletedIcon from "@material-ui/icons/FormatListBulleted";
-import NotFound from 'components/NotFound'
+import NotFound from "components/NotFound";
+import ScrollTop from "./ScrollTop";
 
 export const routes = [
   {
@@ -58,15 +59,16 @@ function RouteWithSubRoutes(route) {
   );
 }
 
-
 class RootView extends React.Component {
   render() {
     return (
-      <Switch>
-        {routes.map((route, i) => (
-          <RouteWithSubRoutes key={i} {...route} />
-        ))}
-      </Switch>
+      <ScrollTop>
+        <Switch>
+          {routes.map((route, i) => (
+            <RouteWithSubRoutes key={i} {...route} />
+          ))}
+        </Switch>
+      </ScrollTop>
     );
   }
 }

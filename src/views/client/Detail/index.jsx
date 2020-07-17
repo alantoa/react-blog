@@ -27,10 +27,11 @@ export default function Detail(props) {
     }
   };
   useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    
     articleDetail(props.match.params.id).then((res) => {
       if (res && res.code === 1) {
         setDetailData(res.data);
-        window.addEventListener("scroll", handleScroll);
       } else {
         props.history.push("/404");
       }
