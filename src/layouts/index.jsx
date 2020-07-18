@@ -8,6 +8,7 @@ import {
 // import Notfound from "components/Notfound/index";
 import Client from "./client/client";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { getToken } from "utils/auth";
 import LoadingComponent from "components/LoadingComponent";
 

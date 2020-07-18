@@ -1,6 +1,6 @@
 import {SET_USER} from '../actionTypes'
 
-export const user = (state = {}, action) => {
+export const userInfo = (state = {}, action) => {
   
   switch (action.type) {
     case SET_USER:

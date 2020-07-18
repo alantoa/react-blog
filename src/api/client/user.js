@@ -2,16 +2,15 @@ import { GET } from "utils/http"
 
 const api = {
     skillList:'/api/user/skill',
-    user:'/api/admin/user',
+    user:(name)=>`/api/user/info/${name}`,
 }
 
 /**
  * Get User Info
  * @param {token} params 
  */
-export  function getUserInfo (params) {
-
-    return GET(api.getUserInfo, params);
+export  function getUserInfo (name) {
+    return GET(api.user(name));
 }
 
 /**

@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import { setToken } from "redux/action/user";
 import { connect } from "react-redux";
 import clsx from "clsx";
 import { TextField, withStyles, Button } from "@material-ui/core";
 import { useForm, Controller } from "react-hook-form";
 import { login } from "api/login";
-import { getToken } from "utils/auth";
 import style from "./Login.module.scss";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 
 function Login(props) {
   const [state, setState] = useState({
@@ -52,7 +50,6 @@ function Login(props) {
             }, 300);
 
             setTimeout(() => {
-              props.dispatch(setToken(getToken()));
               props.history.push("/admin");
             }, 700);
           }

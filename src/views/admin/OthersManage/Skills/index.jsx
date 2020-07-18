@@ -15,6 +15,7 @@ import {
   getskillList,
   addskill,
   updateskillList,
+  updateskillAll,
   delskillList,
 } from "api/skill";
 const useStyles = makeStyles({
@@ -113,6 +114,7 @@ export default function DiscreteSlider() {
       }
     });
   };
+  
   const handleClose = () => {
     setDialog({
       ...dialog,
@@ -147,7 +149,11 @@ export default function DiscreteSlider() {
       }
     });
   }, []);
-
+  const updateAll = ()=>{
+    updateskillAll(rows).then(res=>{
+      console.log(res)
+    })
+  }
   return (
     <>
       <Button
@@ -163,6 +169,7 @@ export default function DiscreteSlider() {
         variant="contained"
         className={classes.btn}
         color="secondary"
+        onClick={updateAll}
         disableElevation
       >
         更新

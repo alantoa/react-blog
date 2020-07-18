@@ -1,20 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  InputLabel,
-  Select,
-  MenuItem,
-  Switch,
-  TextField,
-  FormControlLabel,
-  Button,
-} from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
 import { DateTimePicker } from "@material-ui/pickers";
 import { toast } from "react-toastify";
+
 import { useForm, Controller } from "react-hook-form";
+import store from "redux/index";
 // api
-import { updateArticleOne } from "api/article";
+import { getAbout, editAbout } from "api/about";
 
 // style
 const useStyles = makeStyles((theme) => ({
@@ -48,98 +42,71 @@ const useStyles = makeStyles((theme) => ({
     fontSize: ".785rem",
   },
 }));
-
-const names = [
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "React Native",
-  "Material-UI",
-  "Ant Design",
-  "Vue",
-  "React",
-  "Webpack",
-  "Babel",
-  "Nginx",
-  "Docker",
-  "Travis CI",
-  "Angular",
-  "计算机网络",
-];
+let falg = true;
 export default function AboutMe(props) {
   const classes = useStyles();
-  
-  const { control, handleSubmit, errors } = useForm({
-    defaultValues: props.currentData
-      ? { ...props.currentData }
-      : {
-          type: "",
-          html: "",
-          title: "",
-          cover: "",
-          toc:"",
-          markdown: "",
-          github: "",
-          desc: "",
-          level: "",
-          isVisible: true,
-          releaseTime: new Date(),
-          source: "",
-          tag: [],
-        },
+  const { control, handleSubmit, setValue } = useForm({
+    defaultValues: {
+      userId: "",
+      name: "",
+      avatar: "",
+      url: "",
+      age: "",
+      sign: "",
+      base: "",
+      level: "",
+      hobby: "",
+      dream: "",
+      isVisible: true,
+      birthday: new Date(),
+      source: "",
+      major: "",
+      intro: "",
+      status: "",
+    },
   });
 
-  const onSubmit = (data) => {
-    publishArtocle(data);
-  };
-
-  const publishArtocle = (data) => {
-    updateArticleOne(props.currentData._id, data).then((res) => {
+  useEffect(() => {
+    if (falg) {
+      setValue("userId", store.getState().user._id);
+      getAbout(store.getState().user._id).then((res) => {
+        let formData = control.getValues();
         if (res && res.code === 1) {
-          toast("修改成功!");
-          props.closeDrawer();
+          Object.keys(formData).map((key) => {
+            if (res.data.hasOwnProperty(key)) {
+              setValue(key, res.data[key]);
+            }
+            return 0;
+          });
         }
       });
+      falg = false
+    }
+  });
+  const onSubmit = (data) => {
+    console.log(data);
+    editAbout(data).then((res) => {
+      if (res && res.code === 1) {
+        toast("修改成功!");
+      }
+    });
   };
-  
+
   return (
     <form className={classes.form} onSubmit={handleSubmit(onSubmit.bind(this))}>
       <h3 className={classes.title}>更新个人信息</h3>
 
       <section className={classes.formControl}>
-        <InputLabel shrink>文章类型*</InputLabel>
-        <Controller
-          as={
-            <Select displayEmpty>
-              <MenuItem value="" disabled>
-                选择文章类型
-              </MenuItem>
-              {names.map((name) => (
-                <MenuItem key={name} value={name}>
-                  {name}
-                </MenuItem>
-              ))}
-            </Select>
-          }
-          required
-          rules={{ required: true }}
-          fullWidth
-          name="type"
-          control={control}
-        />
-        {errors.type && <span>This field is required</span>}
-      </section>
-      <section className={classes.formControl}>
         <Controller
           as={TextField}
-          name="title"
+          name="name"
           required
           autoFocus
           InputLabelProps={{
             shrink: true,
           }}
-          label="标题"
-          placeholder="请输入标题"
+          label="姓名"
+          placeholder="输入姓名..."
           fullWidth
           control={control}
         />
@@ -147,13 +114,13 @@ export default function AboutMe(props) {
       <section className={classes.formControl}>
         <Controller
           as={TextField}
-          name="cover"
+          name="age"
           autoFocus
           InputLabelProps={{
             shrink: true,
           }}
-          label="封面"
-          placeholder="请输入封面地址"
+          label="年龄"
+          placeholder="输入年龄..."
           fullWidth
           control={control}
         />
@@ -161,61 +128,25 @@ export default function AboutMe(props) {
       <section className={classes.formControl}>
         <Controller
           as={TextField}
-          multiline
-          rows={4}
-          name="desc"
-          required
+          name="avatar"
           autoFocus
           InputLabelProps={{
             shrink: true,
           }}
-          label="描述"
-          placeholder="请输入描述"
+          label="头像"
+          placeholder="输入头像地址..."
           fullWidth
           control={control}
         />
       </section>
 
       <section className={classes.formControl}>
-        <div component="ul" className={classes.chipRoot}>
-          <Controller
-            as={TextField}
-            autoFocus
-            InputLabelProps={{
-              shrink: true,
-            }}
-            fullWidth
-            label="标签"
-            placeholder="请输入标签(使用逗号分隔)"
-            name="tag"
-            required
-            control={control}
-          />
-        </div>
-      </section>
-  
-      <section className={classes.formControl}>
         <Controller
           as={TextField}
-          required
-          label="级别"
-          placeholder="请输入级别"
+          label="签名"
+          placeholder="输入签名..."
           fullWidth
-          name="level"
-          control={control}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-      </section>
-      <section className={classes.formControl}>
-        <Controller
-          as={TextField}
-          required
-          label="来源"
-          placeholder="请输入来源"
-          fullWidth
-          name="source"
+          name="sign"
           InputLabelProps={{
             shrink: true,
           }}
@@ -225,10 +156,75 @@ export default function AboutMe(props) {
       <section className={classes.formControl}>
         <Controller
           as={TextField}
-          label="Github"
-          placeholder="请输入Github"
+          label="位置"
+          placeholder="输入位置..."
           fullWidth
-          name="github"
+          name="base"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          control={control}
+        />
+      </section>
+      <section className={classes.formControl}>
+        <Controller
+          as={TextField}
+          label="爱好"
+          placeholder="输入爱好..."
+          fullWidth
+          name="hobby"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          control={control}
+        />
+      </section>
+      <section className={classes.formControl}>
+        <Controller
+          as={TextField}
+          label="梦想"
+          placeholder="输入梦想..."
+          fullWidth
+          name="dream"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          control={control}
+        />
+      </section>
+      <section className={classes.formControl}>
+        <Controller
+          as={TextField}
+          label="专业"
+          placeholder="输入专业..."
+          fullWidth
+          name="major"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          control={control}
+        />
+      </section>
+      <section className={classes.formControl}>
+        <Controller
+          as={TextField}
+          label="个人介绍"
+          placeholder="输入介绍..."
+          fullWidth
+          name="intro"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          control={control}
+        />
+      </section>
+      <section className={classes.formControl}>
+        <Controller
+          as={TextField}
+          label="状态"
+          placeholder="输入状态..."
+          fullWidth
+          name="status"
           InputLabelProps={{
             shrink: true,
           }}
@@ -244,32 +240,15 @@ export default function AboutMe(props) {
               }}
               value={props.value}
               variant="inline"
-              label="发布时间"
+              label="生日"
             />
           )}
           required
-          name="releaseTime"
+          name="birthday"
           InputLabelProps={{
             shrink: true,
           }}
           control={control}
-        />
-      </section>
-      <section className={(classes.formControl, classes.visible)}>
-        <FormControlLabel
-          control={
-            <Controller
-              render={(props) => (
-                <Switch
-                  onChange={(e) => props.onChange(e.target.checked)}
-                  checked={props.value}
-                />
-              )}
-              name="isVisible"
-              control={control}
-            />
-          }
-          label="是否可见"
         />
       </section>
       <section className={classes.publish}>

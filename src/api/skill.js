@@ -2,6 +2,7 @@ import { GET, POST,PUT,DEL } from "../utils/http"
 
 const api = {
     skill: '/api/admin/skill',
+    updateSkillAll: `/api/admin/skill/all`,
     updateSkill:(id)=> `/api/admin/skill/${id}`
 }
 
@@ -32,7 +33,13 @@ export  function updateskillList (id,params) {
     
     return PUT(api.updateSkill(id), params);
 }
-
+/**
+ * update All
+ * @param {paramsData} params 
+ */
+export  function updateskillAll (params) {
+    return PUT(api.updateSkillAll, params);
+}
 /**
  * Delete skill for skillList
  * @param {paramsData} params 

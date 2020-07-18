@@ -1,7 +1,7 @@
 import { GET, POST,PUT,DEL } from "../utils/http"
 
 const api = {
-    getUserInfo:'/api/user/info',
+    getUserInfo:'/api/user/login',
     user:'/api/admin/user',
 }
 

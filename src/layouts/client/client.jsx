@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import RouterView from "routes/clientRouterConfig";
 import Footer from "./Footer";
 import Header from "./Header";
 import Bottom from "./Footer/Bottom";
 import Hidden from "@material-ui/core/Hidden";
+import { connect } from "react-redux";
 
-export default function Client() {
+
+function Client(props) {
+  useEffect(() => {
+    console.log(1);
+  });
   return (
     <>
       <Header />
@@ -17,3 +22,4 @@ export default function Client() {
     </>
   );
 }
+export default connect()(Client);

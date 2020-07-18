@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AddSkillsModel(props) {
-  console.log(props.option);
   const classes = useStyles();
   return (
     <>

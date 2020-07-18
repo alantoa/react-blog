@@ -1,43 +1,23 @@
-import { GET, POST,PUT,DEL } from "../utils/http"
+import { GET, POST } from "../utils/http";
 
 const api = {
-    article: '/api/admin/article',
-    update:(id)=> `/api/admin/article/${id}`
-}
-
+  getAbout:(id)=>`/api/admin/getAbout/${id}`,
+  editAbout: "/api/admin/addAbout",
+};
 
 /**
  * Get Article List
- * @param {keywod,pageindex,pagesize} params 
+ * @param {keywod,pageindex,pagesize} params
  */
-export  function getAbout (params) {
-
-    return GET(api.article,params);
+export function getAbout(id) {
+  return GET(api.getAbout(id));
 }
 
 /**
  * Add Article for ArticleList
- * @param {paramsData} params 
+ * @param {paramsData} params
  */
-export  function addArticleList (params) {
-
-    return POST(api.article, params);
+export function editAbout(params) {
+  return POST(api.editAbout, params);
 }
 
-/**
- * Edit Article for ArticleList
- * @param {paramsData} params 
- */
-export  function updateAbout (id,params) {
-    
-    return PUT(api.update(id), params);
-}
-
-/**
- * Delete Article for ArticleList
- * @param {paramsData} params 
- */
-export  function delArticleList (params) {
-    
-    return DEL(api.article, params);
-}
