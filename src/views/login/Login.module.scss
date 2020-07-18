@@ -1,5 +1,6 @@
 $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
 
+
 .path {
   stroke: rgba(255, 255, 255, 0.9);
   fill: none;
@@ -91,20 +92,21 @@ $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
 
 
 
-.submit {
+button.submit {
   position: relative;
   width: 100%;
   height: 3rem;
   margin: 5rem 0 2.2rem;
-  color: rgba(255, 255, 255, 0.8);
-  background: #00d2ff; 
+  color: rgba(255, 255, 255, 0.8) !important;
+  background-color: #00d2ff; 
   background: -webkit-linear-gradient(to right, #00d2ff, #3a7bd5); 
   background: linear-gradient(to right, #00d2ff, #3a7bd5); 
-  font-size: 1.5rem;
-  border-radius: 3rem;
+  font-size: 1.2rem;
+  border-radius: 3rem !important;
   cursor: pointer;
+  padding: 0;
   overflow: hidden;
-  transition: width 0.3s 0.15s, font-size 0.1s 0.15s;
+  transition: width 0.3s 0.15s, font-size 0.1s 0.15s !important;
 
   &:after {
     content: '';
@@ -125,8 +127,10 @@ $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
 
   &.processing {
     width: 4rem;
-    font-size: 0;
-
+    font-size: 0 !important;
+    :global(.MuiButton-label){
+      font-size: 0 !important;
+    }
     &:after {
       opacity: 1;
       animation: rotate 0.5s 0.4s infinite linear;
@@ -135,7 +139,7 @@ $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
 
   &.success {
     transition: transform 0.3s 0.1s ease-out, opacity 0.1s 0.3s,
-      background-color 0.1s 0.3s;
+    background-color 0.1s 0.3s;
     transform: scale(50);
     opacity: 0.9;
     background-color: rgba(255, 255, 255, 0.95);
@@ -147,7 +151,9 @@ $openSans: 'Open Sans', Helvetica, Arial, sans-serif;
     }
   }
 }
-
+.tip{
+  display: none;
+}
 .signup {
   font-size: 1.2rem;
   color: #aba8ae;

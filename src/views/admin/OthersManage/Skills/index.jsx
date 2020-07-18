@@ -5,7 +5,7 @@ import Slider from "@material-ui/core/Slider";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import AddSkillsModel from "./AddSkillsModel";
-import setNotification from "utils/setNotification";
+import { toast } from "react-toastify";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
@@ -68,11 +68,10 @@ export default function DiscreteSlider() {
 
   const handleChange = (e) => {
     e.persist();
-    console.log(e);
     if (e.target.name === "color") {
       setSkillData({
         ...skillData,
-        background: e.target.value,
+        background: e.target.value ? e.target.value : e.target.initColor,
       });
     } else {
       setSkillData({
@@ -89,7 +88,7 @@ export default function DiscreteSlider() {
         word = "新增";
         break;
       case "update":
-        fun = updateskillList;
+        fun = updateskillList.bind(this,skillData._id);
         word = "更新";
         break;
       default:
@@ -101,7 +100,7 @@ export default function DiscreteSlider() {
     fun(skillData).then((res) => {
       console.log(res);
       if (res && res.code === 1) {
-        setNotification(`${word}成功!`);
+        toast(`${word}成功!`);
         setDialog({
           ...dialog,
           open: false,
@@ -123,7 +122,7 @@ export default function DiscreteSlider() {
   const delSkill = (id) => {
     delskillList({ id }).then((res) => {
       if (res && res.code === 1) {
-        setNotification("删除成功!");
+        toast("删除成功!");
         getskillList().then((res) => {
           if (res && res.code === 1) {
             setRows(res.data);

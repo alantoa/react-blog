@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 // import Notfound from "components/Notfound/index";
 import Client from "./client/client";
-
+import { ToastContainer } from "react-toastify";
 import { getToken } from "utils/auth";
 import LoadingComponent from "components/LoadingComponent";
 
@@ -43,7 +43,7 @@ export default function AppIndex() {
           </>
         </Router>
       </Suspense>
-     
+      <ToastContainer />
     </>
   );
 }

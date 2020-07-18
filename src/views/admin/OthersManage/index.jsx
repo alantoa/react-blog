@@ -6,6 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import Skills from './Skills/index'
+import AboutMe from './AboutMe'
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -68,10 +69,14 @@ export default function ScrollableTabsButtonForce() {
           aria-label="scrollable force tabs example"
         >
           <Tab label="Skills" {...a11yProps(0)} />
+          <Tab label="About Me" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
         <Skills/>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <AboutMe/>
       </TabPanel>
     </div>
   );

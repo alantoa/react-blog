@@ -1,4 +1,4 @@
-import setNotification from "./setNotification";
+import { toast } from "react-toastify";
 // 检查状态码
 function checkStatus(res) {
   // 结束
@@ -15,7 +15,7 @@ function checkStatus(res) {
 // 检查CODE值
 function checkCode(resData) {
   if (resData.code === 0) {
-    setNotification(resData.msg);
+    toast(resData.msg);
   }
 
   return resData;

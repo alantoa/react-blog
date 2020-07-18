@@ -13,24 +13,8 @@ import SendIcon from "@material-ui/icons/Send";
 import { DateTimePicker } from "@material-ui/pickers";
 import { toast } from "react-toastify";
 import { useForm, Controller } from "react-hook-form";
-import MdEditor from "react-markdown-editor-lite";
-import MarkdownIt from "markdown-it";
-import emoji from "markdown-it-emoji";
-import subscript from "markdown-it-sub";
-import superscript from "markdown-it-sup";
-import footnote from "markdown-it-footnote";
-import deflist from "markdown-it-deflist";
-import abbreviation from "markdown-it-abbr";
-import insert from "markdown-it-ins";
-import mark from "markdown-it-mark";
-import tasklists from "markdown-it-task-lists";
-import markdownItTocDoneRight from "markdown-it-toc-done-right";
-import markdownItAnchor from "markdown-it-anchor";
-import hljs from "highlight.js";
-import "highlight.js/styles/atom-one-light.css";
-import "react-markdown-editor-lite/lib/index.css";
 // api
-import { addArticleList, updateArticleOne } from "api/article";
+import { updateArticleOne } from "api/article";
 
 // style
 const useStyles = makeStyles((theme) => ({
@@ -82,10 +66,10 @@ const names = [
   "Angular",
   "计算机网络",
 ];
-export default function ArticleManage(props) {
+export default function AboutMe(props) {
   const classes = useStyles();
   
-  const { control, handleSubmit, errors,setValue } = useForm({
+  const { control, handleSubmit, errors } = useForm({
     defaultValues: props.currentData
       ? { ...props.currentData }
       : {
@@ -110,69 +94,17 @@ export default function ArticleManage(props) {
   };
 
   const publishArtocle = (data) => {
-    if (props.currentData) {
-      updateArticleOne(props.currentData._id, data).then((res) => {
+    updateArticleOne(props.currentData._id, data).then((res) => {
         if (res && res.code === 1) {
           toast("修改成功!");
           props.closeDrawer();
         }
       });
-    } else {
-      addArticleList(data).then((res) => {
-        if (res && res.code === 1) {
-          toast("添加成功!");
-        }
-      });
-    }
   };
-  // marddown
-
-  const mdParser = new MarkdownIt({
-    html: true,
-    linkify: true,
-    typographer: true,
-    highlight: function (str, lang) {
-      if (lang && hljs.getLanguage(lang)) {
-        try {
-          return hljs.highlight(lang, str).value;
-        } catch (__) {}
-      }
-      return ""; // use external default escaping
-    },
-  })
-    .use(emoji)
-    .use(subscript)
-    .use(superscript)
-    .use(footnote)
-    .use(deflist)
-    .use(abbreviation)
-    .use(insert)
-    .use(mark)
-    .use(tasklists)
-    .use(markdownItAnchor, {
-      permalink: false,
-      permalinkBefore: false,
-      permalinkSymbol: "#",
-    })
-    .use(markdownItTocDoneRight, {
-      containerClass: "toc",
-      containerId: "toc",
-      listType: "ul",
-      callback: function (html, ast) {
-        //把目录单独列出来
-        setValue('toc',html)
-      },
-    });
-  const renderHTML = (text) => {
-    // 模拟异步渲染Markdown
-    return new Promise((resolve) => {
-      setValue('html', mdParser.render(text))
-      resolve(mdParser.render(text));
-    });
-  };
+  
   return (
     <form className={classes.form} onSubmit={handleSubmit(onSubmit.bind(this))}>
-      <h3 className={classes.title}>添加文章</h3>
+      <h3 className={classes.title}>更新个人信息</h3>
 
       <section className={classes.formControl}>
         <InputLabel shrink>文章类型*</InputLabel>
@@ -261,32 +193,7 @@ export default function ArticleManage(props) {
           />
         </div>
       </section>
-      <section className={classes.formControl}>
-        <div className={classes.formLabel}>文章内容*</div>
-        <Controller
-          render={(props) => (
-            <MdEditor
-              value={props.value}
-              style={{ height: "600px" }}
-              renderHTML={renderHTML}
-              onChange={(e) => {
-                props.onChange((props.value = e.text));
-              }}
-              // config={{
-              //   view: {
-              //     menu: true,
-              //     md: true,
-              //     html: true,
-              //   },
-              //   imageUrl: "https://octodex.github.com/images/minion.png",
-              // }}
-              // onImageUpload={handleImageUpload}
-            />
-          )}
-          name="markdown"
-          control={control}
-        />
-      </section>
+  
       <section className={classes.formControl}>
         <Controller
           as={TextField}
@@ -373,7 +280,7 @@ export default function ArticleManage(props) {
           endIcon={<SendIcon />}
           type="submit"
         >
-          立即发布
+          立即更新
         </Button>
       </section>
     </form>
