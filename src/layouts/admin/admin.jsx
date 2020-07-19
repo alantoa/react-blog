@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React from "react";
 import RouterView from "routes/adminRouterConfig";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
@@ -19,10 +19,10 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import { mainListItems } from "./menuList";
 import Copyright from "components/Copyright";
-import { connect } from 'react-redux'
 import { getToken } from "utils/auth";
-import {getUserInfo} from 'api/user'
+import { getUserInfo } from "api/user";
 import { setUser } from "redux/action/user";
+import store from "redux/index";
 
 const drawerWidth = 240;
 
@@ -107,7 +107,13 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
 }));
- function Admin(props) {
+
+getUserInfo({ token: getToken() }).then((res) => {
+  if (res && res.code === 1) {
+    store.dispatch(setUser(res.data));
+  }
+});
+function Admin(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -116,13 +122,7 @@ const useStyles = makeStyles((theme) => ({
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  useEffect(()=>{
-    getUserInfo({token:getToken()}).then(res=>{
-      if(res && res.code === 1){
-        props.dispatch(setUser(res.data));
-      }
-    })
-  })
+  
   return (
     <>
       <MuiPickersUtilsProvider utils={MomentUtils}>
@@ -194,4 +194,4 @@ const useStyles = makeStyles((theme) => ({
   );
 }
 
-export default connect()(Admin)
+export default Admin;

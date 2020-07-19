@@ -23,16 +23,20 @@
   color: #777;
 }
 .avatar {
-  font-size: 160px;
   position: relative;
   z-index: 111;
   text-align: center;
-  margin: -125px auto 0 auto;
-  max-width: 160px;
+  margin: -120px auto 30px auto;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
   img,
   svg {
     width: 100%;
     margin: 0 auto;
+    height: 100%;
+    object-fit: cover;
   }
 }
 .author {

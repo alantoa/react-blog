@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import style from "./baseinfo.module.scss";
 import Grid from "@material-ui/core/Grid";
-import Icon from "components/SvgIcon";
 import IconButton from "@material-ui/core/IconButton";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import DraftsIcon from "@material-ui/icons/Drafts";
@@ -10,6 +9,7 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import clsx from "clsx";
+import store from "redux/index";
 // api
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <>
       <div className={style.avatar}>
-        <Icon use="logo" />
+        <img src={store.getState().user.avatar} alt="avatar"/>
       </div>
       <Grid
         container
@@ -53,8 +53,8 @@ export default function Home() {
         </Grid>
         <Grid item xs={12} sm={10} md={4} lg={4}>
           <div className={style.author}>
-            <div className={style.title}>Toa</div>
-            <div className={style.career}>前端工程师</div>
+            <div className={style.title}>{store.getState().user.name}</div>
+            <div className={style.career}>{store.getState().user.major}</div>
           </div>
         </Grid>
         <Grid item xs={12} sm={10} md={4} lg={4}>

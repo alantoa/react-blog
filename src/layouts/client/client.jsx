@@ -1,16 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import RouterView from "routes/clientRouterConfig";
 import Footer from "./Footer";
 import Header from "./Header";
 import Bottom from "./Footer/Bottom";
 import Hidden from "@material-ui/core/Hidden";
-import { connect } from "react-redux";
+import { getUserInfo } from "api/client/user";
+import { setUserInfo } from "redux/action/user";
+import store from "redux/index";
 
+getUserInfo("Toa").then((res) => {
+  if (res && res.code === 1) {
+    store.dispatch(setUserInfo(res.data));
+  }
+});
 
-function Client(props) {
-  useEffect(() => {
-    console.log(1);
-  });
+function Client() {
   return (
     <>
       <Header />
@@ -22,4 +26,4 @@ function Client(props) {
     </>
   );
 }
-export default connect()(Client);
+export default Client;
