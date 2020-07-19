@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, withRouter } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import Home from "views/client/Home";
 import About from "views/client/About";
 import Archive from "views/client/Archive";
@@ -9,6 +9,7 @@ import { ReactComponent as T } from "assets/image/T.svg";
 import FormatListBulletedIcon from "@material-ui/icons/FormatListBulleted";
 import NotFound from "components/NotFound";
 import ScrollTop from "./ScrollTop";
+import AnimatedSwitch from "components/AnimatedSwitch";
 
 export const routes = [
   {
@@ -59,17 +60,15 @@ function RouteWithSubRoutes(route) {
   );
 }
 
-class RootView extends React.Component {
-  render() {
-    return (
-      <ScrollTop>
-        <Switch>
-          {routes.map((route, i) => (
-            <RouteWithSubRoutes key={i} {...route} />
-          ))}
-        </Switch>
-      </ScrollTop>
-    );
-  }
+function RootView() {
+  return (
+    <ScrollTop>
+      <AnimatedSwitch>
+        {routes.map((route, i) => (
+          <RouteWithSubRoutes key={i} {...route} />
+        ))}
+      </AnimatedSwitch>
+    </ScrollTop>
+  );
 }
 export default withRouter(RootView);

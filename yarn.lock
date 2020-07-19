@@ -9734,11 +9734,6 @@ react-hook-form@^6.0.4:
   resolved "https://registry.npm.taobao.org/react-hook-form/download/react-hook-form-6.0.4.tgz#c5fc36886f0b4cadd8a2b3bb83a3dbde01ab52a3"
   integrity sha1-xfw2iG8LTK3YorO7g6Pb3gGrUqM=
 
-react-hyperscript@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.npm.taobao.org/react-hyperscript/download/react-hyperscript-3.2.0.tgz#24144ff6b1beb07af7154794a782a74b34920868"
-  integrity sha1-JBRP9rG+sHr3FUeUp4KnSzSSCGg=
-
 react-id-swiper@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npm.taobao.org/react-id-swiper/download/react-id-swiper-3.0.0.tgz#110cc0d5a84c5f6e2c6247ca71f12f5783ebd020"

@@ -7,7 +7,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import MenuIcon from "@material-ui/icons/Menu";
 import ElevationScroll from "./ElevationScroll";
 import ScrollTop from "./ScrollTop";
-import MenuDrawer from "./Drawer";
 import { withRouter, Link } from "react-router-dom";
 import {menu} from "config/system.config";
 import Hidden from "@material-ui/core/Hidden";
@@ -19,6 +18,8 @@ import clsx from "clsx";
 import Icon from "components/SvgIcon";
 import style from "./header.module.scss";
 import { ReactComponent as Github } from "assets/image/github.svg";
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
   container:{
@@ -26,9 +27,11 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     height: 50,
-    width:50
+    width:50,
+    '& .MuiSvgIcon-root':{
+      fontSize:26
+    }
   },
-  
   title: {
     display: "none",
     height: "100%",
@@ -61,18 +64,21 @@ const useStyles = makeStyles((theme) => ({
   login: {
     color: "#fff",
   },
+  menuItem:{
+    fontSize:20
+  }
 }));
 
 function Header(props) {
-  const [open, setState] = React.useState(false);
-  const showDrawer = () => {
-    setState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  const closeDrawer = () => {
-    setState(false);
+  const handleClose = () => {
+    setAnchorEl(null);
   };
-
   const classes = useStyles();
   return (
     <>
@@ -83,12 +89,25 @@ function Header(props) {
               <Hidden only={["xl", "lg", "md"]}>
                 <IconButton
                   className={classes.menuButton}
-                  onClick={showDrawer}
+                  onClick={handleClick}
                   color="inherit"
                   aria-label="open drawer"
                 >
                   <MenuIcon />
                 </IconButton>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                > {menu.map(item=>{
+                  return (
+                   <Link to={item.path} key={item.path}><MenuItem className={classes.menuItem} onClick={handleClose}>{item.name}</MenuItem></Link> 
+                  )
+                })}
+                  
+                </Menu>
               </Hidden>
 
               <Hidden only={["xs", "sm"]}>
@@ -139,11 +158,6 @@ function Header(props) {
           </Hidden>
         </AppBar>
       </ElevationScroll>
-      <MenuDrawer
-        open={open}
-        closeDrawer={closeDrawer}
-        showDrawer={showDrawer}
-      ></MenuDrawer>
       <ScrollTop {...props}>
         <Fab size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />

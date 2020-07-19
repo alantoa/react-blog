@@ -76,3 +76,15 @@ a {
 .rc-md-editor.full {
   z-index: 100000 !important;
 }
+
+@media(max-width:960px){
+  html{
+    font-size: 14px;
+  }
+}
+
+@media(max-width:750px){
+  html{
+    font-size: 12px;
+  }
+}

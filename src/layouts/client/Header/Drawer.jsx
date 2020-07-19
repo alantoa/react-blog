@@ -3,11 +3,7 @@ import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import List from "@material-ui/core/List";
 import { makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-import {menu} from "config/system.config";
+import { menu } from "config/system.config";
 import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles({
@@ -17,9 +13,12 @@ const useStyles = makeStyles({
   listItem: {
     color: "rgba(0, 0, 0, 0.87)",
   },
+  menuItem: {
+    display: "flex",
+    fontSize: 20,
+  },
 });
 function MenuDrawer(props) {
-  
   const classes = useStyles();
   //click after close drawer component
 
@@ -45,10 +44,7 @@ function MenuDrawer(props) {
               className={classes.listItem}
               onClick={routerLink.bind(this, item)}
             >
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={item.name} />
+              <span className={classes.menuItem}>{item.name}</span>
             </ListItem>
           ))}
         </List>
