@@ -7,7 +7,7 @@ import Detail from "views/client/Detail";
 import AppsIcon from "@material-ui/icons/Apps";
 import { ReactComponent as T } from "assets/image/T.svg";
 import FormatListBulletedIcon from "@material-ui/icons/FormatListBulleted";
-import NotFound from "components/NotFound";
+// import NotFound from "components/NotFound";
 import ScrollTop from "./ScrollTop";
 import AnimatedSwitch from "components/AnimatedSwitch";
 
@@ -37,11 +37,11 @@ export const routes = [
     icon: FormatListBulletedIcon,
     component: Detail,
   },
-  {
-    path: "*",
-    name: "404",
-    component: NotFound,
-  },
+  // {
+  //   path: "*",
+  //   name: "404",
+  //   component: NotFound,
+  // },
 ];
 
 /**
