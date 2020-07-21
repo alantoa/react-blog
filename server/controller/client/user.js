@@ -1,4 +1,5 @@
 const skillModel = require("../../mongo/models/skill");
+const aboutModel = require("../../mongo/models/about");
 
 module.exports = {
   
@@ -12,6 +13,17 @@ module.exports = {
       ctx.send(data);
     } catch (e) {
       console.log(e);
+      ctx.sendError(e);
+    }
+  },
+  async info(ctx, next) {
+    console.log("----------------获取简介 addAbout-----------------------");
+    let name = ctx.params.name;
+    try {
+      let data = await ctx.findOne(aboutModel, { name });
+      console.log(data);
+      ctx.send(data);
+    } catch (e) {
       ctx.sendError(e);
     }
   },

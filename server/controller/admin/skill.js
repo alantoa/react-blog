@@ -33,15 +33,32 @@ module.exports = {
   async update(ctx, next) {
     console.log("----------------更新技能 skill/update-----------------------");
     let paramsData = ctx.request.body;
+    let id = ctx.params.id
     try {
       await ctx.updateOne(
         skillModel,
         {
-          _id: paramsData._id,
+          _id: id,
         },
         paramsData
       );
       ctx.send();
+    } catch (e) {
+      if (e === "暂无数据") {
+        ctx.sendError(e);
+      }
+    }
+  },
+  async updateAll(ctx, next) {
+    console.log("----------------更新技能-全部 skill/update-----------------------");
+    let paramsData = ctx.request.body;
+    try {
+     let data =  await ctx.updateMany(
+        skillModel,
+        {},
+        paramsData
+      );
+      ctx.send(data);
     } catch (e) {
       if (e === "暂无数据") {
         ctx.sendError(e);

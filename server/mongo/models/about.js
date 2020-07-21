@@ -1,59 +1,33 @@
-const db = require('../index');
+const db = require("../index");
 
 let aboutSchema = db.Schema({
-  name: {
-    type: String,
-    default: ''
-  },
-  id: {
-    type: String,
-    default: ''
-  },
+  name: String,
+  userId:String,
   avatar: {
-    type: Object,
-    default: Object
+    type: String,
+    default: 'http://qdcz1fgum.bkt.clouddn.com/logo.svg',
   },
   birthday: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   sign: {
     type: String,
-    default: ''
+    default: "IN GOD WE TRUST",
   },
-  url: {
-    type: String,
-    default: ''
+  url: String,
+  hobby: String,
+  dream: String,
+  base: String,
+  belief: String,
+  age: String,
+  major: String,
+  intro:String,
+  status: String,
+  createTime: {
+    type: Date,
+    default: Date.now,
   },
-  hobby: {
-    type: String,
-    default: ''
-  },
-  dream: {
-    type: String,
-    default: ''
-  },
-  base: {
-    type: String,
-    default: ''
-  },
-  belief: {
-    type: String,
-    default: ''
-  },
-  age: {
-    type: Number,
-    default: 0
-  },
-  major: Array,
-  intro: {
-    type: String,
-    default: ''
-  },
-  status: {
-    type: String,
-    default: true
-  },
-})
+});
 
-module.exports = db.model('about', aboutSchema);
+module.exports = db.model("about", aboutSchema);

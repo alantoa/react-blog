@@ -1,8 +1,10 @@
 const db = require('../index');
 
 let articleSchema = db.Schema({
-  type: Array,
+  id:String,
+  type: String,
   title: String,
+  cover:String,
   desc: String,
   html: String,
   markdown: String,
@@ -10,6 +12,8 @@ let articleSchema = db.Schema({
   github: String,
   source: Number,
   isVisible: Boolean,
+  toc:String,
+  tag:Array,
   releaseTime: {
     type: Date,
     default: Date.now

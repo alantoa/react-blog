@@ -28,12 +28,31 @@ const add = (model, conditions) => {
  */
 const updateOne = (model, conditions, update, options) => {
   return new Promise((resolve, reject) => {
-    model.updateOne(conditions, update, options, (err, res) => {
+    model.update(conditions, update, options, (err, res) => {
       if (err) {
         console.error('Error: ' + JSON.stringify(err));
         reject(err);
         return false;
       }
+      console.log(res)
+      if (res.n != 0) {
+        console.log('update success!');
+      } else {
+        console.log('update fail:no this data!');
+      }
+      resolve(res);
+    })
+  })
+}
+const updateById = (model, id, update, options) => {
+  return new Promise((resolve, reject) => {
+    model.findByIdAndUpdate(id, update, options, (err, res) => {
+      if (err) {
+        console.error('Error: ' + JSON.stringify(err));
+        reject(err);
+        return false;
+      }
+      console.log(res)
       if (res.n != 0) {
         console.log('update success!');
       } else {
@@ -46,6 +65,7 @@ const updateOne = (model, conditions, update, options) => {
 const updateMany = (model, conditions, update, options) => {
   return new Promise((resolve, reject) => {
     model.updateMany(conditions, update, options, (err, res) => {
+      console.log(update,err,res)
       if (err) {
         console.error('Error: ' + JSON.stringify(err));
         reject(err);
@@ -151,7 +171,24 @@ const findOne = (model, conditions, fields, options = {}) => {
   })
 }
 
-
+const findById = (model, id, fields, options = {}) => {
+  return new Promise((resolve, reject) => {
+    model.findById(id, fields, options, function (err, res) {
+      if (err) {
+        console.error('Error: ' + JSON.stringify(err));
+        reject(err);
+        return false;
+      } else {
+        if (res) {
+          console.log('find success!');
+        } else {
+          console.log('find fail:no this data!');
+        }
+        resolve(res);
+      }
+    })
+  })
+}
 const findPage = async (model, conditions, fields, options = {}) => {
   var sort = options.sort == undefined ? {
     _id: -1
@@ -203,8 +240,10 @@ module.exports = {
   add,
   updateOne,
   updateMany,
+  updateById,
   deleteOne,
   find,
   findOne,
   findPage,
+  findById,
 }

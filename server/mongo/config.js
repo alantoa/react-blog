@@ -12,8 +12,11 @@ const log = {
   projectName: 'blog', // 项目名，记录在日志中的项目信息
   ip: '0.0.0.0' // 默认情况下服务器 ip 地址
 }
-const port = process.env.NODE_ENV === 'production' ? '3000' : '3001'
-console.log('----------------------------', process.env.NODE_ENV)
+
+const port = process.env.NODE_ENV === 'development' ? '3001' : '3000'
+
+
+console.log('----------------------------', process.env.NODE_ENV,port)
 module.exports = {
   env: process.env.NODE_ENV,
   port,
@@ -21,7 +24,7 @@ module.exports = {
   log,
   mongodb: {
     username: 'toa',
-    pwd: 123456,
+    pwd:123456 ,
     address: 'localhost:27017',
     db: 'blog'
   }
