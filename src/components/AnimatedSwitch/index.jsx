@@ -8,7 +8,7 @@ const AnimatedSwitch = (props) => {
   return (
     <Route
       render={({ location }) => (
-        <TransitionGroup>
+        <TransitionGroup component={null}>
           <CSSTransition
             key={location.key}
             classNames={props.type || "fade"}

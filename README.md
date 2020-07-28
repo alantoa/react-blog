@@ -22,6 +22,8 @@ UI框架:[Material UI-React](https://material-ui.com/),
 
 数据库: MongoDB. 
 
+持续集成CI
+
 前端的页面设计灵感主要来源:[Apple](https://www.apple.com/hk/iphone-11/?afid=p238%7CsiVIpQmIV-dc_mtid_20925x0a40395_pcrid_437409266119_pgrid_77699315973_&cid=wwa-hk-kwgo-iphone-slid--Brand-iPhone11-Evergreen-), [Google](https://www.mdui.org/design/),[闪烁之狐](http://blinkfox.com/),
 
 ###### 🤝鸣谢!

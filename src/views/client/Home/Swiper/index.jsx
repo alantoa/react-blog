@@ -21,7 +21,6 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import InstagramIcon from "@material-ui/icons/Instagram";
 // api
 import { getSwiper } from "api/client/article";
-
 var typedOption = {
   strings: [
     "How long will you lie there, O sluggard?When will you arise from your sleep?",
@@ -88,7 +87,7 @@ const SwiperSlide = (props) => {
 
   return (
     <div ref={swiperRef} className={style.swiperContainer}>
-      {swiperData.length > 0 && (
+      {swiperData.length > 0 ? (
         <Swiper {...swiperParams}>
           <div
             className={clsx(style.cover, style.bgCover)}
@@ -179,6 +178,73 @@ const SwiperSlide = (props) => {
             );
           })}
         </Swiper>
+      ) : (
+        <div
+          className={clsx(style.cover, style.bgCover)}
+          key={0}
+          style={{
+            backgroundImage: `url(${require("assets/image/swiper/0.jpg")})`,
+          }}
+        >
+          <Container className={style.container} maxWidth="md">
+            <h2 className={clsx(style.title, style.indexTitle)}>Toa Blog</h2>
+            <h5 className={clsx(style.desc, style.indexDesc)}>
+              <span ref={typedText}></span>
+            </h5>
+            <div className={style.operate}>
+              <Button
+                className={style.moreBtn}
+                onClick={startRead}
+                variant="outlined"
+              >
+                <Icon use="angleDoubleBottom" className={style.startRead} />
+                开始阅读
+              </Button>
+            </div>
+            <div className={style.link}>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Github"
+                href="https://github.com/monsteranan"
+              >
+                <IconButton>
+                  <GitHubIcon />
+                </IconButton>
+              </a>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Email"
+                href="mailto:toacncom@gmail.com"
+              >
+                <IconButton>
+                  <DraftsIcon />
+                </IconButton>
+              </a>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Twitter"
+                href="https://twitter.com/Toa_anan"
+              >
+                <IconButton>
+                  <TwitterIcon />
+                </IconButton>
+              </a>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Instagram"
+                href="https://www.instagram.com/thealantoa/"
+              >
+                <IconButton>
+                  <InstagramIcon />
+                </IconButton>
+              </a>
+            </div>
+          </Container>
+        </div>
       )}
     </div>
   );
