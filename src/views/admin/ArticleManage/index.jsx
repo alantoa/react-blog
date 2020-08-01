@@ -92,6 +92,7 @@ export default function ArticleManage(props) {
           type: "",
           html: "",
           title: "",
+          engTitle:"",
           cover: "",
           toc:"",
           markdown: "",
@@ -208,6 +209,21 @@ export default function ArticleManage(props) {
           }}
           label="标题"
           placeholder="请输入标题"
+          fullWidth
+          control={control}
+        />
+      </section>
+      <section className={classes.formControl}>
+        <Controller
+          as={TextField}
+          name="engTitle"
+          required
+          autoFocus
+          InputLabelProps={{
+            shrink: true,
+          }}
+          label="英文标题"
+          placeholder="请输入英文标题"
           fullWidth
           control={control}
         />
