@@ -8,7 +8,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ElevationScroll from "./ElevationScroll";
 import ScrollTop from "./ScrollTop";
 import { withRouter, Link } from "react-router-dom";
-import {menu} from "config/system.config";
+import { menu } from "config/system.config";
 import Hidden from "@material-ui/core/Hidden";
 import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
@@ -18,19 +18,19 @@ import clsx from "clsx";
 import Icon from "components/SvgIcon";
 import style from "./header.module.scss";
 import { ReactComponent as Github } from "assets/image/github.svg";
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const useStyles = makeStyles((theme) => ({
-  container:{
-    padding:0
+  container: {
+    padding: 0,
   },
   menuButton: {
     height: 50,
-    width:50,
-    '& .MuiSvgIcon-root':{
-      fontSize:26
-    }
+    width: 50,
+    "& .MuiSvgIcon-root": {
+      fontSize: 26,
+    },
   },
   title: {
     display: "none",
@@ -41,21 +41,22 @@ const useStyles = makeStyles((theme) => ({
   },
   titleLink: {
     display: "inline-block",
-    color: 'inherit',
+    color: "inherit",
     height: "100%",
     padding: "0 20px",
-    borderRadius:0,
+    borderRadius: 0,
     "&:hover": {
       backgroundColor: fade(theme.palette.common.black, 0.1),
     },
+
   },
-  toolbar:{
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  toolbar: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
     height: 60,
     [theme.breakpoints.down("sm")]: {
-      padding: '0 4px',
+      padding: "0 4px",
     },
   },
   inputRoot: {
@@ -64,9 +65,9 @@ const useStyles = makeStyles((theme) => ({
   login: {
     color: "#fff",
   },
-  menuItem:{
-    fontSize:20
-  }
+  menuItem: {
+    fontSize: 20,
+  },
 }));
 
 function Header(props) {
@@ -84,7 +85,7 @@ function Header(props) {
     <>
       <ElevationScroll {...props}>
         <AppBar color="transparent">
-          <Container  className={classes.container} >
+          <Container className={classes.container}>
             <Toolbar className={classes.toolbar}>
               <Hidden only={["xl", "lg", "md"]}>
                 <IconButton
@@ -101,17 +102,25 @@ function Header(props) {
                   keepMounted
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
-                > {menu.map(item=>{
-                  return (
-                   <Link to={item.path} key={item.path}><MenuItem className={classes.menuItem} onClick={handleClose}>{item.name}</MenuItem></Link> 
-                  )
-                })}
-                  
+                >
+                  {" "}
+                  {menu.map((item) => {
+                    return (
+                      <Link to={item.path} key={item.path}>
+                        <MenuItem
+                          className={classes.menuItem}
+                          onClick={handleClose}
+                        >
+                          {item.name}
+                        </MenuItem>
+                      </Link>
+                    );
+                  })}
                 </Menu>
               </Hidden>
 
               <Hidden only={["xs", "sm"]}>
-                <Link to='/'>
+                <Link to="/">
                   <div className={clsx(style.logo, style.lgLogo)}>
                     <Icon use="logo" />
                     <h3 className={style.blogName}>Toa Blog</h3>
@@ -119,7 +128,7 @@ function Header(props) {
                 </Link>
               </Hidden>
               <Hidden only={["xl", "lg", "md"]}>
-                <Link to='/'>
+                <Link to="/">
                   <div className={clsx(style.logo, style.smLogo)}>
                     <Icon use="toa" />
                   </div>
@@ -130,7 +139,7 @@ function Header(props) {
                   {menu.map((item) => {
                     return item.name ? (
                       <Link key={item.path} to={item.path}>
-                        <Button className={classes.titleLink}>
+                        <Button className={clsx(classes.titleLink,style.titleLink)}>
                           {item.name}
                         </Button>
                       </Link>
@@ -141,7 +150,11 @@ function Header(props) {
                 </div>
               </Hidden>
               <Hidden only={["xl", "lg", "md"]}>
-                <IconButton aria-label="search" className={classes.menuButton} color="inherit">
+                <IconButton
+                  aria-label="search"
+                  className={classes.menuButton}
+                  color="inherit"
+                >
                   <SearchIcon />
                 </IconButton>
               </Hidden>
